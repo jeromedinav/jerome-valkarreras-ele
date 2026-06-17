@@ -1,0 +1,5 @@
+.DS_Store
+*.bak
+models/
+build_hero.py
+images/hero-class-new.jpg

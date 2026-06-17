@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerome M. Valkarreras | Spanish ELE Teacher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .hero {
+      background:
+        linear-gradient(180deg, rgba(15,15,20,0.55) 0%, rgba(15,15,20,0.10) 42%, rgba(15,15,20,0.50) 100%),
+        url('images/hero-class.jpg?v=17') 50% 45% / cover no-repeat;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 55% at 50% 18%, rgba(0,0,0,0.38) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-avatar {
+      width: 5.5rem;
+      height: 5.5rem;
+      object-fit: cover;
+      border-radius: 9999px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      border: 3px solid rgba(255,255,255,0.35);
+    }
+    @media (min-width: 768px) {
+      .hero-avatar { width: 6.5rem; height: 6.5rem; }
+    }
+    @media (max-width: 768px) {
+      .hero {
+        background-position: 55% 42%;
+      }
+    }
+    .section-title { 
+      position: relative; 
+      display: inline-block;
+    }
+    .section-title:after { 
+      content: ''; position: absolute; bottom: -12px; left: 0; width: 72px; height: 4px; background: #dc2626; 
+      border-radius: 2px;
+    }
+    .nav-link { transition: color .2s ease; }
+    .nav-link:hover { color: #dc2626; }
+    .card { transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    .smooth-scroll { scroll-behavior: smooth; }
+
+    /* Bilingual switcher styles - ENG primary, ESP secondary/gray */
+    .lang-switcher {
+      display: flex;
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .lang-btn.eng {
+      background: #dc2626;
+      color: white;
+    }
+    .lang-btn.esp {
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+    .lang-btn.esp:hover {
+      background: #e5e7eb;
+      color: #4b5563;
+    }
+    .lang-btn.eng:hover {
+      background: #b91c1c;
+    }
+  </style>
+</head>
+<body class="bg-zinc-50 text-zinc-800 smooth-scroll">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl">J</div>
+        <div class="font-bold text-xl tracking-tight">Jerome M. Valkarreras</div>
+      </div>
+
+      <!-- Main Navigation (left of language buttons) -->
+      <div class="hidden md:flex items-center gap-6 text-base font-medium">
+        <!-- INICIO with dropdown sub-tabs -->
+        <div class="relative group">
+          <button id="nav-inicio-btn" 
+                  onclick="showHome()"
+                  class="flex items-center gap-1 text-zinc-800 hover:text-red-600 transition">
+            Inicio
+            <i class="fas fa-chevron-down text-xs"></i>
+          </button>
+          <!-- Dropdown sub-menu -->
+          <div id="nav-inicio-dropdown" 
+               class="hidden group-hover:block absolute top-full left-0 mt-1 w-44 bg-white border border-zinc-200 shadow-xl rounded-2xl py-1 text-sm z-50">
+            <a href="#sobre-mi" onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Sobre mí</a>
+            <a href="#servicios" onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Servicios</a>
+            <a href="#metodologia" onclick="showHome(); setTimeout(() => document.getElementById('metodologia').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Metodología</a>
+            <a href="#testimonios" onclick="showHome(); setTimeout(() => document.getElementById('testimonios').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Testimonios</a>
+            <a href="#precios" onclick="showHome(); setTimeout(() => document.getElementById('precios').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Precios</a>
+          </div>
+        </div>
+
+        <!-- MENÚ principal -->
+        <a onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="text-zinc-800 hover:text-red-600 transition cursor-pointer">Menú</a>
+
+        <!-- BLOG -->
+        <a onclick="showBlog()" class="text-zinc-800 hover:text-red-600 transition cursor-pointer">Blog</a>
+      </div>
+
+      <!-- Language switcher + CTA (Desktop) -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- ENG first (default active), ESP gray secondary -->
+        <div class="lang-switcher">
+          <button id="lang-en" class="lang-btn eng" data-lang="en">ENG</button>
+          <button id="lang-es" class="lang-btn esp" data-lang="es">ESP</button>
+        </div>
+
+        <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition" data-i18n="nav.contact">
+          Contact
+        </a>
+      </div>
+
+      <!-- Mobile: Language switcher + Hamburger -->
+      <div class="md:hidden flex items-center gap-2">
+        <div class="lang-switcher text-xs">
+          <button id="lang-en-mobile" class="lang-btn eng px-2.5 py-0.5" data-lang="en">ENG</button>
+          <button id="lang-es-mobile" class="lang-btn esp px-2.5 py-0.5" data-lang="es">ESP</button>
+        </div>
+
+        <button id="menu-btn" class="w-10 h-10 flex items-center justify-center text-xl text-zinc-700" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t bg-white">
+      <div class="px-6 py-5 flex flex-col gap-1 text-base">
+        <a onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50)" class="py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer">Sobre mí</a>
+        <a onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer">Servicios</a>
+        <a onclick="showHome(); setTimeout(() => document.getElementById('metodologia').scrollIntoView({behavior:'smooth'}), 50)" class="py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer">Metodología</a>
+        <a onclick="showHome(); setTimeout(() => document.getElementById('testimonios').scrollIntoView({behavior:'smooth'}), 50)" class="py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer">Testimonios</a>
+        <a onclick="showHome(); setTimeout(() => document.getElementById('precios').scrollIntoView({behavior:'smooth'}), 50)" class="py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer">Precios</a>
+        <a onclick="showBlog()" class="py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer">Blog</a>
+        <a href="#contacto" class="mt-2 bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-full font-medium">Contactar</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="home-content">
+  <section class="hero text-white relative flex items-start justify-center">
+    <div class="w-full max-w-4xl px-6 pt-[5%] md:pt-[4%] text-center relative z-10">
+      <img src="images/jerome-portrait.jpg" alt="Jerome M. Valkarreras" class="hero-avatar mx-auto mb-5" width="104" height="104">
+      <p class="text-red-200 text-sm font-semibold tracking-widest uppercase mb-4 drop-shadow-md" data-i18n="hero.badge">Spanish ELE Teacher</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]" data-i18n="hero.title">Learn real Spanish</h1>
+      <p class="text-lg md:text-xl lg:text-2xl mb-6 max-w-2xl mx-auto text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.75)]" data-i18n="hero.subtitle">
+        Personalized classes with a native teacher. For international students who want to speak with confidence.
+      </p>
+      <a href="#contacto" class="inline-block bg-white text-red-600 hover:bg-red-50 font-semibold text-base md:text-lg px-8 py-3.5 rounded-2xl transition shadow-lg" data-i18n="hero.cta">
+        Book your free trial class
+      </a>
+      <p class="mt-4 text-xs md:text-sm text-white/90 tracking-wide drop-shadow-[0_1px_6px_rgba(0,0,0,0.7)]" data-i18n="hero.note">Online • In-person in Madrid • Flexible schedules</p>
+    </div>
+  </section>
+
+  <!-- About me -->
+  <section id="sobre-mi" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="flex justify-center md:justify-start">
+          <img src="images/jerome-portrait.jpg" 
+               alt="Jerome M. Valkarreras - Profesor de Español ELE" 
+               class="rounded-3xl shadow-xl w-full max-w-[400px] h-auto">
+        </div>
+        <div>
+          <h2 class="section-title text-4xl font-bold mb-8 inline-block" data-i18n="about.title">Jerome M. Valkarreras</h2>
+          <div class="space-y-5 text-lg leading-relaxed text-zinc-700">
+            <p data-i18n="about.p1">Certified Spanish as a Foreign Language teacher with over 10 years of experience and students from more than 30 nationalities.</p>
+            <p data-i18n="about.p2">My goal is for you to communicate naturally and confidently in Spanish, combining grammar, real conversation, and Hispanic culture.</p>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <div class="flex items-center gap-3 bg-zinc-100 px-4 py-3 rounded-xl">
+              <i class="fas fa-check text-red-600"></i>
+              <span data-i18n="about.badge1">+10 years of experience</span>
+            </div>
+            <div class="flex items-center gap-3 bg-zinc-100 px-4 py-3 rounded-xl">
+              <i class="fas fa-check text-red-600"></i>
+              <span data-i18n="about.badge2">Students from 30+ countries</span>
+            </div>
+            <div class="flex items-center gap-3 bg-zinc-100 px-4 py-3 rounded-xl">
+              <i class="fas fa-check text-red-600"></i>
+              <span data-i18n="about.badge3">All levels (A1–C2)</span>
+            </div>
+            <div class="flex items-center gap-3 bg-zinc-100 px-4 py-3 rounded-xl">
+              <i class="fas fa-check text-red-600"></i>
+              <span data-i18n="about.badge4">Online and in-person classes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="servicios" class="py-20 bg-zinc-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="section-title text-4xl font-bold text-center mb-12" data-i18n="services.title">Services</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card bg-white p-8 rounded-3xl shadow">
+          <div class="w-12 h-12 flex items-center justify-center bg-red-100 text-red-600 rounded-2xl mb-6">
+            <i class="fas fa-user text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3" data-i18n="services.individual.title">Individual Classes</h3>
+          <p class="text-zinc-600" data-i18n="services.individual.desc">Fully tailored to your level, goals and schedule.</p>
+        </div>
+
+        <div class="card bg-white p-8 rounded-3xl shadow">
+          <div class="w-12 h-12 flex items-center justify-center bg-red-100 text-red-600 rounded-2xl mb-6">
+            <i class="fas fa-file-alt text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3" data-i18n="services.dele.title">DELE / SIELE Preparation</h3>
+          <p class="text-zinc-600" data-i18n="services.dele.desc">Intensive training and strategies to pass the official exams.</p>
+        </div>
+
+        <div class="card bg-white p-8 rounded-3xl shadow">
+          <div class="w-12 h-12 flex items-center justify-center bg-red-100 text-red-600 rounded-2xl mb-6">
+            <i class="fas fa-comments text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3" data-i18n="services.conversation.title">Conversation &amp; Fluency</h3>
+          <p class="text-zinc-600" data-i18n="services.conversation.desc">Real speaking practice to build confidence.</p>
+        </div>
+
+        <div class="card bg-white p-8 rounded-3xl shadow">
+          <div class="w-12 h-12 flex items-center justify-center bg-red-100 text-red-600 rounded-2xl mb-6">
+            <i class="fas fa-briefcase text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3" data-i18n="services.business.title">Spanish for Business</h3>
+          <p class="text-zinc-600" data-i18n="services.business.desc">Professional vocabulary and workplace situations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section id="metodologia" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="section-title text-4xl font-bold text-center mb-12" data-i18n="method.title">My Methodology</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-8 rounded-3xl shadow card text-center">
+          <div class="text-6xl mb-5">🎯</div>
+          <h3 class="text-xl font-semibold mb-3" data-i18n="method.personalized.title">Personalized</h3>
+          <p class="text-zinc-600" data-i18n="method.personalized.desc">Adapted to your needs and learning pace.</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow card text-center">
+          <div class="text-6xl mb-5">💬</div>
+          <h3 class="text-xl font-semibold mb-3" data-i18n="method.communicative.title">Communicative</h3>
+          <p class="text-zinc-600" data-i18n="method.communicative.desc">You will speak Spanish from the very first class.</p>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow card text-center">
+          <div class="text-6xl mb-5">🌍</div>
+          <h3 class="text-xl font-semibold mb-3" data-i18n="method.cultural.title">Cultural</h3>
+          <p class="text-zinc-600" data-i18n="method.cultural.desc">You learn the language and Hispanic culture at the same time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonios" class="py-20 bg-zinc-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="section-title text-4xl font-bold text-center mb-12" data-i18n="testimonials.title">What my students say</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-lg" data-i18n="testimonials.t1.text">"Jerome is the best teacher I’ve had. In 7 months I went from zero to having fluid conversations. His method is clear, patient and extremely effective."</p>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t1.name">Laura M.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t1.country">— Germany</span></div>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-lg" data-i18n="testimonials.t2.text">"Les cours avec Jerome sont excellents. J’ai rapidement gagné en fluidité et en confiance. Je recommande sans hésiter !"</p>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t2.name">Thomas L.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t2.country">— France</span></div>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          <p class="text-lg" data-i18n="testimonials.t3.text">"I passed the DELE C1 thanks to Jerome’s targeted exam preparation. The mock exams and feedback were extremely accurate and helpful."</p>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t3.name">Sarah K.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t3.country">— USA</span></div>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow">
+          <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-lg" data-i18n="testimonials.t4.text">"I started classes for work and within a few months I was already participating in meetings in Spanish with total confidence. Very professional and warm."</p>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t4.name">Marco R.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t4.country">— Italy</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="precios" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="section-title text-4xl font-bold text-center mb-4" data-i18n="pricing.title">Pricing</h2>
+      <p class="text-center text-zinc-600 text-lg mb-12" data-i18n="pricing.subtitle">Online or in-person classes in Madrid. No commitment.</p>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white border border-zinc-200 rounded-3xl p-8">
+          <h3 class="font-semibold text-xl" data-i18n="pricing.individual.title">Individual class</h3>
+          <div class="mt-4">
+            <span class="text-5xl font-bold">32€</span>
+            <span class="text-xl text-zinc-500" data-i18n="pricing.perhour">/hour</span>
+          </div>
+          <ul class="mt-8 space-y-3 text-sm text-zinc-600">
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.individual.1">60 minutes</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.individual.2">Materials included</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.individual.3">Flexible schedule</span></li>
+          </ul>
+          <a href="#contacto" class="mt-8 block text-center bg-zinc-900 hover:bg-black text-white py-3 rounded-2xl font-medium" data-i18n="pricing.cta">Book now</a>
+        </div>
+
+        <div class="bg-white border-2 border-red-600 rounded-3xl p-8 relative">
+          <div class="absolute -top-3 right-6 bg-red-600 text-white text-xs font-bold px-4 py-1 rounded-full" data-i18n="pricing.popular">RECOMMENDED</div>
+          <h3 class="font-semibold text-xl" data-i18n="pricing.pack5.title">5-class pack</h3>
+          <div class="mt-4">
+            <span class="text-5xl font-bold">145€</span>
+            <span class="text-xl text-zinc-500" data-i18n="pricing.pack5.price">(29€/hour)</span>
+          </div>
+          <ul class="mt-8 space-y-3 text-sm text-zinc-600">
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.1">5 individual hours</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.2">10% discount</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.3">WhatsApp follow-up</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.4">Personalized learning plan</span></li>
+          </ul>
+          <a href="#contacto" class="mt-8 block text-center bg-red-600 hover:bg-red-700 text-white py-3 rounded-2xl font-medium" data-i18n="pricing.cta">Choose pack</a>
+        </div>
+
+        <div class="bg-white border border-zinc-200 rounded-3xl p-8">
+          <h3 class="font-semibold text-xl" data-i18n="pricing.group.title">Group classes (2-4 people)</h3>
+          <div class="mt-4">
+            <span class="text-5xl font-bold">22€</span>
+            <span class="text-xl text-zinc-500" data-i18n="pricing.perperson">/person</span>
+          </div>
+          <ul class="mt-8 space-y-3 text-sm text-zinc-600">
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.group.1">90 minutes per session</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.group.2">Price per person</span></li>
+            <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.group.3">Ideal for speaking practice</span></li>
+          </ul>
+          <a href="#contacto" class="mt-8 block text-center bg-zinc-900 hover:bg-black text-white py-3 rounded-2xl font-medium" data-i18n="pricing.cta">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <!-- Blog -->
+  <section id="blog" class="py-20 bg-zinc-100">
+    <div id="blog-content" style="display: none;">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-10">
+          <h1 class="text-4xl font-bold tracking-tight">Spanish Learning Blog</h1>
+          <p class="mt-3 text-lg text-zinc-500 max-w-2xl mx-auto">
+            Grammar, culture and strategies for mastering Spanish — from a teacher who knows what actually works
+          </p>
+        </div>
+
+        <!-- Blog Grid - exactly like your screenshot -->
+        <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Card 1 -->
+          <div onclick="showSinglePost(1)" class="bg-white rounded-2xl shadow-sm overflow-hidden border border-zinc-100 flex flex-col cursor-pointer hover:shadow-md transition">
+            <img src="https://picsum.photos/id/1015/600/340" alt="Desk with laptop and notebook" class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="inline-block bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full font-medium">Grammar</span>
+                <span class="text-zinc-400">8 min read</span>
+              </div>
+              <h3 class="font-semibold text-xl leading-tight mb-2">7 Spanish Mistakes You're Probably Making Right Now</h3>
+              <p class="text-zinc-500 text-sm flex-1">After 10+ years of teaching, I've heard the same errors in almost every class. Here's how to spot and fix the most stubborn ones — with real examples.</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-zinc-400">March 15, 2024</span>
+                <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div onclick="showSinglePost(2)" class="bg-white rounded-2xl shadow-sm overflow-hidden border border-zinc-100 flex flex-col cursor-pointer hover:shadow-md transition">
+            <img src="https://picsum.photos/id/201/600/340" alt="Modern library bookshelves" class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="inline-block bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full font-medium">Grammar</span>
+                <span class="text-zinc-400">10 min read</span>
+              </div>
+              <h3 class="font-semibold text-xl leading-tight mb-2">The Subjunctive Mood: A Clear, No-Nonsense Guide</h3>
+              <p class="text-zinc-500 text-sm flex-1">The subjunctive intimidates most learners. But it follows clear, learnable patterns — and once you understand the logic behind it, everything clicks.</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-zinc-400">March 10, 2024</span>
+                <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div onclick="showSinglePost(3)" class="bg-white rounded-2xl shadow-sm overflow-hidden border border-zinc-100 flex flex-col cursor-pointer hover:shadow-md transition">
+            <img src="https://picsum.photos/id/1016/600/340" alt="Barcelona cityscape at sunset" class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="inline-block bg-emerald-100 text-emerald-700 px-3 py-0.5 rounded-full font-medium">Culture</span>
+                <span class="text-zinc-400">7 min read</span>
+              </div>
+              <h3 class="font-semibold text-xl leading-tight mb-2">Spain's Linguistic Map: Why the Country Speaks More Than One Language</h3>
+              <p class="text-zinc-500 text-sm flex-1">Spain is officially plurilingual. Understanding its regional languages will give you cultural insights that no grammar book ever will.</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-zinc-400">March 5, 2024</span>
+                <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div onclick="showSinglePost(4)" class="bg-white rounded-2xl shadow-sm overflow-hidden border border-zinc-100 flex flex-col cursor-pointer hover:shadow-md transition">
+            <img src="https://picsum.photos/id/1018/600/340" alt="Machu Picchu landscape" class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="inline-block bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full font-medium">Practical</span>
+                <span class="text-zinc-400">6 min read</span>
+              </div>
+              <h3 class="font-semibold text-xl leading-tight mb-2">30 Essential Spanish Phrases for Travellers (That Actually Get Used)</h3>
+              <p class="text-zinc-500 text-sm flex-1">Forget the phrasebook basics. These are the expressions that will actually get you out of tight spots, make locals smile, and open real conversations.</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-zinc-400">February 28, 2024</span>
+                <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div onclick="showSinglePost(5)" class="bg-white rounded-2xl shadow-sm overflow-hidden border border-zinc-100 flex flex-col cursor-pointer hover:shadow-md transition">
+            <img src="https://picsum.photos/id/292/600/340" alt="Popcorn and cinema" class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="inline-block bg-emerald-100 text-emerald-700 px-3 py-0.5 rounded-full font-medium">Culture</span>
+                <span class="text-zinc-400">9 min read</span>
+              </div>
+              <h3 class="font-semibold text-xl leading-tight mb-2">Spanish Cinema: 8 Films That Will Transform Your Listening Comprehension</h3>
+              <p class="text-zinc-500 text-sm flex-1">Watching films in Spanish is one of the highest-return activities for any learner above A2. Here's a curated list — plus a proven method to make it actually work.</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-zinc-400">February 20, 2024</span>
+                <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div onclick="showSinglePost(6)" class="bg-white rounded-2xl shadow-sm overflow-hidden border border-zinc-100 flex flex-col cursor-pointer hover:shadow-md transition">
+            <img src="https://picsum.photos/id/1015/600/340" alt="Desk with laptop and notebook" class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <div class="flex items-center justify-between text-xs mb-3">
+                <span class="inline-block bg-purple-100 text-purple-700 px-3 py-0.5 rounded-full font-medium">Vocabulary</span>
+                <span class="text-zinc-400">8 min read</span>
+              </div>
+              <h3 class="font-semibold text-xl leading-tight mb-2">How to Build Spanish Vocabulary That Actually Sticks</h3>
+              <p class="text-zinc-500 text-sm flex-1">Learning words from a list and forgetting them by Thursday? Here's the neuroscience-backed approach to vocabulary that makes knowledge permanent.</p>
+              <div class="mt-4 flex items-center justify-between text-sm">
+                <span class="text-zinc-400">February 15, 2024</span>
+                <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Full posts (hidden by default). ONLY the grid of summaries is visible in the Blog listing view.
+             Clicking a card calls showSinglePost which hides the grid and shows exactly one post.
+             Nothing renders "below" the summaries. Posts live here inside the blog container. -->
+
+        <!-- Post 1 -->
+        <div id="post-1" style="display:none;" class="max-w-3xl mx-auto">
+          <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
+          <img src="https://picsum.photos/id/1015/1200/500" alt="Desk setup" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
+          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Grammar</span>
+            <span>March 15, 2024</span>
+            <span>8 min read</span>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight mb-6">7 Spanish Mistakes You're Probably Making Right Now</h1>
+          <div class="prose prose-lg max-w-none text-zinc-800">
+            <p>After more than a decade teaching Spanish to students from over 30 nationalities, I've heard the same mistakes come up again and again. The good news? Once you know what to look for, these errors are surprisingly easy to fix.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">1. Gender agreement — the silent killer</h2>
+            <p>Every Spanish noun is either masculine or feminine, and adjectives must match. The problem is that endings can be misleading. Words like "el problema" (masculine) and "la mano" (feminine) break the pattern beginners expect.</p>
+            
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-3">COMMON ERRORS VS. CORRECT FORMS</div>
+              <div class="space-y-2 text-sm">
+                <div>✗ "una problema grande" → <span class="text-emerald-600">✓ "un problema grande"</span></div>
+                <div>✗ "la agua fría" → <span class="text-emerald-600">✓ "el agua fría"</span> (feminine noun, masculine article before stress)</div>
+                <div>✗ "la foto bonita" → <span class="text-emerald-600">✓ this one IS correct</span> — "foto" is feminine</div>
+              </div>
+            </div>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Pro tip: Always learn new nouns with their article — never just "problema", always "el problema". This wires the gender into your memory from day one.</p>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">2. Ser vs. Estar — the eternal battle</h2>
+            <p>Both mean "to be", but they're not interchangeable. Ser is for permanent or defining characteristics; Estar is for states, conditions, and locations.</p>
+            
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">SIDE BY SIDE</div>
+              <div class="space-y-1 text-sm">
+                "Soy médico." (I'm a doctor — identity)<br>
+                "Estoy cansado." (I'm tired — temporary state)<br>
+                "Es aburrida." (She's a boring person — personality)<br>
+                "Está aburrida." (She's bored right now — current state)
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">3. Por vs. Para — both mean "for", until they don't</h2>
+            <ul class="list-disc pl-6">
+              <li><strong>Por</strong> = purpose, destination, deadline: "Este regalo es para ti", "Salgo para Madrid", "Lo necesito para el lunes"</li>
+              <li><strong>Para</strong> = cause, duration, exchange, agent: "Gracias por tu ayuda", "Trabajé por tres horas", "Fue escrito por Cervantes"</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">4. The false cognate trap</h2>
+            <p>Spanish and English share thousands of similar-looking words — but some of them are traps. These "false friends" have caught out every single one of my students at some point.</p>
+            
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">FALSE COGNATES THAT WILL EMBARRASS YOU</div>
+              <div class="space-y-1 text-sm">
+                "Embarazada" ≠ embarrassed — it means PREGNANT<br>
+                "Molestar" ≠ to molest — it means to bother/annoy<br>
+                "Sensible" ≠ sensible — it means sensitive<br>
+                "Actual" ≠ actual — it means current/present
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">5. Pretérito Indefinido vs. Imperfecto</h2>
+            <p>English learners tend to use the simple past (comí, fui) for everything. But Spanish has two past tenses that do very different jobs: Indefinido for completed actions, Imperfecto for habits, ongoing states, and descriptions.</p>
+            
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">SPOT THE DIFFERENCE</div>
+              <div class="space-y-1 text-sm">
+                "Ayer comí pizza." (I ate pizza yesterday — one completed action)<br>
+                "De niño comía pizza cada viernes." (As a child I used to eat pizza every Friday — habit)<br>
+                "Cuando llegué, llovía." (When I arrived, it was raining — ongoing background)
+              </div>
+            </div>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Quick test: if you can say "used to" or "was doing" in English, you probably need Imperfecto. If it's a one-off completed event, use Indefinido.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div id="post-2" style="display:none;" class="max-w-3xl mx-auto">
+          <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
+          <img src="https://picsum.photos/id/201/1200/500" alt="Library" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
+          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Grammar</span>
+            <span>March 10, 2024</span>
+            <span>10 min read</span>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight mb-6">The Subjunctive Mood: A Clear, No-Nonsense Guide</h1>
+          <div class="prose prose-lg max-w-none text-zinc-800">
+            <p>The subjunctive is the aspect of Spanish grammar that tends to separate intermediate learners from advanced ones. It's not taught well in most courses, and that creates unnecessary fear. Let's fix that.</p>
+            <h2 class="text-2xl font-semibold mt-8">What IS the subjunctive?</h2>
+            <p>The subjunctive is a mood (not a tense). Spanish has three moods: Indicative (objective facts), Subjunctive (doubt, wishes, emotions, hypotheticals), and Imperative (commands). The key insight: the subjunctive doesn't describe reality — it describes your attitude toward something.</p>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">INDICATIVE VS. SUBJUNCTIVE IN ACTION</div>
+              <div class="text-sm">"Creo que tiene razón." (I think he's right – I believe it's true – Indicative)<br>"No creo que tenga razón." (I don't think he's right – I doubt it – Subjunctive)<br>"Sé que viene mañana." (I know she's coming – fact – Indicative)<br>"Espero que venga mañana." (I hope she comes – desire – Subjunctive)</div>
+            </div>
+            <h2 class="text-2xl font-semibold mt-8">The WEIRDO framework</h2>
+            <p>Language teachers have used the WEIRDO acronym for decades because it works. If the main clause falls into one of these categories, the subordinate clause goes into subjunctive:</p>
+            <ul class="list-disc pl-5 text-sm">
+              <li>W — Wishes: querer que, desear que, esperar que...</li>
+              <li>E — Emotions: alegrarse de que, temer que, sorprender que...</li>
+              <li>I — Impersonal expressions: "Es importante que...", "Es necesario que..."</li>
+              <li>R — Recommendations: recomendar que, aconsejar que, sugerir que...</li>
+              <li>D — Doubt / Denial: dudar que, no creer que, negar que...</li>
+              <li>O — Ojalá (and other wish expressions): "¡Ojalá venga!", "¡Quizás llegue!"</li>
+            </ul>
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">One crucial rule: subjunctive only kicks in when there are TWO DIFFERENT SUBJECTS. "Quiero ir" (I want to go – same subject = infinitive). "Quiero que vayas" (I want you to go – different subjects = subjunctive).</p>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8">How to conjugate the present subjunctive</h2>
+            <p>The rule is elegant: take the YO form of the present indicative, drop the -o, and add the "opposite" endings (-e for -AR verbs, -a for -ER/-IR verbs).</p>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose text-sm">
+              <div class="font-semibold text-blue-800 mb-1">CONJUGATION PATTERN</div>
+              hablar → hablo → hable, hables, hable, hablemos, habléis, hablen<br>
+              comer → como → coma, comas, coma, comamos, comáis, coman<br>
+              venir → vengo → venga, vengas, venga, vengamos, vengáis, vengan
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8">The key irregulars (worth memorising)</h2>
+            <ul class="list-disc pl-5 text-sm">
+              <li>ser → sea, seas, sea, seamos, seáis, sean</li>
+              <li>ir → vaya, vayas, vaya, vayamos, vayáis, vayan</li>
+              <li>haber → haya (used in compound tenses)</li>
+              <li>saber → sepa, sepas, sepa...</li>
+              <li>estar → esté, estés, esté...</li>
+            </ul>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Practice exercise: "Espero que mi profesor ____ (ser) paciente." / "Es importante que ____ (estudiar, tú) todos los días." / "No creo que ella ____ (saber) la respuesta." Answers: sea / estudies / sepa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div id="post-3" style="display:none;" class="max-w-3xl mx-auto">
+          <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
+          <img src="https://picsum.photos/id/1016/1200/500" alt="Barcelona cityscape" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
+          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">Culture</span>
+            <span>March 5, 2024</span>
+            <span>7 min read</span>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight mb-6">Spain's Linguistic Map: Why the Country Speaks More Than One Language</h1>
+          <div class="prose prose-lg max-w-none text-zinc-800">
+            <p>When people sign up to "learn Spanish", they generally mean Castilian — the Spanish spoken across most of the country and across Latin America. But Spain is, in fact, a plurilingual state, and knowing its linguistic map is as important as knowing its geography.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Castilian (Castellano)</h2>
+            <p>The official language of the entire country. Born in the Kingdom of Castile during the Middle Ages. It spread through the Iberian Peninsula and, after 1492, across Latin America. Today it's spoken by over 500 million people as a first language worldwide — making it the second most spoken native language on Earth.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Catalan</h2>
+            <p>Around 9 million speakers. Co-official in Catalonia, the Balearic Islands, and the Valencian Community (where it's called Valencian). It's also the sole official language of Andorra, and is spoken in parts of southern France and the Sardinian city of Alghero. Catalan is more similar to French and Italian than to Castilian.</p>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">QUICK CATALAN VS. CASTILIAN COMPARISON</div>
+              <div class="space-y-1 text-sm">Good morning: "Bon dia" (Castilian) / "Bon dia" (Catalan)<br>Thank you: "Gracias" / "Gràcies"<br>I don't understand: "No entiendo" / "No ho entenc"</div>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Galician (Gallego)</h2>
+            <p>Spoken by around 2.4 million people in Galicia (northwest Spain). It's closely related to Portuguese — both descend from Medieval Galician-Portuguese. If you speak Portuguese, you'll understand a great deal of Galician with no formal study.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Basque (Euskera)</h2>
+            <p>The most fascinating language in Western Europe. Basque is a language isolate — it has no proven relationship to any other language in the world. Not Latin-derived, not Indo-European, not related to any of its neighbors. Its origin remains one of linguistics' great mysteries. Spoken by approximately 750,000 people in the Basque Country and parts of Navarre.</p>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Why does this matter for learners? If you're planning to live or work in Barcelona, Valencia, Bilbao, or Santiago, showing basic awareness of the local language is enormously valued — even if you only know a few words. It signals respect, and doors open.</p>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Dialects within Castilian Spanish</h2>
+            <ul class="list-disc pl-5 text-sm">
+              <li>Andalusian: aspirated or dropped -s, seseo/ceceo in the south</li>
+              <li>Canarian: resembles Caribbean Spanish more than mainland Spanish</li>
+              <li>Murcian: preserves archaic vocabulary and Arabic-influenced terms</li>
+              <li>Standard ELE (the Spanish I teach): based on the educated norm of central-northern Spain</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div id="post-4" style="display:none;" class="max-w-3xl mx-auto">
+          <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
+          <img src="https://picsum.photos/id/1018/1200/500" alt="Machu Picchu landscape" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
+          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Practical</span>
+            <span>February 28, 2024</span>
+            <span>6 min read</span>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight mb-6">30 Essential Spanish Phrases for Travellers (That Actually Get Used)</h1>
+          <div class="prose prose-lg max-w-none text-zinc-800">
+            <p>Most travel phrasebooks teach you "where is the train station?" and "how much does this cost?". Useful, but locals can tell immediately when someone is reading from a script. Here are phrases that actually sound natural — the ones I'd tell my friend before their first trip to a Spanish-speaking country.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Polite openers that change everything</h2>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">START CONVERSATIONS LIKE A LOCAL</div>
+              <div class="space-y-1 text-sm">"Disculpe, ¿me puede ayudar?" — Excuse me, could you help me? (much warmer than just "perdona")<br>"¿Habla inglés por casualidad?" — Do you happen to speak English? (polite, not demanding)<br>"Estoy aprendiendo español, así que perdone los errores." — I'm learning Spanish, so forgive my mistakes. (locals LOVE this)<br>"¿Cómo se dice ... en español?" — How do you say ... in Spanish?</div>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">At restaurants (the most important category)</h2>
+            <ul class="list-disc pl-5 text-sm">
+              <li>"¿Qué me recomienda?" — What do you recommend? (simple, works everywhere)</li>
+              <li>"Soy alérgico/a al gluten / a los frutos secos / al marisco." — I'm allergic to gluten / nuts / shellfish.</li>
+              <li>"¿Está incluido el servicio?" — Is service/tip included?</li>
+              <li>"¿Me puede traer la cuenta, por favor?" — Could you bring me the bill, please?</li>
+              <li>"¡Está buenísimo!" — It's delicious! (more enthusiastic than "está rico")</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Getting around &amp; emergencies</h2>
+            <ul class="list-disc pl-5 text-sm">
+              <li>"¿Me puede indicar cómo llegar a ... ?" — Can you tell me how to get to ... ?</li>
+              <li>"Tengo prisa / estoy perdido / me duele mucho." — I'm in a hurry / I'm lost / it hurts a lot.</li>
+              <li>"¿Dónde está la farmacia / el hospital más cercano?" — Where is the nearest pharmacy / hospital?</li>
+            </ul>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Always smile and add "por favor" and "gracias". A friendly "Disculpe" opens more doors in Spain and Latin America than any phrasebook sentence.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 5 -->
+        <div id="post-5" style="display:none;" class="max-w-3xl mx-auto">
+          <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
+          <img src="https://picsum.photos/id/292/1200/500" alt="Popcorn and cinema" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
+          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">Culture</span>
+            <span>February 20, 2024</span>
+            <span>9 min read</span>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight mb-6">Spanish Cinema: 8 Films That Will Transform Your Listening Comprehension</h1>
+          <div class="prose prose-lg max-w-none text-zinc-800">
+            <p>Passive exposure to Spanish through film is good. Active, strategic watching is transformative. The difference is in how you approach it — not just sitting back and watching, but engaging with the language as a learner. Let me show you the method I give all my students from B1 upwards.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">The 3-pass method</h2>
+            <ul class="list-disc pl-5 text-sm">
+              <li>Pass 1: Watch with Spanish subtitles. Don't pause. Let the story carry you and absorb the rhythm.</li>
+              <li>Pass 2: Watch again without subtitles (or with Spanish CC only). Focus on what you catch and what you miss.</li>
+              <li>Pass 3: Watch with pauses. Write down 5-10 new expressions or structures you heard. Look them up, then re-watch the scene.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Curated starter list (A2–B2)</h2>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">RECOMMENDED FILMS</div>
+              <div class="space-y-1 text-sm">• "El laberinto del fauno" (fantasy + historical, clear diction)<br>• "Volver" (Almodóvar – everyday Spanish, emotional)<br>• "Ocho apellidos vascos" (comedy, modern slang + regional)<br>• "Relatos salvajes" (Argentine, fast &amp; colloquial)<br>• "Mar adentro" (clear, moving, great for listening to slower speech)</div>
+            </div>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Choose films whose topic genuinely interests you. Motivation beats "educational" value every time. One film watched three times with the method above is worth ten watched passively.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 6 -->
+        <div id="post-6" style="display:none;" class="max-w-3xl mx-auto">
+          <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
+          <img src="https://picsum.photos/id/1015/1200/500" alt="Desk with laptop and notebook" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
+          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Vocabulary</span>
+            <span>February 15, 2024</span>
+            <span>8 min read</span>
+          </div>
+          <h1 class="text-4xl font-bold tracking-tight mb-6">How to Build Spanish Vocabulary That Actually Sticks</h1>
+          <div class="prose prose-lg max-w-none text-zinc-800">
+            <p>The most common complaint I hear from students is: "I learn new words and then forget them within days." This is not a memory problem — it's a method problem. Memory follows predictable rules, and once you understand them, vocabulary retention becomes a skill you can actually control.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Spaced repetition: the single most powerful technique</h2>
+            <p>Your brain consolidates information when you revisit it at increasing intervals. Cramming 50 words the night before a class creates an illusion of learning — but the words are gone within 72 hours. Spaced repetition forces your brain to retrieve a word just as you're about to forget it, each time making the memory stronger.</p>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Context beats lists every time</h2>
+            <p>Memorising "otoño = autumn" gives you one memory hook. Learning "En otoño, las hojas de los árboles se vuelven rojizas y amarillas" gives you grammar, context, collocations, and emotion — five hooks instead of one.</p>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-2">CONTEXT-RICH VS. ISOLATED LEARNING</div>
+              <div class="space-y-1 text-sm">Isolated: "tener prisa" = to be in a hurry<br>In context: "¡Date prisa, que llegamos tarde!" (¡No tenemos tiempo. — Hurry up, we're late!)<br>The second version teaches you tener prisa, darse prisa, llegar tarde, etc. all at once.</div>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Exploit Spanish's word families</h2>
+            <p>Spanish has rich morphology. If you learn one root, you can derive many words from it. This multiplies your vocabulary without extra effort.</p>
+            <div class="my-6 p-5 bg-blue-50 border border-blue-200 rounded-2xl not-prose">
+              <div class="font-semibold text-blue-800 mb-1">WORD FAMILY: TRABAJAR (TO WORK)</div>
+              <div class="text-sm">trabajo (noun: work/job)<br>trabajador/a (adj / noun: hardworking / worker)<br>trabajoso/a (adj: laborious, demanding)<br>trabajar (verb: to work)</div>
+            </div>
+
+            <h2 class="text-2xl font-semibold mt-8 mb-3">Your instant vocabulary shortcut: cognates</h2>
+            <p>If your native language is English, you already know roughly 20,000 Spanish words. English borrowed heavily from Latin and French — and so did Spanish. Words ending in -tion in English usually end in -ción in Spanish: information → información, communication → comunicación, etc.</p>
+
+            <div class="my-6 p-5 bg-amber-50 border border-amber-200 rounded-2xl not-prose">
+              <div class="font-semibold text-amber-800 mb-1">TEACHER'S TIP</div>
+              <p class="text-sm">Daily practice that works: write 3–5 sentences in Spanish at the end of each day about what you actually did. Use words you're trying to learn. This forces active production — the deepest form of learning. Even at A1: "Hoy he comido pasta. Estaba buena. Mañana tengo clase de español."</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Contact -->
+  <section id="contacto" class="py-20 bg-zinc-900 text-white">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-bold mb-4" data-i18n="contact.title">Ready to start?</h2>
+        <p class="text-xl text-white/80" data-i18n="contact.subtitle">Book your free trial class and take the first step toward speaking Spanish with confidence.</p>
+      </div>
+
+      <!-- Functional bilingual form -->
+      <div class="bg-zinc-800 rounded-3xl p-8 md:p-10">
+        <form id="contact-form" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-1.5 text-white/70" data-i18n="form.name">Name</label>
+              <input type="text" id="name" required class="w-full bg-zinc-700 border border-zinc-600 text-white rounded-2xl px-5 py-3 focus:outline-none focus:border-red-500">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1.5 text-white/70" data-i18n="form.email">Email</label>
+              <input type="email" id="email" required class="w-full bg-zinc-700 border border-zinc-600 text-white rounded-2xl px-5 py-3 focus:outline-none focus:border-red-500">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium mb-1.5 text-white/70" data-i18n="form.level">Current level</label>
+              <select id="level" class="w-full bg-zinc-700 border border-zinc-600 text-white rounded-2xl px-5 py-3 focus:outline-none focus:border-red-500">
+                <option value="" data-i18n="form.level.select">Select</option>
+                <option data-i18n="form.level.a1">A1 - Beginner</option>
+                <option data-i18n="form.level.a2">A2 - Elementary</option>
+                <option data-i18n="form.level.b1">B1 - Intermediate</option>
+                <option data-i18n="form.level.b2">B2 - Upper Intermediate</option>
+                <option data-i18n="form.level.c1">C1 - Advanced</option>
+                <option data-i18n="form.level.c2">C2 - Proficiency</option>
+                <option data-i18n="form.level.unknown">I don't know yet</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1.5 text-white/70" data-i18n="form.service">Service of interest</label>
+              <select id="service" class="w-full bg-zinc-700 border border-zinc-600 text-white rounded-2xl px-5 py-3 focus:outline-none focus:border-red-500">
+                <option value="" data-i18n="form.service.select">Select</option>
+                <option data-i18n="services.individual.title">Individual Classes</option>
+                <option data-i18n="services.dele.title">DELE / SIELE Preparation</option>
+                <option data-i18n="services.conversation.title">Conversation &amp; Fluency</option>
+                <option data-i18n="services.business.title">Spanish for Business</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1.5 text-white/70" data-i18n="form.message">Tell me about your goals</label>
+            <textarea id="message" rows="4" required 
+                      class="w-full bg-zinc-700 border border-zinc-600 text-white rounded-3xl px-5 py-3 focus:outline-none focus:border-red-500 resize-y"
+                      data-i18n-placeholder="form.message.placeholder" placeholder="I want to improve my fluency for a trip to Spain..."></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-red-600 hover:bg-red-700 transition font-semibold text-xl py-5 rounded-2xl flex items-center justify-center gap-3">
+            <i class="fas fa-paper-plane"></i>
+            <span data-i18n="form.submit">Send and book free trial class</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Direct contact -->
+      <div class="mt-10 text-center">
+        <p class="text-white/60 text-sm tracking-widest mb-4" data-i18n="contact.direct">OR CONTACT ME DIRECTLY</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" id="whatsapp-btn" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] transition font-semibold px-10 py-4 rounded-2xl">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span data-i18n="contact.whatsapp">WhatsApp</span>
+          </a>
+
+          <a href="#" id="email-btn" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-3 border border-white/30 hover:bg-white/10 font-semibold px-8 py-4 rounded-2xl">
+            <i class="fas fa-envelope"></i>
+            <span id="email-text">jeromedina1@gmail.com</span>
+          </a>
+        </div>
+
+        <p class="mt-6 text-xs text-white/40" data-i18n="contact.note">The trial class is free and with no obligation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="main-footer" class="bg-black text-white py-10 text-center">
+    <p data-i18n="footer">© 2026 Jerome M. Valkarreras — Spanish Language Teacher</p>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-6">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center text-zinc-800">
+      <div class="mx-auto w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+        <i class="fas fa-check text-3xl"></i>
+      </div>
+      <h3 class="text-2xl font-semibold mb-3" data-i18n="modal.title">Message sent!</h3>
+      <p class="text-zinc-600" data-i18n="modal.text">Thank you. I will contact you very soon to arrange your free trial class.</p>
+      <div class="mt-8">
+        <button onclick="closeModal()" class="w-full bg-zinc-800 hover:bg-black text-white font-medium py-3 rounded-2xl" data-i18n="modal.close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // BILINGUAL CONFIGURATION
+    // ============================================
+    const CONFIG = {
+      whatsappNumber: '346XXXXXXXX',   // ← CHANGE THIS to your real international number
+      email: 'jeromedina1@gmail.com'
+    };
+
+    const translations = {
+      en: {
+        "nav.about": "About me",
+        "nav.services": "Services",
+        "nav.methodology": "Methodology",
+        "nav.testimonials": "Testimonials",
+        "nav.pricing": "Pricing",
+        "nav.contact": "Contact",
+
+        "bottom.inicio": "Home",
+        "bottom.menu": "Menu",
+        "bottom.blog": "Blog",
+
+        "hero.badge": "Spanish ELE Teacher",
+        "hero.title": "Learn real Spanish",
+        "hero.subtitle": "Personalized classes with a native teacher. For international students who want to speak with confidence.",
+        "hero.cta": "Book your free trial class",
+        "hero.note": "Online • In-person in Madrid • Flexible schedules",
+
+        "about.title": "Jerome M. Valkarreras",
+        "about.p1": "Certified Spanish as a Foreign Language teacher with over 10 years of experience and students from more than 30 nationalities.",
+        "about.p2": "My goal is for you to communicate naturally and confidently in Spanish, combining grammar, real conversation, and Hispanic culture.",
+        "about.badge1": "+10 years of experience",
+        "about.badge2": "Students from 30+ countries",
+        "about.badge3": "All levels (A1–C2)",
+        "about.badge4": "Online and in-person classes",
+
+        "services.title": "Services",
+        "services.individual.title": "Individual Classes",
+        "services.individual.desc": "Fully tailored to your level, goals and schedule.",
+        "services.dele.title": "DELE / SIELE Preparation",
+        "services.dele.desc": "Intensive training and strategies to pass the official exams.",
+        "services.conversation.title": "Conversation & Fluency",
+        "services.conversation.desc": "Real speaking practice to build confidence.",
+        "services.business.title": "Spanish for Business",
+        "services.business.desc": "Professional vocabulary and workplace situations.",
+
+        "method.title": "My Methodology",
+        "method.personalized.title": "Personalized",
+        "method.personalized.desc": "Adapted to your needs and learning pace.",
+        "method.communicative.title": "Communicative",
+        "method.communicative.desc": "You will speak Spanish from the very first class.",
+        "method.cultural.title": "Cultural",
+        "method.cultural.desc": "You learn the language and Hispanic culture at the same time.",
+
+        "testimonials.title": "What my students say",
+        "testimonials.t1.text": "Jerome is the best teacher I’ve had. In 7 months I went from zero to having fluid conversations. His method is clear, patient and extremely effective.",
+        "testimonials.t1.name": "Laura M.",
+        "testimonials.t1.country": "— Germany",
+        "testimonials.t2.text": "Les cours avec Jerome sont excellents. J’ai rapidement gagné en fluidité et en confiance. Je recommande sans hésiter !",
+        "testimonials.t2.name": "Thomas L.",
+        "testimonials.t2.country": "— France",
+        "testimonials.t3.text": "I passed the DELE C1 thanks to Jerome’s targeted exam preparation. The mock exams and feedback were extremely accurate and helpful.",
+        "testimonials.t3.name": "Sarah K.",
+        "testimonials.t3.country": "— USA",
+        "testimonials.t4.text": "I started classes for work and within a few months I was already participating in meetings in Spanish with total confidence. Very professional and warm.",
+        "testimonials.t4.name": "Marco R.",
+        "testimonials.t4.country": "— Italy",
+
+        "pricing.title": "Pricing",
+        "pricing.subtitle": "Online or in-person classes in Madrid. No commitment.",
+        "pricing.perhour": "/hour",
+        "pricing.perperson": "/person",
+        "pricing.popular": "RECOMMENDED",
+        "pricing.cta": "Book now",
+
+        "pricing.individual.title": "Individual class",
+        "pricing.individual.1": "60 minutes",
+        "pricing.individual.2": "Materials included",
+        "pricing.individual.3": "Flexible schedule",
+
+        "pricing.pack5.title": "5-class pack",
+        "pricing.pack5.price": "(29€/hour)",
+        "pricing.pack5.1": "5 individual hours",
+        "pricing.pack5.2": "10% discount",
+        "pricing.pack5.3": "WhatsApp follow-up",
+        "pricing.pack5.4": "Personalized learning plan",
+
+        "pricing.group.title": "Group classes (2-4 people)",
+        "pricing.group.1": "90 minutes per session",
+        "pricing.group.2": "Price per person",
+        "pricing.group.3": "Ideal for speaking practice",
+
+        "contact.title": "Ready to start?",
+        "contact.subtitle": "Book your free trial class and take the first step toward speaking Spanish with confidence.",
+        "contact.direct": "OR CONTACT ME DIRECTLY",
+        "contact.whatsapp": "WhatsApp",
+        "contact.note": "The trial class is free and with no obligation.",
+
+        "form.name": "Name",
+        "form.email": "Email",
+        "form.level": "Current level",
+        "form.level.select": "Select",
+        "form.level.a1": "A1 - Beginner",
+        "form.level.a2": "A2 - Elementary",
+        "form.level.b1": "B1 - Intermediate",
+        "form.level.b2": "B2 - Upper Intermediate",
+        "form.level.c1": "C1 - Advanced",
+        "form.level.c2": "C2 - Proficiency",
+        "form.level.unknown": "I don't know yet",
+        "form.service": "Service of interest",
+        "form.service.select": "Select",
+        "form.message": "Tell me about your goals",
+        "form.message.placeholder": "I want to improve my fluency for a trip to Spain...",
+        "form.submit": "Send and book free trial class",
+
+        "modal.title": "Message sent!",
+        "modal.text": "Thank you. I will contact you very soon to arrange your free trial class.",
+        "modal.close": "Close",
+
+        "footer": "© 2026 Jerome M. Valkarreras — Spanish Language Teacher"
+      },
+
+      es: {
+        "nav.about": "Sobre mí",
+        "nav.services": "Servicios",
+        "nav.methodology": "Metodología",
+        "nav.testimonials": "Testimonios",
+        "nav.pricing": "Precios",
+        "nav.contact": "Contactar",
+
+        "bottom.inicio": "Inicio",
+        "bottom.menu": "Menú",
+        "bottom.blog": "Blog",
+
+        "hero.badge": "Profesor de Español ELE",
+        "hero.title": "Aprende español de verdad",
+        "hero.subtitle": "Clases personalizadas con profesor nativo. Para estudiantes internacionales que quieren hablar con confianza.",
+        "hero.cta": "Reservar clase de prueba gratuita",
+        "hero.note": "Online • Presencial en Madrid • Horarios flexibles",
+
+        "about.title": "Jerome M. Valkarreras",
+        "about.p1": "Profesor certificado de Español como Lengua Extranjera con más de 10 años de experiencia y estudiantes de más de 30 nacionalidades.",
+        "about.p2": "Mi objetivo es que puedas comunicarte en español con naturalidad y confianza, combinando gramática, conversación real y cultura hispana.",
+        "about.badge1": "+10 años de experiencia",
+        "about.badge2": "Estudiantes de 30+ países",
+        "about.badge3": "Todos los niveles (A1–C2)",
+        "about.badge4": "Clases online y presenciales",
+
+        "services.title": "Servicios",
+        "services.individual.title": "Clases Individuales",
+        "services.individual.desc": "Completamente adaptadas a tu nivel, objetivos y horario.",
+        "services.dele.title": "Preparación DELE / SIELE",
+        "services.dele.desc": "Entrenamiento intensivo y estrategias para aprobar los exámenes.",
+        "services.conversation.title": "Conversación y Fluidez",
+        "services.conversation.desc": "Práctica real del idioma para ganar confianza hablando.",
+        "services.business.title": "Español para Negocios",
+        "services.business.desc": "Vocabulario profesional y situaciones laborales.",
+
+        "method.title": "Mi Metodología",
+        "method.personalized.title": "Personalizada",
+        "method.personalized.desc": "Adaptada a tus necesidades y ritmo de aprendizaje.",
+        "method.communicative.title": "Comunicativa",
+        "method.communicative.desc": "Hablarás español desde la primera clase.",
+        "method.cultural.title": "Cultural",
+        "method.cultural.desc": "Aprendes el idioma y la cultura hispana al mismo tiempo.",
+
+        "testimonials.title": "Lo que dicen mis estudiantes",
+        "testimonials.t1.text": "Jerome es el mejor profesor que he tenido. En 7 meses pasé de cero a mantener conversaciones fluidas. Su método es claro, paciente y muy efectivo.",
+        "testimonials.t1.name": "Laura M.",
+        "testimonials.t1.country": "— Alemania",
+        "testimonials.t2.text": "Les cours avec Jerome sont excellents. J’ai rapidement gagné en fluidité et en confiance. Je recommande sans hésiter !",
+        "testimonials.t2.name": "Thomas L.",
+        "testimonials.t2.country": "— Francia",
+        "testimonials.t3.text": "I passed the DELE C1 thanks to Jerome’s targeted exam preparation. The mock exams and feedback were extremely accurate and helpful.",
+        "testimonials.t3.name": "Sarah K.",
+        "testimonials.t3.country": "— USA",
+        "testimonials.t4.text": "Empecé las clases por trabajo y en pocos meses ya participaba en reuniones en español con total seguridad. Muy profesional y cercano.",
+        "testimonials.t4.name": "Marco R.",
+        "testimonials.t4.country": "— Italia",
+
+        "pricing.title": "Precios",
+        "pricing.subtitle": "Clases online o presenciales en Madrid. Sin compromiso.",
+        "pricing.perhour": "/hora",
+        "pricing.perperson": "/persona",
+        "pricing.popular": "RECOMENDADO",
+        "pricing.cta": "Reservar",
+
+        "pricing.individual.title": "Clase individual",
+        "pricing.individual.1": "60 minutos",
+        "pricing.individual.2": "Materiales incluidos",
+        "pricing.individual.3": "Horario flexible",
+
+        "pricing.pack5.title": "Pack 5 clases",
+        "pricing.pack5.price": "(29€/hora)",
+        "pricing.pack5.1": "5 horas individuales",
+        "pricing.pack5.2": "10% de descuento",
+        "pricing.pack5.3": "Seguimiento por WhatsApp",
+        "pricing.pack5.4": "Plan de aprendizaje personalizado",
+
+        "pricing.group.title": "Clases en grupo (2-4 pers.)",
+        "pricing.group.1": "90 minutos por sesión",
+        "pricing.group.2": "Precio por persona",
+        "pricing.group.3": "Ideal para práctica oral",
+
+        "contact.title": "¿Empezamos?",
+        "contact.subtitle": "Reserva tu clase de prueba gratuita y da el primer paso para hablar español con confianza.",
+        "contact.direct": "O ESCRÍBEME DIRECTAMENTE",
+        "contact.whatsapp": "WhatsApp",
+        "contact.note": "La clase de prueba es gratuita y sin compromiso.",
+
+        "form.name": "Nombre",
+        "form.email": "Email",
+        "form.level": "Nivel actual",
+        "form.level.select": "Seleccionar",
+        "form.level.a1": "A1 - Principiante",
+        "form.level.a2": "A2 - Elemental",
+        "form.level.b1": "B1 - Intermedio",
+        "form.level.b2": "B2 - Intermedio alto",
+        "form.level.c1": "C1 - Avanzado",
+        "form.level.c2": "C2 - Dominio",
+        "form.level.unknown": "No lo sé todavía",
+        "form.service": "Servicio de interés",
+        "form.service.select": "Seleccionar",
+        "form.message": "Cuéntame tus objetivos",
+        "form.message.placeholder": "Quiero mejorar mi fluidez para un viaje a España...",
+        "form.submit": "Enviar y reservar clase de prueba",
+
+        "modal.title": "¡Mensaje enviado!",
+        "modal.text": "Gracias. Te contactaré muy pronto para organizar tu clase de prueba gratuita.",
+        "modal.close": "Cerrar",
+
+        "footer": "© 2026 Jerome M. Valkarreras — Profesor de Español ELE"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) el.placeholder = t[key];
+      });
+
+      // Update select options
+      document.querySelectorAll('select option[data-i18n]').forEach(option => {
+        const key = option.getAttribute('data-i18n');
+        if (t[key]) option.textContent = t[key];
+      });
+
+      updateLangButtons(lang);
+      localStorage.setItem('jerome_lang', lang);
+      document.documentElement.lang = lang;
+    }
+
+    function updateLangButtons(lang) {
+      // Desktop
+      const btnEn = document.getElementById('lang-en');
+      const btnEs = document.getElementById('lang-es');
+      if (btnEn && btnEs) {
+        if (lang === 'en') {
+          btnEn.classList.add('eng');
+          btnEn.classList.remove('esp');
+          btnEs.classList.remove('eng');
+          btnEs.classList.add('esp');
+        } else {
+          btnEn.classList.remove('eng');
+          btnEn.classList.add('esp');
+          btnEs.classList.add('eng');
+          btnEs.classList.remove('esp');
+        }
+      }
+
+      // Mobile
+      const mEn = document.getElementById('lang-en-mobile');
+      const mEs = document.getElementById('lang-es-mobile');
+      if (mEn && mEs) {
+        if (lang === 'en') {
+          mEn.classList.add('eng');
+          mEn.classList.remove('esp');
+          mEs.classList.remove('eng');
+          mEs.classList.add('esp');
+        } else {
+          mEn.classList.remove('eng');
+          mEn.classList.add('esp');
+          mEs.classList.add('eng');
+          mEs.classList.remove('esp');
+        }
+      }
+    }
+
+    function initLanguageSwitcher() {
+      // Desktop
+      const enBtn = document.getElementById('lang-en');
+      const esBtn = document.getElementById('lang-es');
+
+      if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
+      if (esBtn) esBtn.addEventListener('click', () => setLanguage('es'));
+
+      // Mobile
+      const mEn = document.getElementById('lang-en-mobile');
+      const mEs = document.getElementById('lang-es-mobile');
+
+      if (mEn) mEn.addEventListener('click', () => setLanguage('en'));
+      if (mEs) mEs.addEventListener('click', () => setLanguage('es'));
+
+      // Load saved or default to English (as requested)
+      const saved = localStorage.getItem('jerome_lang');
+      if (saved && translations[saved]) {
+        setLanguage(saved);
+      } else {
+        setLanguage('en');   // Default to English
+      }
+    }
+
+    function initMobileMenu() {
+      const btn = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const icon = btn.querySelector('i');
+      const links = document.querySelectorAll('.mobile-link');
+
+      btn.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        if (isOpen) {
+          menu.classList.add('hidden');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        } else {
+          menu.classList.remove('hidden');
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        }
+      });
+
+      links.forEach(link => link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }));
+    }
+
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const y = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    function initContactLinks() {
+      const wa = CONFIG.whatsappNumber;
+      const em = CONFIG.email;
+
+      const waBtn = document.getElementById('whatsapp-btn');
+      if (waBtn) waBtn.href = `https://wa.me/${wa}?text=Hola%20Jerome%2C%20me%20gustar%C3%ADa%20reservar%20una%20clase%20de%20prueba`;
+
+      const emailBtn = document.getElementById('email-btn');
+      const emailText = document.getElementById('email-text');
+      if (emailBtn) emailBtn.href = `mailto:${em}`;
+      if (emailText) emailText.textContent = em;
+    }
+
+    function initContactForm() {
+      const form = document.getElementById('contact-form');
+      const modal = document.getElementById('success-modal');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const level = document.getElementById('level').value;
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value.trim();
+
+        const isEnglish = currentLang === 'en';
+        let waText;
+
+        if (isEnglish) {
+          waText = `Hello Jerome, my name is ${name}.%0A%0A`;
+          if (level) waText += `My current level: ${level}%0A`;
+          if (service) waText += `I'm interested in: ${service}%0A`;
+          waText += `%0A${message}%0A%0AMy email: ${email}%0A%0AI would like to book a free trial lesson. Thank you!`;
+        } else {
+          waText = `Hola Jerome, soy ${name}.%0A%0A`;
+          if (level) waText += `Mi nivel actual: ${level}%0A`;
+          if (service) waText += `Estoy interesado en: ${service}%0A`;
+          waText += `%0A${message}%0A%0AMi email: ${email}%0A%0AMe gustaría reservar una clase de prueba gratuita. ¡Gracias!`;
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        form.reset();
+
+        setTimeout(() => {
+          window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`, '_blank');
+        }, 1200);
+      });
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('success-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function initModalBehavior() {
+      const modal = document.getElementById('success-modal');
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+    }
+
+    function initAll() {
+      initLanguageSwitcher();
+      initMobileMenu();
+      initSmoothScroll();
+      initContactLinks();
+      initContactForm();
+      initModalBehavior();
+      initTopNavDropdown();
+
+      if (CONFIG.whatsappNumber.includes('XXXX')) {
+        console.warn('%c[Jerome ELE] Please replace CONFIG.whatsappNumber with your real phone number (international format).', 'color:#c2410f');
+      }
+    }
+
+    function initTopNavDropdown() {
+      const btn = document.getElementById('nav-inicio-btn');
+      const dropdown = document.getElementById('nav-inicio-dropdown');
+
+      if (!btn || !dropdown) return;
+
+      // Toggle on click (good for mobile/touch)
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('hidden');
+      });
+
+      // Close when clicking a link
+      dropdown.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          dropdown.classList.add('hidden');
+        });
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.add('hidden');
+        }
+      });
+    }
+
+    function showHome() {
+      const home = document.getElementById('home-content');
+      const blog = document.getElementById('blog-content');
+      const footer = document.getElementById('main-footer');
+      const contacto = document.getElementById('contacto');
+      if (home) home.style.display = 'block';
+      if (blog) blog.style.display = 'none';
+      if (footer) footer.style.display = 'block';
+      if (contacto) contacto.style.display = '';
+      // Also make sure we show the grid inside blog if somehow visible
+      const grid = document.getElementById('blog-grid');
+      if (grid) grid.style.display = 'grid';
+      const posts = document.querySelectorAll('[id^="post-"]');
+      posts.forEach(p => p.style.display = 'none');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showBlog() {
+      const home = document.getElementById('home-content');
+      const blog = document.getElementById('blog-content');
+      const footer = document.getElementById('main-footer');
+      const contacto = document.getElementById('contacto');
+      if (home) home.style.display = 'none';
+      if (blog) blog.style.display = 'block';
+      if (footer) footer.style.display = 'none';
+      if (contacto) contacto.style.display = 'none';
+      showBlogGrid();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showBlogGrid() {
+      const grid = document.getElementById('blog-grid');
+      if (grid) grid.style.display = 'grid';
+      const posts = document.querySelectorAll('[id^="post-"]');
+      posts.forEach(p => p.style.display = 'none');
+    }
+
+    function showSinglePost(postId) {
+      const grid = document.getElementById('blog-grid');
+      if (grid) grid.style.display = 'none';
+      const posts = document.querySelectorAll('[id^="post-"]');
+      posts.forEach(p => p.style.display = 'none');
+      let id = postId;
+      if (id && !String(id).startsWith('post-')) {
+        id = 'post-' + id;
+      }
+      const target = document.getElementById(id);
+      if (target) target.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initAll();
+      // Default to Home view on load
+      const home = document.getElementById('home-content');
+      const blog = document.getElementById('blog-content');
+      if (home) home.style.display = 'block';
+      if (blog) blog.style.display = 'none';
+    });
+
+  </script>
+
+</body>
+</html>
