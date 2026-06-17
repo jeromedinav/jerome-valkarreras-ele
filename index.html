@@ -164,6 +164,75 @@
       background-color: #dc2626;
       color: #fff;
     }
+
+    .nav-main-link,
+    .nav-inicio-btn {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0a0a0a;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    .nav-main-link {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+    }
+    .nav-main-link:hover {
+      background-color: #dc2626;
+      color: #fff;
+    }
+    .nav-inicio-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.5rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    #nav-inicio-wrap:hover .nav-inicio-label {
+      color: #dc2626;
+    }
+    .nav-chevron-cascade {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 0.5;
+      font-size: 0.5rem;
+      gap: 1px;
+    }
+    .nav-chev {
+      color: #0a0a0a;
+      transition: color 0.2s ease;
+    }
+    #nav-inicio-wrap:hover .nav-chev-1 {
+      animation: chev-signal 1.1s ease-in-out infinite;
+      animation-delay: 0s;
+    }
+    #nav-inicio-wrap:hover .nav-chev-2 {
+      animation: chev-signal 1.1s ease-in-out infinite;
+      animation-delay: 0.18s;
+    }
+    #nav-inicio-wrap:hover .nav-chev-3 {
+      animation: chev-signal 1.1s ease-in-out infinite;
+      animation-delay: 0.36s;
+    }
+    @keyframes chev-signal {
+      0%, 100% { color: #0a0a0a; opacity: 0.55; }
+      40%, 60% { color: #dc2626; opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #nav-inicio-wrap:hover .nav-chev-1,
+      #nav-inicio-wrap:hover .nav-chev-2,
+      #nav-inicio-wrap:hover .nav-chev-3 {
+        animation: none;
+        color: #dc2626;
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body class="bg-zinc-50 text-zinc-800 smooth-scroll">
@@ -178,14 +247,19 @@
       </div>
 
       <!-- Main Navigation (left of language buttons) -->
-      <div class="hidden md:flex items-center gap-6 text-base font-medium">
+      <div class="hidden md:flex items-center gap-4">
         <!-- INICIO with dropdown sub-tabs -->
         <div id="nav-inicio-wrap" class="relative">
           <button id="nav-inicio-btn" 
+                  type="button"
                   onclick="showHome()"
-                  class="flex items-center gap-1 text-zinc-800 hover:text-red-600 transition">
-            Inicio
-            <i class="fas fa-chevron-down text-xs"></i>
+                  class="nav-inicio-btn">
+            <span class="nav-inicio-label">Inicio</span>
+            <span class="nav-chevron-cascade" aria-hidden="true">
+              <i class="fas fa-chevron-down nav-chev nav-chev-1"></i>
+              <i class="fas fa-chevron-down nav-chev nav-chev-2"></i>
+              <i class="fas fa-chevron-down nav-chev nav-chev-3"></i>
+            </span>
           </button>
           <!-- Dropdown centered under Inicio (no cascade indent) -->
           <div id="nav-inicio-dropdown" 
@@ -201,10 +275,10 @@
         </div>
 
         <!-- MENÚ principal -->
-        <a onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="text-zinc-800 hover:text-red-600 transition cursor-pointer">Menú</a>
+        <a onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="nav-main-link">Menú</a>
 
         <!-- BLOG -->
-        <a onclick="showBlog()" class="text-zinc-800 hover:text-red-600 transition cursor-pointer">Blog</a>
+        <a onclick="showBlog()" class="nav-main-link">Blog</a>
       </div>
 
       <!-- Contact CTA (Desktop) — where language tabs used to be -->
