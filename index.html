@@ -34,8 +34,8 @@
     .hero-portrait-link:focus-visible .hero-portrait-ring {
       box-shadow: 0 0 0 3px rgba(255,255,255,0.55), 0 8px 32px rgba(0,0,0,0.45);
     }
-    .hero-portrait-label,
-    .hero-portrait-stat {
+    .hero-portrait-stat,
+    .hero-portrait-hover-cta {
       display: inline-block;
       padding: 0.5rem 1.15rem;
       text-align: center;
@@ -50,11 +50,23 @@
       white-space: nowrap;
       transition: opacity 0.45s ease, transform 0.45s ease, background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
-    .hero-portrait-label {
-      margin-bottom: 0.55rem;
+    .hero-portrait-hover-cta {
+      display: none;
+      background-color: #dc2626;
+      color: #fff;
+      border-color: #dc2626;
+    }
+    .hero-portrait-caption {
+      position: relative;
+      width: 100%;
+      min-height: 0;
+      margin-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       opacity: 0;
-      transform: translateY(6px);
-      pointer-events: none;
+      overflow: visible;
+      transition: opacity 0.55s ease, min-height 0.45s ease, margin-top 0.45s ease;
     }
     .hero-portrait-ring {
       position: relative;
@@ -77,8 +89,9 @@
         #e8ff00 105deg,
         #ccff00 135deg,
         #fff500 165deg,
-        #0a0a0a 210deg,
-        #171717 270deg,
+        #a855f7 200deg,
+        #d946ef 235deg,
+        #c026d3 270deg,
         #dc2626 315deg,
         #ef4444 360deg
       );
@@ -102,14 +115,10 @@
     .hero-portrait-stats {
       position: relative;
       width: 100%;
-      min-height: 0;
-      margin-top: 0;
+      min-height: 2.6rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      opacity: 0;
-      overflow: visible;
-      transition: opacity 0.7s ease, min-height 0.5s ease, margin-top 0.5s ease;
     }
     .hero-portrait-stat {
       position: absolute;
@@ -127,47 +136,41 @@
     .hero-portrait-link.is-idle .hero-portrait-img {
       transform: scale(1.06);
     }
-    .hero-portrait-link.is-hover .hero-portrait-label,
-    .hero-portrait-link.is-idle .hero-portrait-label {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .hero-portrait-link.is-hover .hero-portrait-label,
-    .hero-portrait-link.is-hover .hero-portrait-stat.is-active {
-      background-color: #dc2626;
-      color: #fff;
-      border-color: #dc2626;
-    }
-    .hero-portrait-link.is-hover .hero-portrait-stats,
-    .hero-portrait-link.is-idle .hero-portrait-stats {
+    .hero-portrait-link.is-caption-visible .hero-portrait-caption {
       min-height: 2.6rem;
       margin-top: 0.65rem;
       opacity: 1;
     }
-    .hero-portrait-link.is-idle .hero-portrait-stat.is-active {
-      animation: portrait-stats-breathe 5s ease-in-out infinite;
+    .hero-portrait-link.is-hover .hero-portrait-stats {
+      display: none;
+    }
+    .hero-portrait-link.is-hover .hero-portrait-hover-cta {
+      display: inline-block;
+    }
+    .hero-portrait-link.is-hover.is-cta-blink .hero-portrait-hover-cta {
+      animation: portrait-cta-blink 0.7s ease-in-out 4;
     }
     @keyframes portrait-ring-spin {
       to { transform: rotate(360deg); }
     }
-    @keyframes portrait-stats-breathe {
-      0%, 100% { opacity: 0.82; }
-      50% { opacity: 1; }
+    @keyframes portrait-cta-blink {
+      0%, 100% { opacity: 1; box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22); }
+      50% { opacity: 0.3; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); }
     }
     @media (min-width: 768px) {
       .hero-portrait-ring { width: 6.5rem; height: 6.5rem; }
       .hero-portrait-inner { inset: 5px; }
-      .hero-portrait-label,
-      .hero-portrait-stat { font-size: 0.85rem; padding: 0.55rem 1.25rem; }
-      .hero-portrait-link.is-hover .hero-portrait-stats,
-      .hero-portrait-link.is-idle .hero-portrait-stats { min-height: 2.75rem; }
+      .hero-portrait-stat,
+      .hero-portrait-hover-cta { font-size: 0.85rem; padding: 0.55rem 1.25rem; }
+      .hero-portrait-stats,
+      .hero-portrait-link.is-caption-visible .hero-portrait-caption { min-height: 2.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-portrait-ring::before { animation: none; }
       .hero-portrait-img { transition: none; }
       .hero-portrait-link.is-hover .hero-portrait-img,
       .hero-portrait-link.is-idle .hero-portrait-img { transform: none; }
-      .hero-portrait-link.is-idle .hero-portrait-stat.is-active { animation: none; opacity: 1; }
+      .hero-portrait-link.is-hover.is-cta-blink .hero-portrait-hover-cta { animation: none; }
     }
     @media (max-width: 768px) {
       .hero {
@@ -498,7 +501,6 @@
          data-i18n-aria="hero.portrait.aria"
          aria-label="About me"
          onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50); return false;">
-        <span class="hero-portrait-label" data-i18n="hero.portrait.hover">About me</span>
         <div class="hero-portrait-ring">
           <div class="hero-portrait-inner">
             <img src="images/jerome-portrait.jpg"
@@ -508,10 +510,13 @@
                  height="104">
           </div>
         </div>
-        <div class="hero-portrait-stats" aria-live="polite">
-          <span class="hero-portrait-stat" data-i18n="hero.portrait.stat1">Native from Spain</span>
-          <span class="hero-portrait-stat" data-i18n="hero.portrait.stat2">+10 years of experience</span>
-          <span class="hero-portrait-stat" data-i18n="hero.portrait.stat3">Students from 30+ countries</span>
+        <div class="hero-portrait-caption" aria-live="polite">
+          <div class="hero-portrait-stats">
+            <span class="hero-portrait-stat" data-i18n="hero.portrait.stat1">Native from Spain</span>
+            <span class="hero-portrait-stat" data-i18n="hero.portrait.stat2">+10 years of experience</span>
+            <span class="hero-portrait-stat" data-i18n="hero.portrait.stat3">Students from 30+ countries</span>
+          </div>
+          <span class="hero-portrait-hover-cta" data-i18n="hero.portrait.hover">About me</span>
         </div>
       </a>
       <p class="text-red-200 text-sm font-semibold tracking-widest uppercase mb-4 drop-shadow-md" data-i18n="hero.badge">Spanish ELE Teacher</p>
@@ -1503,7 +1508,10 @@
 
     let currentLang = 'en';
 
-    function setLanguage(lang) {
+    const LANG_STORAGE_KEY = 'jerome_lang';
+
+    function setLanguage(lang, options = {}) {
+      const { remember = true } = options;
       currentLang = lang;
       const t = translations[lang];
 
@@ -1536,7 +1544,7 @@
       });
 
       updateLangButtons(lang);
-      localStorage.setItem('jerome_lang', lang);
+      if (remember) sessionStorage.setItem(LANG_STORAGE_KEY, lang);
       document.documentElement.lang = lang;
     }
 
@@ -1565,13 +1573,12 @@
       if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
       if (esBtn) esBtn.addEventListener('click', () => setLanguage('es'));
 
-      // Load saved or default to English (as requested)
-      const saved = localStorage.getItem('jerome_lang');
-      if (saved && translations[saved]) {
-        setLanguage(saved);
-      } else {
-        setLanguage('en');   // Default to English
-      }
+      // Clear legacy persistence that forced Spanish on return visits
+      localStorage.removeItem('jerome_lang');
+
+      // Default to English; only restore Spanish if chosen this session
+      const saved = sessionStorage.getItem(LANG_STORAGE_KEY);
+      setLanguage(saved === 'es' ? 'es' : 'en', { remember: false });
     }
 
     function initMobileMenu() {
@@ -1686,85 +1693,116 @@
       const stats = Array.from(link.querySelectorAll('.hero-portrait-stat'));
       if (!stats.length) return;
 
-      let currentIndex = 0;
-      let rotateTimer = null;
-      let idleEnabled = false;
       let isHovering = false;
+      let cycleToken = 0;
+      let blinkTimer = null;
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const rotateMs = prefersReducedMotion ? 5000 : 3200;
+      const statMs = prefersReducedMotion ? 5000 : 3200;
+      const pauseMs = 5000;
       const idleDelayMs = 6500;
+      const blinkDurationMs = 2800;
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
 
       function showStat(index) {
         stats.forEach((stat, i) => {
           stat.classList.toggle('is-active', i === index);
         });
-        currentIndex = index;
-      }
-
-      function nextStat() {
-        showStat((currentIndex + 1) % stats.length);
-      }
-
-      function stopRotation() {
-        if (rotateTimer) {
-          clearInterval(rotateTimer);
-          rotateTimer = null;
-        }
-      }
-
-      function startRotation() {
-        stopRotation();
-        showStat(0);
-        rotateTimer = setInterval(nextStat, rotateMs);
       }
 
       function hideStats() {
-        stopRotation();
         stats.forEach(stat => stat.classList.remove('is-active'));
       }
 
-      function enableIdle() {
-        if (isHovering || idleEnabled) return;
-        idleEnabled = true;
+      function setCaptionVisible(visible) {
+        link.classList.toggle('is-caption-visible', visible);
+      }
+
+      function clearBlink() {
+        if (blinkTimer) {
+          clearTimeout(blinkTimer);
+          blinkTimer = null;
+        }
+        link.classList.remove('is-cta-blink');
+      }
+
+      function startHoverCta() {
+        clearBlink();
+        link.classList.add('is-idle', 'is-hover', 'is-caption-visible');
+        hideStats();
+        link.classList.add('is-cta-blink');
+        blinkTimer = setTimeout(() => {
+          link.classList.remove('is-cta-blink');
+          blinkTimer = null;
+        }, blinkDurationMs);
+      }
+
+      function endHover() {
+        clearBlink();
+        link.classList.remove('is-hover');
+      }
+
+      async function runStatCycle(token) {
         link.classList.add('is-idle');
-        startRotation();
+        setCaptionVisible(true);
+
+        for (let i = 0; i < stats.length; i++) {
+          if (token !== cycleToken || isHovering) return;
+          showStat(i);
+          await sleep(statMs);
+        }
+
+        if (token !== cycleToken || isHovering) return;
+        hideStats();
+        setCaptionVisible(false);
+        await sleep(pauseMs);
+
+        if (token !== cycleToken || isHovering) return;
+        runStatCycle(token);
+      }
+
+      function startIdleCycle() {
+        cycleToken += 1;
+        const token = cycleToken;
+        runStatCycle(token);
+      }
+
+      function stopIdleCycle() {
+        cycleToken += 1;
+        hideStats();
+        setCaptionVisible(false);
       }
 
       link.addEventListener('mouseenter', () => {
         isHovering = true;
-        link.classList.add('is-hover');
-        startRotation();
+        stopIdleCycle();
+        startHoverCta();
       });
 
       link.addEventListener('mouseleave', () => {
         isHovering = false;
-        link.classList.remove('is-hover');
-        if (idleEnabled) {
-          startRotation();
-        } else {
-          link.classList.remove('is-idle');
-          hideStats();
-        }
+        endHover();
+        startIdleCycle();
       });
 
       link.addEventListener('focus', () => {
         isHovering = true;
-        link.classList.add('is-hover');
-        startRotation();
+        stopIdleCycle();
+        startHoverCta();
       });
 
       link.addEventListener('blur', () => {
         isHovering = false;
-        link.classList.remove('is-hover');
-        if (idleEnabled) {
-          startRotation();
-        } else {
-          hideStats();
-        }
+        endHover();
+        startIdleCycle();
       });
 
-      setTimeout(enableIdle, idleDelayMs);
+      setTimeout(() => {
+        if (!isHovering) startIdleCycle();
+      }, idleDelayMs);
     }
 
     function initAll() {
