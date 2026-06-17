@@ -148,7 +148,7 @@
       display: inline-block;
     }
     .hero-portrait-link.is-hover.is-cta-blink .hero-portrait-hover-cta {
-      animation: portrait-cta-blink 0.7s ease-in-out 4;
+      animation: portrait-cta-blink 0.7s ease-in-out 2;
     }
     @keyframes portrait-ring-spin {
       to { transform: rotate(360deg); }
@@ -172,9 +172,20 @@
       .hero-portrait-link.is-idle .hero-portrait-img { transform: none; }
       .hero-portrait-link.is-hover.is-cta-blink .hero-portrait-hover-cta { animation: none; }
     }
+    .hero-content {
+      padding-top: calc(5% + 2.5cm);
+    }
+    @media (min-width: 768px) {
+      .hero-content {
+        padding-top: calc(4% + 2.5cm);
+      }
+    }
     @media (max-width: 768px) {
       .hero {
         background-position: 55% 42%;
+      }
+      .hero-content {
+        padding-top: calc(5% + 2cm);
       }
     }
     .section-title { 
@@ -494,7 +505,7 @@
 
   <div id="home-content">
   <section class="hero text-white relative flex items-start justify-center">
-    <div class="w-full max-w-4xl px-6 pt-[5%] md:pt-[4%] text-center relative z-10">
+    <div class="hero-content w-full max-w-4xl px-6 text-center relative z-10">
       <a id="hero-portrait-link"
          href="#sobre-mi"
          class="hero-portrait-link"
@@ -1701,7 +1712,7 @@
       const statMs = prefersReducedMotion ? 5000 : 3200;
       const pauseMs = 5000;
       const idleDelayMs = 6500;
-      const blinkDurationMs = 2800;
+      const blinkDurationMs = 1400;
 
       function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
