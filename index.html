@@ -138,6 +138,19 @@
         font-size: 0.7rem;
       }
     }
+
+    .nav-dropdown-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.75rem;
+      color: #27272a;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .nav-dropdown-link:hover {
+      background-color: #dc2626;
+      color: #fff;
+    }
   </style>
 </head>
 <body class="bg-zinc-50 text-zinc-800 smooth-scroll">
@@ -154,21 +167,23 @@
       <!-- Main Navigation (left of language buttons) -->
       <div class="hidden md:flex items-center gap-6 text-base font-medium">
         <!-- INICIO with dropdown sub-tabs -->
-        <div class="relative group">
+        <div id="nav-inicio-wrap" class="relative">
           <button id="nav-inicio-btn" 
                   onclick="showHome()"
                   class="flex items-center gap-1 text-zinc-800 hover:text-red-600 transition">
             Inicio
             <i class="fas fa-chevron-down text-xs"></i>
           </button>
-          <!-- Dropdown sub-menu -->
+          <!-- Dropdown sub-menu (pt-2 bridges gap so hover stays active) -->
           <div id="nav-inicio-dropdown" 
-               class="hidden group-hover:block absolute top-full left-0 mt-1 w-44 bg-white border border-zinc-200 shadow-xl rounded-2xl py-1 text-sm z-50">
-            <a href="#sobre-mi" onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Sobre mí</a>
-            <a href="#servicios" onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Servicios</a>
-            <a href="#metodologia" onclick="showHome(); setTimeout(() => document.getElementById('metodologia').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Metodología</a>
-            <a href="#testimonios" onclick="showHome(); setTimeout(() => document.getElementById('testimonios').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Testimonios</a>
-            <a href="#precios" onclick="showHome(); setTimeout(() => document.getElementById('precios').scrollIntoView({behavior:'smooth'}), 50)" class="block px-4 py-2 hover:bg-zinc-100 rounded-xl mx-1">Precios</a>
+               class="hidden absolute top-full left-0 pt-2 w-44 z-50">
+            <div class="bg-white border border-zinc-200 shadow-xl rounded-2xl py-1 text-sm">
+              <a href="#sobre-mi" onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Sobre mí</a>
+              <a href="#servicios" onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Servicios</a>
+              <a href="#metodologia" onclick="showHome(); setTimeout(() => document.getElementById('metodologia').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Metodología</a>
+              <a href="#testimonios" onclick="showHome(); setTimeout(() => document.getElementById('testimonios').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Testimonios</a>
+              <a href="#precios" onclick="showHome(); setTimeout(() => document.getElementById('precios').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Precios</a>
+            </div>
           </div>
         </div>
 
@@ -1362,28 +1377,36 @@
     }
 
     function initTopNavDropdown() {
+      const wrap = document.getElementById('nav-inicio-wrap');
       const btn = document.getElementById('nav-inicio-btn');
       const dropdown = document.getElementById('nav-inicio-dropdown');
 
-      if (!btn || !dropdown) return;
+      if (!wrap || !btn || !dropdown) return;
 
-      // Toggle on click (good for mobile/touch)
+      const openDropdown = () => dropdown.classList.remove('hidden');
+      const closeDropdown = () => dropdown.classList.add('hidden');
+
+      // Desktop: open on hover over Inicio + dropdown, close when pointer leaves
+      if (window.matchMedia('(hover: hover)').matches) {
+        wrap.addEventListener('mouseenter', openDropdown);
+        wrap.addEventListener('mouseleave', closeDropdown);
+      }
+
+      // Touch: toggle on tap
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        dropdown.classList.toggle('hidden');
+        if (window.matchMedia('(hover: none)').matches) {
+          dropdown.classList.toggle('hidden');
+        }
       });
 
-      // Close when clicking a link
       dropdown.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          dropdown.classList.add('hidden');
-        });
+        link.addEventListener('click', closeDropdown);
       });
 
-      // Close on outside click
       document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-          dropdown.classList.add('hidden');
+        if (!wrap.contains(e.target)) {
+          closeDropdown();
         }
       });
     }
