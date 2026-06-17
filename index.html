@@ -139,11 +139,24 @@
       }
     }
 
+    .nav-inicio-dropdown {
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 0.5rem;
+      min-width: 10.75rem;
+    }
+    .nav-inicio-dropdown-panel {
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+    }
     .nav-dropdown-link {
       display: block;
-      padding: 0.5rem 1rem;
-      margin: 0 0.25rem;
-      border-radius: 0.75rem;
+      padding: 0.55rem 1rem;
+      margin: 0;
+      text-align: center;
       color: #27272a;
       transition: background-color 0.15s ease, color 0.15s ease;
     }
@@ -174,10 +187,10 @@
             Inicio
             <i class="fas fa-chevron-down text-xs"></i>
           </button>
-          <!-- Dropdown sub-menu (pt-2 bridges gap so hover stays active) -->
+          <!-- Dropdown centered under Inicio (no cascade indent) -->
           <div id="nav-inicio-dropdown" 
-               class="hidden absolute top-full left-0 pt-2 w-44 z-50">
-            <div class="bg-white border border-zinc-200 shadow-xl rounded-2xl py-1 text-sm">
+               class="nav-inicio-dropdown hidden absolute top-full z-50 text-sm">
+            <div class="nav-inicio-dropdown-panel">
               <a href="#sobre-mi" onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Sobre mí</a>
               <a href="#servicios" onclick="showHome(); setTimeout(() => document.getElementById('servicios').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Servicios</a>
               <a href="#metodologia" onclick="showHome(); setTimeout(() => document.getElementById('metodologia').scrollIntoView({behavior:'smooth'}), 50)" class="nav-dropdown-link">Metodología</a>
@@ -1383,13 +1396,25 @@
 
       if (!wrap || !btn || !dropdown) return;
 
-      const openDropdown = () => dropdown.classList.remove('hidden');
+      let hoverCloseTimer = null;
+      const openDropdown = () => {
+        if (hoverCloseTimer) {
+          clearTimeout(hoverCloseTimer);
+          hoverCloseTimer = null;
+        }
+        dropdown.classList.remove('hidden');
+      };
       const closeDropdown = () => dropdown.classList.add('hidden');
+      const scheduleClose = () => {
+        hoverCloseTimer = setTimeout(closeDropdown, 120);
+      };
 
-      // Desktop: open on hover over Inicio + dropdown, close when pointer leaves
+      // Desktop: keep open while moving from Inicio into the dropdown
       if (window.matchMedia('(hover: hover)').matches) {
-        wrap.addEventListener('mouseenter', openDropdown);
-        wrap.addEventListener('mouseleave', closeDropdown);
+        [wrap, dropdown].forEach(el => {
+          el.addEventListener('mouseenter', openDropdown);
+          el.addEventListener('mouseleave', scheduleClose);
+        });
       }
 
       // Touch: toggle on tap
