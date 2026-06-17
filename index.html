@@ -21,16 +21,147 @@
       background: radial-gradient(ellipse 80% 55% at 50% 18%, rgba(0,0,0,0.38) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-avatar {
+    .hero-portrait-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+      outline: none;
+    }
+    .hero-portrait-link:focus-visible .hero-portrait-ring {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.55), 0 8px 32px rgba(0,0,0,0.45);
+    }
+    .hero-portrait-ring {
+      position: relative;
       width: 5.5rem;
       height: 5.5rem;
-      object-fit: cover;
-      border-radius: 9999px;
+      border-radius: 50%;
+      flex-shrink: 0;
       box-shadow: 0 8px 32px rgba(0,0,0,0.45);
-      border: 3px solid rgba(255,255,255,0.35);
+    }
+    .hero-portrait-ring::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #ef4444 0deg,
+        #dc2626 55deg,
+        #991b1b 110deg,
+        #0a0a0a 180deg,
+        #171717 250deg,
+        #b91c1c 310deg,
+        #ef4444 360deg
+      );
+      animation: portrait-ring-spin 9s linear infinite;
+    }
+    .hero-portrait-inner {
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #0a0a0a;
+      z-index: 1;
+    }
+    .hero-portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .hero-portrait-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem;
+      text-align: center;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.35;
+      color: #fff;
+      background: rgba(10, 10, 10, 0.42);
+      opacity: 0;
+      transition: opacity 0.45s ease, background 0.45s ease;
+      pointer-events: none;
+    }
+    .hero-portrait-stats {
+      position: relative;
+      width: 100%;
+      max-width: 14rem;
+      height: 0;
+      margin-top: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.7s ease, height 0.5s ease, margin-top 0.5s ease;
+    }
+    .hero-portrait-stat {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+      pointer-events: none;
+    }
+    .hero-portrait-stat.is-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-portrait-link.is-hover .hero-portrait-img,
+    .hero-portrait-link.is-idle .hero-portrait-img {
+      transform: scale(1.06);
+    }
+    .hero-portrait-link.is-hover .hero-portrait-overlay,
+    .hero-portrait-link.is-idle .hero-portrait-overlay {
+      opacity: 1;
+      background: rgba(10, 10, 10, 0.5);
+    }
+    .hero-portrait-link.is-hover .hero-portrait-stats,
+    .hero-portrait-link.is-idle .hero-portrait-stats {
+      height: 1.15rem;
+      margin-top: 0.55rem;
+      opacity: 1;
+    }
+    .hero-portrait-link.is-idle .hero-portrait-stats {
+      animation: portrait-stats-breathe 5s ease-in-out infinite;
+    }
+    .hero-portrait-link.is-idle:not(.is-hover) .hero-portrait-overlay {
+      opacity: 0.55;
+    }
+    @keyframes portrait-ring-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes portrait-stats-breathe {
+      0%, 100% { opacity: 0.72; }
+      50% { opacity: 1; }
     }
     @media (min-width: 768px) {
-      .hero-avatar { width: 6.5rem; height: 6.5rem; }
+      .hero-portrait-ring { width: 6.5rem; height: 6.5rem; }
+      .hero-portrait-inner { inset: 3.5px; }
+      .hero-portrait-overlay { font-size: 0.68rem; }
+      .hero-portrait-stat { font-size: 0.72rem; }
+      .hero-portrait-stats { max-width: 16rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-portrait-ring::before { animation: none; }
+      .hero-portrait-img { transition: none; }
+      .hero-portrait-link.is-hover .hero-portrait-img,
+      .hero-portrait-link.is-idle .hero-portrait-img { transform: none; }
+      .hero-portrait-link.is-idle .hero-portrait-stats { animation: none; opacity: 1; }
     }
     @media (max-width: 768px) {
       .hero {
@@ -355,7 +486,28 @@
   <div id="home-content">
   <section class="hero text-white relative flex items-start justify-center">
     <div class="w-full max-w-4xl px-6 pt-[5%] md:pt-[4%] text-center relative z-10">
-      <img src="images/jerome-portrait.jpg" alt="Jerome M. Valkarreras" class="hero-avatar mx-auto mb-5" width="104" height="104">
+      <a id="hero-portrait-link"
+         href="#sobre-mi"
+         class="hero-portrait-link"
+         data-i18n-aria="hero.portrait.aria"
+         aria-label="About me"
+         onclick="showHome(); setTimeout(() => document.getElementById('sobre-mi').scrollIntoView({behavior:'smooth'}), 50); return false;">
+        <div class="hero-portrait-ring">
+          <div class="hero-portrait-inner">
+            <img src="images/jerome-portrait.jpg"
+                 alt="Jerome M. Valkarreras"
+                 class="hero-portrait-img"
+                 width="104"
+                 height="104">
+            <span class="hero-portrait-overlay" data-i18n="hero.portrait.hover">About me</span>
+          </div>
+        </div>
+        <div class="hero-portrait-stats" aria-live="polite">
+          <span class="hero-portrait-stat" data-i18n="hero.portrait.stat1">Native from Spain</span>
+          <span class="hero-portrait-stat" data-i18n="hero.portrait.stat2">+10 years of experience</span>
+          <span class="hero-portrait-stat" data-i18n="hero.portrait.stat3">Students from 30+ countries</span>
+        </div>
+      </a>
       <p class="text-red-200 text-sm font-semibold tracking-widest uppercase mb-4 drop-shadow-md" data-i18n="hero.badge">Spanish ELE Teacher</p>
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]" data-i18n="hero.title">Learn real Spanish</h1>
       <p class="text-lg md:text-xl lg:text-2xl mb-6 max-w-2xl mx-auto text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.75)]" data-i18n="hero.subtitle">
@@ -1116,6 +1268,12 @@
         "hero.cta": "Book your free trial class",
         "hero.note": "Online • In-person in Madrid • Flexible schedules",
 
+        "hero.portrait.aria": "About me — Jerome M. Valkarreras",
+        "hero.portrait.hover": "About me",
+        "hero.portrait.stat1": "Native from Spain",
+        "hero.portrait.stat2": "+10 years of experience",
+        "hero.portrait.stat3": "Students from 30+ countries",
+
         "about.title": "Jerome M. Valkarreras",
         "about.p1": "Certified Spanish as a Foreign Language teacher with over 10 years of experience and students from more than 30 nationalities.",
         "about.p2": "My goal is for you to communicate naturally and confidently in Spanish, combining grammar, real conversation, and Hispanic culture.",
@@ -1233,6 +1391,12 @@
         "hero.subtitle": "Clases personalizadas con profesor nativo. Para estudiantes internacionales que quieren hablar con confianza.",
         "hero.cta": "Reservar clase de prueba gratuita",
         "hero.note": "Online • Presencial en Madrid • Horarios flexibles",
+
+        "hero.portrait.aria": "Sobre mí — Jerome M. Valkarreras",
+        "hero.portrait.hover": "Sobre mí",
+        "hero.portrait.stat1": "Nativo de España",
+        "hero.portrait.stat2": "+10 años de experiencia",
+        "hero.portrait.stat3": "Estudiantes de 30+ países",
 
         "about.title": "Jerome M. Valkarreras",
         "about.p1": "Profesor certificado de Español como Lengua Extranjera con más de 10 años de experiencia y estudiantes de más de 30 nacionalidades.",
@@ -1509,6 +1673,94 @@
       });
     }
 
+    function initHeroPortrait() {
+      const link = document.getElementById('hero-portrait-link');
+      if (!link) return;
+
+      const stats = Array.from(link.querySelectorAll('.hero-portrait-stat'));
+      if (!stats.length) return;
+
+      let currentIndex = 0;
+      let rotateTimer = null;
+      let idleEnabled = false;
+      let isHovering = false;
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const rotateMs = prefersReducedMotion ? 5000 : 3200;
+      const idleDelayMs = 6500;
+
+      function showStat(index) {
+        stats.forEach((stat, i) => {
+          stat.classList.toggle('is-active', i === index);
+        });
+        currentIndex = index;
+      }
+
+      function nextStat() {
+        showStat((currentIndex + 1) % stats.length);
+      }
+
+      function stopRotation() {
+        if (rotateTimer) {
+          clearInterval(rotateTimer);
+          rotateTimer = null;
+        }
+      }
+
+      function startRotation() {
+        stopRotation();
+        showStat(0);
+        rotateTimer = setInterval(nextStat, rotateMs);
+      }
+
+      function hideStats() {
+        stopRotation();
+        stats.forEach(stat => stat.classList.remove('is-active'));
+      }
+
+      function enableIdle() {
+        if (isHovering || idleEnabled) return;
+        idleEnabled = true;
+        link.classList.add('is-idle');
+        startRotation();
+      }
+
+      link.addEventListener('mouseenter', () => {
+        isHovering = true;
+        link.classList.add('is-hover');
+        startRotation();
+      });
+
+      link.addEventListener('mouseleave', () => {
+        isHovering = false;
+        link.classList.remove('is-hover');
+        if (idleEnabled) {
+          startRotation();
+        } else {
+          link.classList.remove('is-idle');
+          hideStats();
+        }
+      });
+
+      link.addEventListener('focus', () => {
+        isHovering = true;
+        link.classList.add('is-hover');
+        startRotation();
+      });
+
+      link.addEventListener('blur', () => {
+        isHovering = false;
+        link.classList.remove('is-hover');
+        if (idleEnabled) {
+          startRotation();
+        } else {
+          hideStats();
+        }
+      });
+
+      setTimeout(enableIdle, idleDelayMs);
+    }
+
     function initAll() {
       initLanguageSwitcher();
       initMobileMenu();
@@ -1517,6 +1769,7 @@
       initContactForm();
       initModalBehavior();
       initTopNavDropdown();
+      initHeroPortrait();
 
       if (CONFIG.whatsappNumber.includes('XXXX')) {
         console.warn('%c[Jerome ELE] Please replace CONFIG.whatsappNumber with your real phone number (international format).', 'color:#c2410f');
