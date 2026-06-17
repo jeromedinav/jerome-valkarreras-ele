@@ -120,6 +120,24 @@
         border-radius: 0.875rem;
       }
     }
+
+    .lang-switcher-fixed {
+      position: fixed;
+      right: 1.25rem;
+      top: 1.15rem;
+      z-index: 70;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    @media (max-width: 768px) {
+      .lang-switcher-fixed {
+        right: 1rem;
+        top: 1rem;
+      }
+      .lang-switcher-fixed .lang-btn {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-zinc-50 text-zinc-800 smooth-scroll">
@@ -161,25 +179,18 @@
         <a onclick="showBlog()" class="text-zinc-800 hover:text-red-600 transition cursor-pointer">Blog</a>
       </div>
 
-      <!-- Language switcher + CTA (Desktop) -->
-      <div class="hidden md:flex items-center gap-3">
-        <!-- ENG first (default active), ESP gray secondary -->
-        <div class="lang-switcher">
-          <button id="lang-en" class="lang-btn eng" data-lang="en">ENG</button>
-          <button id="lang-es" class="lang-btn esp" data-lang="es">ESP</button>
-        </div>
-
+      <!-- Contact CTA (Desktop) — where language tabs used to be -->
+      <div class="hidden md:flex items-center">
         <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-full text-sm font-medium transition" data-i18n="nav.contact">
           Contact
         </a>
       </div>
 
-      <!-- Mobile: Language switcher + Hamburger -->
-      <div class="md:hidden flex items-center gap-2">
-        <div class="lang-switcher text-xs">
-          <button id="lang-en-mobile" class="lang-btn eng px-2.5 py-0.5" data-lang="en">ENG</button>
-          <button id="lang-es-mobile" class="lang-btn esp px-2.5 py-0.5" data-lang="es">ESP</button>
-        </div>
+      <!-- Mobile: Contact + Hamburger -->
+      <div class="md:hidden flex items-center gap-2 pr-[5.5rem]">
+        <a href="#contacto" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-xs font-medium transition whitespace-nowrap" data-i18n="nav.contact">
+          Contact
+        </a>
 
         <button id="menu-btn" class="w-10 h-10 flex items-center justify-center text-xl text-zinc-700" aria-label="Menu">
           <i class="fas fa-bars"></i>
@@ -1198,55 +1209,29 @@
     }
 
     function updateLangButtons(lang) {
-      // Desktop
       const btnEn = document.getElementById('lang-en');
       const btnEs = document.getElementById('lang-es');
-      if (btnEn && btnEs) {
-        if (lang === 'en') {
-          btnEn.classList.add('eng');
-          btnEn.classList.remove('esp');
-          btnEs.classList.remove('eng');
-          btnEs.classList.add('esp');
-        } else {
-          btnEn.classList.remove('eng');
-          btnEn.classList.add('esp');
-          btnEs.classList.add('eng');
-          btnEs.classList.remove('esp');
-        }
-      }
+      if (!btnEn || !btnEs) return;
 
-      // Mobile
-      const mEn = document.getElementById('lang-en-mobile');
-      const mEs = document.getElementById('lang-es-mobile');
-      if (mEn && mEs) {
-        if (lang === 'en') {
-          mEn.classList.add('eng');
-          mEn.classList.remove('esp');
-          mEs.classList.remove('eng');
-          mEs.classList.add('esp');
-        } else {
-          mEn.classList.remove('eng');
-          mEn.classList.add('esp');
-          mEs.classList.add('eng');
-          mEs.classList.remove('esp');
-        }
+      if (lang === 'en') {
+        btnEn.classList.add('eng');
+        btnEn.classList.remove('esp');
+        btnEs.classList.remove('eng');
+        btnEs.classList.add('esp');
+      } else {
+        btnEn.classList.remove('eng');
+        btnEn.classList.add('esp');
+        btnEs.classList.add('eng');
+        btnEs.classList.remove('esp');
       }
     }
 
     function initLanguageSwitcher() {
-      // Desktop
       const enBtn = document.getElementById('lang-en');
       const esBtn = document.getElementById('lang-es');
 
       if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
       if (esBtn) esBtn.addEventListener('click', () => setLanguage('es'));
-
-      // Mobile
-      const mEn = document.getElementById('lang-en-mobile');
-      const mEs = document.getElementById('lang-es-mobile');
-
-      if (mEn) mEn.addEventListener('click', () => setLanguage('en'));
-      if (mEs) mEs.addEventListener('click', () => setLanguage('es'));
 
       // Load saved or default to English (as requested)
       const saved = localStorage.getItem('jerome_lang');
@@ -1468,6 +1453,12 @@
     });
 
   </script>
+
+  <!-- Language switcher — fixed right, aligned with back-to-top arrow -->
+  <div class="lang-switcher lang-switcher-fixed" role="group" aria-label="Language">
+    <button id="lang-en" type="button" class="lang-btn eng" data-lang="en">ENG</button>
+    <button id="lang-es" type="button" class="lang-btn esp" data-lang="es">ESP</button>
+  </div>
 
   <button type="button" class="back-to-top" onclick="scrollToTop()" aria-label="Back to top" title="Back to top">
     <i class="fas fa-arrow-up" aria-hidden="true"></i>
