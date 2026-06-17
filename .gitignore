@@ -1,5 +1,6 @@
 .DS_Store
 *.bak
+.netlify/
 models/
 build_hero.py
 images/hero-class-new.jpg

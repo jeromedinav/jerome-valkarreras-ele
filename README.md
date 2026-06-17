@@ -27,15 +27,23 @@ open index.html
 python3 -m http.server 8080
 ```
 
-## Deploy (GitHub Pages + Grok)
+## Deploy (Netlify — production)
 
-This repo is ready for **GitHub Pages** via the workflow in `.github/workflows/deploy.yml`.
+**Live site:** https://jerome-valkarreras-ele.netlify.app
 
-1. Push this folder to a GitHub repository.
-2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. After the first push to `main`, the workflow publishes the site automatically.
+```bash
+./scripts/deploy-netlify.sh
+```
 
-Live URL format: `https://<username>.github.io/<repo>/`
+Requires one-time login: `netlify login`
+
+Config: `netlify.toml` (publish directory = project root)
+
+## GitHub mirror
+
+Repo: https://github.com/jeromedinav/jerome-valkarreras-ele
+
+GitHub Pages mirror: https://jeromedinav.github.io/jerome-valkarreras-ele/
 
 ## Language switcher
 
