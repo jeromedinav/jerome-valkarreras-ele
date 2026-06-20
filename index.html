@@ -646,6 +646,95 @@
       color: #991b1b;
       border: 1px solid #fecaca;
     }
+    .level-test-listen-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #fef2f2, #fff);
+      border: 1px solid #fecaca;
+      margin-bottom: 1rem;
+    }
+    .level-test-listen-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.1rem;
+      border-radius: 9999px;
+      border: none;
+      background: #dc2626;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+      flex-shrink: 0;
+    }
+    .level-test-listen-btn:hover {
+      background: #b91c1c;
+      transform: translateY(-1px);
+    }
+    .level-test-listen-btn.is-playing {
+      background: #991b1b;
+      animation: level-test-pulse 1s ease infinite;
+    }
+    @keyframes level-test-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.35); }
+      50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+    }
+    .level-test-listen-note {
+      font-size: 0.82rem;
+      color: #71717a;
+      line-height: 1.45;
+    }
+    .level-test-explain {
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      color: #52525b;
+      line-height: 1.5;
+    }
+    .level-test-skill-breakdown {
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+    .level-test-skill-row {
+      display: grid;
+      grid-template-columns: 6.5rem 1fr 2.5rem;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.55rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #52525b;
+    }
+    .level-test-skill-row:last-child { margin-bottom: 0; }
+    .level-test-skill-bar {
+      height: 0.4rem;
+      background: #e4e4e7;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .level-test-skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #dc2626, #f87171);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .level-test-skill-pct {
+      text-align: right;
+      color: #27272a;
+      font-weight: 700;
+    }
+    .level-test-results-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
     @media (max-width: 768px) {
       .lang-switcher-fixed {
         right: 1rem;
@@ -1534,12 +1623,13 @@
         </div>
         <div class="level-test-intro-card space-y-4 mb-6">
           <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro1">You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.</p>
-          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro2">Each block has 20 exercises that increase progressively in difficulty: complete sentences, drag words, order words, multiple blanks, reading comprehension, matching, multiple choice and true/false.</p>
+          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro2">Each block has 25 exercises with progressive difficulty — including listening comprehension with native Spanish audio.</p>
           <div class="level-test-types-legend" aria-hidden="true">
             <span class="level-test-type-pill" data-i18n="test.type.fill">Complete</span>
             <span class="level-test-type-pill" data-i18n="test.type.drag">Drag</span>
             <span class="level-test-type-pill" data-i18n="test.type.order">Order</span>
             <span class="level-test-type-pill" data-i18n="test.type.multi">Blanks</span>
+            <span class="level-test-type-pill" data-i18n="test.type.listen">Listen</span>
             <span class="level-test-type-pill" data-i18n="test.type.reading">Reading</span>
             <span class="level-test-type-pill" data-i18n="test.type.match">Match</span>
             <span class="level-test-type-pill" data-i18n="test.type.mc">Choice</span>
@@ -1551,21 +1641,21 @@
               <span aria-hidden="true">🔹</span>
               <span>
                 <span data-i18n="test.level.basic">A1–A2 → Basic level</span>
-                <span class="level-test-block-meta" data-i18n="test.block1.meta">20 exercises · greetings, verbs, imperatives</span>
+                <span class="level-test-block-meta" data-i18n="test.block1.meta">25 exercises · greetings, verbs, imperatives, listening</span>
               </span>
             </button>
             <button type="button" class="level-test-block-btn" data-block="2">
               <span aria-hidden="true">🔹</span>
               <span>
                 <span data-i18n="test.level.intermediate">B1–B2 → Intermediate level</span>
-                <span class="level-test-block-meta" data-i18n="test.block2.meta">20 exercises · connectors, subjunctive, past tenses</span>
+                <span class="level-test-block-meta" data-i18n="test.block2.meta">25 exercises · connectors, subjunctive, past tenses, listening</span>
               </span>
             </button>
             <button type="button" class="level-test-block-btn" data-block="3">
               <span aria-hidden="true">🔹</span>
               <span>
                 <span data-i18n="test.level.advanced">C1–C2 → Advanced level</span>
-                <span class="level-test-block-meta" data-i18n="test.block3.meta">20 exercises · advanced grammar, idioms, nuance</span>
+                <span class="level-test-block-meta" data-i18n="test.block3.meta">25 exercises · advanced grammar, idioms, C1–C2, listening</span>
               </span>
             </button>
           </div>
@@ -1577,7 +1667,7 @@
       <div id="level-test-quiz" class="level-test-hidden">
         <div class="mb-6">
           <div class="flex items-center justify-between text-sm font-semibold text-zinc-600 mb-2">
-            <span id="level-test-step-label">1 / 20</span>
+            <span id="level-test-step-label">1 / 25</span>
             <div class="flex items-center gap-3">
               <span id="level-test-errors-label" class="level-test-errors">Mistakes: 0/4</span>
               <span id="level-test-block-label" class="level-test-block-badge">A1–A2</span>
@@ -1604,8 +1694,13 @@
           <p id="level-test-final-score" class="mt-2 text-lg font-semibold text-zinc-700">4/6</p>
           <p id="level-test-final-desc" class="mt-3 text-lg text-zinc-600"></p>
         </div>
+        <div id="level-test-skill-breakdown" class="level-test-skill-breakdown level-test-hidden">
+          <p class="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-3" data-i18n="test.results.skills">Skills breakdown</p>
+          <div id="level-test-skill-rows"></div>
+        </div>
         <p class="text-sm text-zinc-600 mb-6 text-center" data-i18n="test.results.note">This is an orientation test. For a precise level, book a free trial class with Jerome.</p>
-        <div class="flex flex-col gap-3">
+        <div class="level-test-results-actions">
+          <button type="button" id="level-test-copy" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.copy">Copy my result</button>
           <button type="button" id="level-test-another" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.another">Try another block</button>
           <button type="button" id="level-test-retry" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.retry">Repeat this block</button>
           <button type="button" id="level-test-book" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-2xl transition" data-i18n="test.book">Book free trial class</button>
@@ -1743,10 +1838,10 @@
         "test.title": "Spanish Level Test",
         "test.lead": "Want to know your real Spanish level?",
         "test.intro1": "You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.",
-        "test.intro2": "Each block has 20 exercises that increase progressively in difficulty: complete sentences, drag words, order words, multiple blanks, reading comprehension, matching, multiple choice and true/false.",
-        "test.block1.meta": "20 exercises · greetings, verbs, imperatives",
-        "test.block2.meta": "20 exercises · connectors, subjunctive, past tenses",
-        "test.block3.meta": "20 exercises · advanced grammar, idioms, nuance",
+        "test.intro2": "Each block has 25 exercises with progressive difficulty — including listening comprehension with native Spanish audio. Questions are shuffled each attempt.",
+        "test.block1.meta": "25 exercises · greetings, verbs, imperatives, listening",
+        "test.block2.meta": "25 exercises · connectors, subjunctive, past tenses, listening",
+        "test.block3.meta": "25 exercises · advanced grammar, idioms, C1–C2, listening",
         "test.errors": "Mistakes: {n}/4",
         "test.pick": "You can start with the block you think fits you best:",
         "test.level.basic": "A1–A2 → Basic level",
@@ -1779,7 +1874,19 @@
         "test.type.order": "Put the words in order",
         "test.type.multi": "Complete the blanks",
         "test.type.reading": "Reading comprehension",
+        "test.type.listen": "Listening",
         "test.type.match": "Match the pairs",
+        "test.listen.hint": "Press play, listen carefully, then choose your answer.",
+        "test.listen.play": "Play audio",
+        "test.listen.replay": "Play again",
+        "test.results.skills": "Skills breakdown",
+        "test.skill.grammar": "Grammar",
+        "test.skill.vocabulary": "Vocabulary",
+        "test.skill.reading": "Reading",
+        "test.skill.listening": "Listening",
+        "test.skill.production": "Writing",
+        "test.copy": "Copy my result",
+        "test.copied": "Result copied!",
         "test.drag.hint": "Tap a word, then tap the gap — or drag it into place.",
         "test.order.hint": "Tap words below to build the sentence in the correct order.",
         "test.multi.hint": "Type the missing word in each blank.",
@@ -1931,10 +2038,10 @@
         "test.title": "Test de nivel de español",
         "test.lead": "¿Quieres saber cuál es tu nivel real de español?",
         "test.intro1": "En esta página encontrarás 3 pruebas de nivel de español online, organizadas según el MCER: A1–A2, B1–B2 y C1–C2.",
-        "test.intro2": "Cada bloque tiene 20 ejercicios con dificultad progresiva: completa frases, arrastra palabras, ordena oraciones, varios huecos, comprensión lectora, relacionar pares, opción múltiple y verdadero/falso.",
-        "test.block1.meta": "20 ejercicios · saludos, verbos, imperativos",
-        "test.block2.meta": "20 ejercicios · conectores, subjuntivo, tiempos pasados",
-        "test.block3.meta": "20 ejercicios · gramática avanzada, expresiones, matices",
+        "test.intro2": "Cada bloque tiene 25 ejercicios con dificultad progresiva — incluye comprensión auditiva con audio en español. Las preguntas se barajan en cada intento.",
+        "test.block1.meta": "25 ejercicios · saludos, verbos, imperativos, audio",
+        "test.block2.meta": "25 ejercicios · conectores, subjuntivo, pasados, audio",
+        "test.block3.meta": "25 ejercicios · gramática avanzada, expresiones, C1–C2, audio",
         "test.errors": "Fallos: {n}/4",
         "test.pick": "Puedes empezar por el bloque que consideres más adecuado para ti:",
         "test.level.basic": "A1–A2 → Nivel básico",
@@ -1967,7 +2074,19 @@
         "test.type.order": "Ordena las palabras",
         "test.type.multi": "Completa los huecos",
         "test.type.reading": "Comprensión lectora",
+        "test.type.listen": "Comprensión auditiva",
         "test.type.match": "Relaciona los pares",
+        "test.listen.hint": "Pulsa reproducir, escucha con atención y elige tu respuesta.",
+        "test.listen.play": "Reproducir audio",
+        "test.listen.replay": "Repetir audio",
+        "test.results.skills": "Desglose por habilidades",
+        "test.skill.grammar": "Gramática",
+        "test.skill.vocabulary": "Vocabulario",
+        "test.skill.reading": "Lectura",
+        "test.skill.listening": "Audición",
+        "test.skill.production": "Escritura",
+        "test.copy": "Copiar mi resultado",
+        "test.copied": "¡Resultado copiado!",
         "test.drag.hint": "Toca una palabra y luego el hueco — o arrástrala.",
         "test.order.hint": "Toca las palabras para formar la frase en el orden correcto.",
         "test.multi.hint": "Escribe la palabra que falta en cada hueco.",
@@ -2467,6 +2586,7 @@
     }
 
     const LEVEL_TEST_MAX_ERRORS = 4;
+    const LEVEL_TEST_SKILL_ORDER = ['grammar', 'vocabulary', 'reading', 'listening', 'production'];
 
     let levelTestState = {
       activeBlock: 1,
@@ -2475,22 +2595,85 @@
       errors: 0,
       answered: false,
       selected: null,
-      lastResult: null
+      lastResult: null,
+      questionOrder: null,
+      skillStats: {}
     };
 
+    function createLevelTestState(overrides = {}) {
+      return {
+        activeBlock: 1,
+        index: 0,
+        correct: 0,
+        errors: 0,
+        answered: false,
+        selected: null,
+        lastResult: null,
+        questionOrder: null,
+        skillStats: {},
+        ...overrides
+      };
+    }
+
     function resetLevelTestView() {
+      stopLevelTestSpeech();
       const intro = document.getElementById('level-test-intro');
       const quiz = document.getElementById('level-test-quiz');
       const results = document.getElementById('level-test-results');
       if (intro) intro.classList.remove('level-test-hidden');
       if (quiz) quiz.classList.add('level-test-hidden');
       if (results) results.classList.add('level-test-hidden');
-      levelTestState = { activeBlock: 1, index: 0, correct: 0, errors: 0, answered: false, selected: null, lastResult: null };
+      levelTestState = createLevelTestState();
+    }
+
+    function getBaseBlockQuestions(block) {
+      const data = window.LEVEL_TEST_QUESTIONS || {};
+      return data[block] || data[1] || [];
     }
 
     function getBlockQuestions(block) {
-      const data = window.LEVEL_TEST_QUESTIONS || {};
-      return data[block] || data[1] || [];
+      const base = getBaseBlockQuestions(block);
+      const order = levelTestState.questionOrder;
+      if (Array.isArray(order) && order.length === base.length) {
+        return order.map(i => base[i]);
+      }
+      return base;
+    }
+
+    function getQuestionSkill(q) {
+      if (q.skill) return q.skill;
+      const map = { reading: 'reading', listen: 'listening', match: 'vocabulary', fill: 'production', multi: 'production' };
+      return map[q.type] || 'grammar';
+    }
+
+    function recordSkillResult(q, isCorrect) {
+      const skill = getQuestionSkill(q);
+      if (!levelTestState.skillStats[skill]) {
+        levelTestState.skillStats[skill] = { correct: 0, total: 0 };
+      }
+      levelTestState.skillStats[skill].total += 1;
+      if (isCorrect) levelTestState.skillStats[skill].correct += 1;
+    }
+
+    function stopLevelTestSpeech() {
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    function speakSpanish(text, onEnd) {
+      stopLevelTestSpeech();
+      if (!window.speechSynthesis || !text) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.92;
+      const voices = window.speechSynthesis.getVoices();
+      const spanishVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('es'));
+      if (spanishVoice) utterance.voice = spanishVoice;
+      if (typeof onEnd === 'function') utterance.onend = onEnd;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
     }
 
     function getQuestionPrompt(q) {
@@ -2501,10 +2684,15 @@
     function getQuestionHeadline(q) {
       const prompt = getQuestionPrompt(q);
       if (prompt) return prompt;
-      if (q.type === 'reading') return q.question || '';
-      if (q.type === 'order' || q.type === 'match') return prompt || (currentLang === 'es' ? 'Ejercicio' : 'Exercise');
+      if (q.type === 'reading' || q.type === 'listen') return q.question || prompt || '';
+      if (q.type === 'order' || q.type === 'match') return currentLang === 'es' ? 'Ejercicio' : 'Exercise';
       if (q.question) return q.question.replace(/___/g, '______');
       return '';
+    }
+
+    function getQuestionExplanation(q) {
+      if (!q.explain) return '';
+      return q.explain[currentLang] || q.explain.en || q.explain.es || '';
     }
 
     function updateErrorsLabel() {
@@ -2520,7 +2708,12 @@
     }
 
     function startLevelTestBlock(block) {
-      levelTestState = { activeBlock: block, index: 0, correct: 0, errors: 0, answered: false, selected: null, lastResult: null };
+      stopLevelTestSpeech();
+      const base = getBaseBlockQuestions(block);
+      levelTestState = createLevelTestState({
+        activeBlock: block,
+        questionOrder: shuffleArray(base.map((_, i) => i))
+      });
       document.getElementById('level-test-intro').classList.add('level-test-hidden');
       document.getElementById('level-test-quiz').classList.remove('level-test-hidden');
       document.getElementById('level-test-results').classList.add('level-test-hidden');
@@ -2531,6 +2724,11 @@
     function renderProgressDots(total) {
       const dotsEl = document.getElementById('level-test-dots');
       if (!dotsEl) return;
+      if (total > 22) {
+        dotsEl.classList.add('level-test-hidden');
+        return;
+      }
+      dotsEl.classList.remove('level-test-hidden');
       dotsEl.innerHTML = '';
       for (let i = 0; i < total; i++) {
         const dot = document.createElement('span');
@@ -2565,6 +2763,7 @@
         order: 'test.type.order',
         multi: 'test.type.multi',
         reading: 'test.type.reading',
+        listen: 'test.type.listen',
         match: 'test.type.match'
       };
       return t[map[q.type]] || t['test.type.mc'];
@@ -2827,6 +3026,53 @@
       if (firstInput) setTimeout(() => firstInput.focus(), 50);
     }
 
+    function renderListenQuestion(q, answersEl, nextBtn, t) {
+      const hint = document.createElement('p');
+      hint.className = 'level-test-hint';
+      hint.textContent = t['test.listen.hint'];
+      answersEl.appendChild(hint);
+
+      const box = document.createElement('div');
+      box.className = 'level-test-listen-box';
+
+      const playBtn = document.createElement('button');
+      playBtn.type = 'button';
+      playBtn.className = 'level-test-listen-btn';
+      playBtn.innerHTML = '<span aria-hidden="true">🔊</span> ' + (t['test.listen.play'] || 'Play');
+      playBtn.addEventListener('click', () => {
+        if (levelTestState.answered) return;
+        playBtn.classList.add('is-playing');
+        playBtn.innerHTML = '<span aria-hidden="true">🔊</span> ' + (t['test.listen.replay'] || 'Replay');
+        speakSpanish(q.audio, () => playBtn.classList.remove('is-playing'));
+      });
+      box.appendChild(playBtn);
+
+      const note = document.createElement('p');
+      note.className = 'level-test-listen-note';
+      note.textContent = currentLang === 'es'
+        ? 'Audio en español. Puedes repetirlo las veces que necesites.'
+        : 'Spanish audio. You can replay it as many times as you need.';
+      box.appendChild(note);
+      answersEl.appendChild(box);
+
+      setTimeout(() => playBtn.click(), 400);
+
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'level-test-option';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => {
+          if (levelTestState.answered) return;
+          levelTestState.selected = i;
+          answersEl.querySelectorAll('.level-test-option').forEach(el => el.classList.remove('is-selected'));
+          btn.classList.add('is-selected');
+          updateLevelTestCheckButton(nextBtn, q);
+        });
+        answersEl.appendChild(btn);
+      });
+    }
+
     function renderReadingQuestion(q, answersEl, nextBtn) {
       const passage = document.createElement('div');
       passage.className = 'level-test-passage';
@@ -2937,6 +3183,7 @@
     }
 
     function renderLevelTestQuestion() {
+      stopLevelTestSpeech();
       const questions = getBlockQuestions(levelTestState.activeBlock);
       const q = questions[levelTestState.index];
       const t = translations[currentLang];
@@ -3013,6 +3260,11 @@
         return;
       }
 
+      if (q.type === 'listen') {
+        renderListenQuestion(q, answersEl, nextBtn, t);
+        return;
+      }
+
       if (q.type === 'match') {
         renderMatchQuestion(q, answersEl, nextBtn, t);
         return;
@@ -3054,7 +3306,7 @@
         isCorrect = q.answer.every((word, i) => levelTestState.selected[i] === word);
       } else if (q.type === 'multi') {
         isCorrect = q.answers.every((ans, i) => normalizeAnswer(levelTestState.selected[i]) === normalizeAnswer(ans));
-      } else if (q.type === 'reading') {
+      } else if (q.type === 'reading' || q.type === 'listen') {
         isCorrect = levelTestState.selected === q.answer;
       } else if (q.type === 'match') {
         isCorrect = q.pairs.every(pair =>
@@ -3068,15 +3320,20 @@
 
       if (isCorrect) levelTestState.correct += 1;
       else levelTestState.errors += 1;
+      recordSkillResult(q, isCorrect);
+      stopLevelTestSpeech();
 
       const answersEl = document.getElementById('level-test-answers');
-      if (q.type === 'mc' || q.type === 'tf' || q.type === 'reading') {
+      if (q.type === 'mc' || q.type === 'tf' || q.type === 'reading' || q.type === 'listen') {
         answersEl.querySelectorAll('.level-test-option').forEach((btn, i) => {
           const correctIndex = q.type === 'tf' ? (q.answer ? 0 : 1) : q.answer;
           if (i === correctIndex) btn.classList.add('is-correct');
           else if (btn.classList.contains('is-selected')) btn.classList.add('is-wrong');
           btn.disabled = true;
         });
+        if (q.type === 'listen') {
+          answersEl.querySelectorAll('.level-test-listen-btn').forEach(btn => { btn.disabled = true; });
+        }
       } else if (q.type === 'fill') {
         const input = answersEl.querySelector('.level-test-input');
         if (input) {
@@ -3130,7 +3387,17 @@
 
       updateErrorsLabel();
       if (feedbackEl) {
-        feedbackEl.textContent = isCorrect ? t['test.correct'] : t['test.wrong'];
+        const explain = !isCorrect ? getQuestionExplanation(q) : '';
+        feedbackEl.innerHTML = '';
+        const main = document.createElement('span');
+        main.textContent = isCorrect ? t['test.correct'] : t['test.wrong'];
+        feedbackEl.appendChild(main);
+        if (explain) {
+          const exp = document.createElement('p');
+          exp.className = 'level-test-explain';
+          exp.textContent = explain;
+          feedbackEl.appendChild(exp);
+        }
         feedbackEl.className = `mt-4 text-sm font-medium ${isCorrect ? 'text-emerald-600' : 'text-red-600'}`;
         feedbackEl.classList.remove('level-test-hidden');
       }
@@ -3170,12 +3437,65 @@
         else if (ratio >= 0.5) { levelKey = 'test.results.b1'; descKey = 'test.results.b1.desc'; }
         else { levelKey = 'test.results.a2'; descKey = 'test.results.tryLower'; }
       } else {
-        if (ratio >= 0.84) { levelKey = 'test.results.c1'; descKey = 'test.results.c1.desc'; }
-        else if (ratio >= 0.5) { levelKey = 'test.results.b2'; descKey = 'test.results.b2.desc'; }
+        if (ratio >= 0.92) { levelKey = 'test.results.c2'; descKey = 'test.results.c2.desc'; }
+        else if (ratio >= 0.76) { levelKey = 'test.results.c1'; descKey = 'test.results.c1.desc'; }
+        else if (ratio >= 0.52) { levelKey = 'test.results.b2'; descKey = 'test.results.b2.desc'; }
         else { levelKey = 'test.results.b1'; descKey = 'test.results.tryLower'; }
       }
 
       return { level: t[levelKey], desc: t[descKey] };
+    }
+
+    function renderSkillBreakdown() {
+      const wrap = document.getElementById('level-test-skill-breakdown');
+      const rowsEl = document.getElementById('level-test-skill-rows');
+      const t = translations[currentLang];
+      if (!wrap || !rowsEl) return;
+
+      const stats = levelTestState.skillStats || {};
+      const skills = LEVEL_TEST_SKILL_ORDER.filter(s => stats[s] && stats[s].total > 0);
+      if (!skills.length) {
+        wrap.classList.add('level-test-hidden');
+        return;
+      }
+
+      rowsEl.innerHTML = '';
+      skills.forEach(skill => {
+        const { correct, total } = stats[skill];
+        const pct = Math.round((correct / total) * 100);
+        const row = document.createElement('div');
+        row.className = 'level-test-skill-row';
+        row.innerHTML = `
+          <span>${t['test.skill.' + skill] || skill}</span>
+          <div class="level-test-skill-bar"><div class="level-test-skill-bar-fill" style="width:${pct}%"></div></div>
+          <span class="level-test-skill-pct">${correct}/${total}</span>
+        `;
+        rowsEl.appendChild(row);
+      });
+      wrap.classList.remove('level-test-hidden');
+    }
+
+    function copyLevelTestResult() {
+      const t = translations[currentLang];
+      const result = levelTestState.lastResult;
+      if (!result) return;
+      const blockLabel = t[`test.block${result.block}.short`] || result.block;
+      const lines = [
+        currentLang === 'es' ? 'Test de nivel de español — Jerome ELE' : 'Spanish Level Test — Jerome ELE',
+        `${currentLang === 'es' ? 'Bloque' : 'Block'}: ${blockLabel}`,
+        `${currentLang === 'es' ? 'Nivel estimado' : 'Estimated level'}: ${result.level}`,
+        `${currentLang === 'es' ? 'Puntuación' : 'Score'}: ${result.score}`,
+        'https://jerome-valkarreras-ele.netlify.app'
+      ];
+      const text = lines.join('\n');
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('level-test-copy');
+        if (btn) {
+          const original = btn.textContent;
+          btn.textContent = t['test.copied'] || 'Copied!';
+          setTimeout(() => { btn.textContent = original; }, 2000);
+        }
+      }).catch(() => {});
     }
 
     function levelToSelectIndex(level) {
@@ -3227,6 +3547,7 @@
       document.getElementById('level-test-quiz').classList.add('level-test-hidden');
       document.getElementById('level-test-results').classList.remove('level-test-hidden');
       document.getElementById('level-test-progress-bar').style.width = '100%';
+      renderSkillBreakdown();
     }
 
     function initLevelTest() {
@@ -3270,6 +3591,11 @@
       const bookBtn = document.getElementById('level-test-book');
       if (bookBtn) {
         bookBtn.addEventListener('click', bookTrialWithTestResult);
+      }
+
+      const copyBtn = document.getElementById('level-test-copy');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', copyLevelTestResult);
       }
     }
 
