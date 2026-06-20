@@ -419,6 +419,126 @@
     .level-test-finish-early:hover {
       background: #fef2f2;
     }
+    .level-test-sentence {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 2;
+      color: #27272a;
+      margin-bottom: 1rem;
+    }
+    .level-test-slot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 5.5rem;
+      min-height: 2.2rem;
+      padding: 0.2rem 0.65rem;
+      margin: 0 0.15rem;
+      border-radius: 0.65rem;
+      border: 2px dashed #d4d4d8;
+      background: #fafafa;
+      color: #71717a;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+    .level-test-slot.is-active {
+      border-color: #dc2626;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+    .level-test-slot.is-filled {
+      border-style: solid;
+      border-color: #a1a1aa;
+      background: #fff;
+      color: #27272a;
+      font-weight: 700;
+    }
+    .level-test-slot.is-correct {
+      border-color: #059669;
+      background: #ecfdf5;
+      color: #047857;
+    }
+    .level-test-slot.is-wrong {
+      border-color: #dc2626;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+    .level-test-word-bank,
+    .level-test-order-bank,
+    .level-test-order-answer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .level-test-order-answer {
+      min-height: 3rem;
+      padding: 0.65rem;
+      border-radius: 0.85rem;
+      border: 2px dashed #d4d4d8;
+      background: #fafafa;
+      margin-bottom: 0.5rem;
+    }
+    .level-test-word-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid #e4e4e7;
+      background: #fff;
+      color: #27272a;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: grab;
+      user-select: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .level-test-word-chip:hover {
+      border-color: #dc2626;
+      color: #b91c1c;
+      transform: translateY(-1px);
+    }
+    .level-test-word-chip.is-used {
+      opacity: 0.35;
+      pointer-events: none;
+      cursor: default;
+      transform: none;
+    }
+    .level-test-word-chip.is-correct {
+      background: #059669;
+      border-color: #059669;
+      color: #fff;
+    }
+    .level-test-word-chip.is-wrong {
+      background: #dc2626;
+      border-color: #991b1b;
+      color: #fff;
+    }
+    .level-test-hint {
+      font-size: 0.78rem;
+      color: #71717a;
+      margin-bottom: 0.65rem;
+    }
+    .level-test-multi-fill {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 2;
+      color: #27272a;
+    }
+    .level-test-multi-fill .level-test-input {
+      display: inline-block;
+      width: auto;
+      min-width: 6rem;
+      max-width: 10rem;
+      margin: 0;
+      text-align: center;
+      font-weight: 700;
+    }
     @media (max-width: 768px) {
       .lang-switcher-fixed {
         right: 1rem;
@@ -1493,7 +1613,7 @@
         "test.title": "Spanish Level Test",
         "test.lead": "Want to know your real Spanish level?",
         "test.intro1": "You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.",
-        "test.intro2": "Each block increases progressively in difficulty. As you advance, questions assess comprehension, grammar, vocabulary and real use of the language.",
+        "test.intro2": "Each block increases progressively in difficulty: complete sentences (verbs, imperatives, connectors), drag words into gaps, order words, multiple blanks, multiple choice and true/false — like professional H5P tests.",
         "test.pick": "You can start with the block you think fits you best:",
         "test.level.basic": "A1–A2 → Basic level",
         "test.level.intermediate": "B1–B2 → Intermediate level",
@@ -1513,12 +1633,20 @@
         "test.check": "Check answer",
         "test.finish": "See results",
         "test.finishEarly": "Finish block and see my result",
+        "test.tooManyErrors": "More than 4 mistakes — this block is finished. See your level below.",
+        "test.seeResult": "See my level",
         "test.retry": "Repeat this block",
         "test.another": "Try another block",
         "test.book": "Book free trial class",
         "test.type.mc": "Multiple choice",
         "test.type.fill": "Complete the sentence",
         "test.type.tf": "True or false",
+        "test.type.drag": "Drag the correct word",
+        "test.type.order": "Put the words in order",
+        "test.type.multi": "Complete the blanks",
+        "test.drag.hint": "Tap a word, then tap the gap — or drag it into place.",
+        "test.order.hint": "Tap words below to build the sentence in the correct order.",
+        "test.multi.hint": "Type the missing word in each blank.",
         "test.correct": "Correct!",
         "test.wrong": "Not quite — the correct answer is highlighted.",
         "test.results.title": "Your estimated level",
@@ -1665,7 +1793,7 @@
         "test.title": "Test de nivel de español",
         "test.lead": "¿Quieres saber cuál es tu nivel real de español?",
         "test.intro1": "En esta página encontrarás 3 pruebas de nivel de español online, organizadas según el MCER: A1–A2, B1–B2 y C1–C2.",
-        "test.intro2": "Cada bloque aumenta progresivamente de dificultad. A medida que avances, las preguntas evaluarán comprensión, gramática, vocabulario y uso real del idioma.",
+        "test.intro2": "Cada bloque aumenta la dificultad: completa frases (verbos, imperativos, conectores), arrastra palabras, ordena oraciones, varios huecos, opción múltiple y verdadero/falso — como los tests H5P profesionales.",
         "test.pick": "Puedes empezar por el bloque que consideres más adecuado para ti:",
         "test.level.basic": "A1–A2 → Nivel básico",
         "test.level.intermediate": "B1–B2 → Nivel intermedio",
@@ -1685,12 +1813,20 @@
         "test.check": "Comprobar",
         "test.finish": "Ver resultados",
         "test.finishEarly": "Acabar bloque y ver mi resultado",
+        "test.tooManyErrors": "Más de 4 fallos — este bloque ha terminado. Consulta tu nivel abajo.",
+        "test.seeResult": "Ver mi nivel",
         "test.retry": "Repetir este bloque",
         "test.another": "Probar otro bloque",
         "test.book": "Reservar clase de prueba",
         "test.type.mc": "Opción múltiple",
         "test.type.fill": "Completa la frase",
         "test.type.tf": "Verdadero o falso",
+        "test.type.drag": "Arrastra la palabra correcta",
+        "test.type.order": "Ordena las palabras",
+        "test.type.multi": "Completa los huecos",
+        "test.drag.hint": "Toca una palabra y luego el hueco — o arrástrala.",
+        "test.order.hint": "Toca las palabras para formar la frase en el orden correcto.",
+        "test.multi.hint": "Escribe la palabra que falta en cada hueco.",
         "test.correct": "¡Correcto!",
         "test.wrong": "Casi — la respuesta correcta está resaltada.",
         "test.results.title": "Tu nivel estimado",
@@ -2189,52 +2325,100 @@
         1: [
           { type: 'mc', question: 'How do you say "Hello" in Spanish?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
           { type: 'fill', question: 'Me _____ Pedro. (My name is Pedro)', answers: ['llamo'] },
+          { type: 'drag', question: 'Yo ___ de España.', words: ['soy', 'estoy', 'vengo', 'salgo'], answers: ['soy'] },
           { type: 'fill', question: '¿Cómo te _____? (What is your name?)', answers: ['llamas'] },
+          { type: 'drag', question: '¡___ la puerta, por favor! (imperative)', words: ['Abre', 'Abres', 'Abrir', 'Abran'], answers: ['Abre'] },
+          { type: 'order', question: 'Put the words in order:', words: ['vivo', 'Yo', 'en', 'Barcelona'], answer: ['Yo', 'vivo', 'en', 'Barcelona'] },
+          { type: 'drag', question: 'Nosotros ___ en Valencia.', words: ['vivimos', 'viven', 'vivo', 'vive'], answers: ['vivimos'] },
+          { type: 'fill', question: '_____ despacio, por favor. (Speak slowly)', answers: ['Habla', 'habla'] },
+          { type: 'multi', question: 'Yo ___ español y ___ en Madrid.', answers: ['hablo', 'vivo'] },
           { type: 'mc', question: 'Choose "Good morning":', options: ['Buenos días', 'Buenas noches', 'Hasta luego'], answer: 0 },
+          { type: 'fill', question: 'Nos _____ a las siete. (We get up at seven)', answers: ['levantamos'] },
+          { type: 'drag', question: '¿Dónde ___ el baño?', words: ['está', 'es', 'son', 'hay'], answers: ['está'] },
           { type: 'tf', question: '"Gracias" means "Thank you".', answer: true },
-          { type: 'mc', question: 'Yo _____ español.', options: ['soy', 'es', 'estoy'], answer: 0 }
+          { type: 'drag', question: '¡___ las ventanas! (vosotros imperative)', words: ['Abrid', 'Abres', 'Abrir', 'Abre'], answers: ['Abrid'] }
         ],
         2: [
           { type: 'fill', question: 'He _____ en Madrid desde hace dos años.', answers: ['vivido'] },
           { type: 'mc', question: 'Choose the correct sentence:', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
+          { type: 'drag', question: '___ llueva, salimos a pasear. (connector)', words: ['Aunque', 'Porque', 'Debido', 'Sin'], answers: ['Aunque'] },
           { type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica.', answers: ['tuviera', 'tuviese'] },
-          { type: 'mc', question: 'How do you say "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
           { type: 'mc', question: 'Ojalá vosotros _____ esta noche.', options: ['venís', 'vengáis', 'vendréis'], answer: 1 },
-          { type: 'fill', question: 'Ayer lo _____ fatal en el examen.', answers: ['pasé', 'pase'] }
+          { type: 'drag', question: 'Ayer lo ___ fatal en el examen.', words: ['pasé', 'paso', 'pasa', 'pasaba'], answers: ['pasé'] },
+          { type: 'order', question: 'Put the words in order:', words: ['Si', 'tuviera', 'más', 'tiempo', 'viajaría'], answer: ['Si', 'tuviera', 'más', 'tiempo', 'viajaría'] },
+          { type: 'fill', question: 'Cuando _____ niño, vivía en el campo.', answers: ['era', 'fui'] },
+          { type: 'drag', question: '___ que llegues, avísame. (as soon as)', words: ['En cuanto', 'Aunque', 'Sin embargo', 'Debido'], answers: ['En cuanto'] },
+          { type: 'multi', question: 'Mañana ___ al cine y ___ una película.', answers: ['voy', 'veré'] },
+          { type: 'mc', question: 'How do you say "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
+          { type: 'drag', question: '¡___ las manos antes de comer!', words: ['Lavaos', 'Laváis', 'Lavad', 'Lavan'], answers: ['Lavaos'] },
+          { type: 'fill', question: 'No _____ nada de lo que me contaste.', answers: ['entendí', 'entiendo'] },
+          { type: 'drag', question: '___ estudiar más, aprobarás el examen. (if)', words: ['Si', 'Aunque', 'Cuando', 'Mientras'], answers: ['Si'] }
         ],
         3: [
           { type: 'fill', question: 'No es necesario que _____ tan temprano.', answers: ['llegues'] },
           { type: 'mc', question: 'Which sentence uses the subjunctive correctly?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
+          { type: 'drag', question: 'Aquí ___ español. (passive reflexive)', words: ['se habla', 'habla', 'es hablado', 'se hablan'], answers: ['se habla'] },
+          { type: 'order', question: 'Put the words in order:', words: ['difícil', 'es', 'tan', 'No', 'que', 'sea'], answer: ['No', 'es', 'tan', 'difícil', 'que', 'sea'] },
+          { type: 'fill', question: '_____ hubiera sabido, habría llamado antes.', answers: ['Si'] },
+          { type: 'drag', question: '___ terminado el informe, salió temprano.', words: ['Una vez que', 'Aunque', 'Sin embargo', 'Porque'], answers: ['Una vez que'] },
+          { type: 'multi', question: 'Dudo que ___ la verdad y que ___ sincero.', answers: ['diga', 'sea'] },
+          { type: 'mc', question: 'María es _____ inteligente que su hermana.', options: ['más', 'menos', 'tan'], answer: 0 },
+          { type: 'fill', question: 'Le recomendé que _____ más despacio.', answers: ['hablara', 'hablase'] },
+          { type: 'drag', question: '___ no fuera por tu ayuda, no lo habría conseguido.', words: ['Si', 'Aunque', 'Cuando', 'Mientras'], answers: ['Si'] },
+          { type: 'order', question: 'Put the words in order:', words: ['hubiera', 'Si', 'antes', 'sabido', 'habría', 'llamado'], answer: ['Si', 'hubiera', 'sabido', 'antes', 'habría', 'llamado'] },
           { type: 'tf', question: '"Hubiera sabido" can express regret about the past.', answer: true },
-          { type: 'mc', question: 'Choose the correct passive reflexive form: "Spanish is spoken here."', options: ['Aquí habla español.', 'Aquí se habla español.', 'Aquí es hablado español.'], answer: 1 },
-          { type: 'fill', question: '_____ llueva, salimos a pasear.', answers: ['aunque'] },
-          { type: 'mc', question: 'María es _____ inteligente que su hermana.', options: ['más', 'menos', 'tan'], answer: 0 }
+          { type: 'drag', question: 'Se ___ mucho la contaminación en las ciudades.', words: ['habla', 'hablan', 'dice', 'dicen'], answers: ['habla'] },
+          { type: 'fill', question: 'Me pidió que le _____ la dirección por escrito.', answers: ['enviara', 'enviase', 'mandara', 'mandase'] }
         ]
       },
       es: {
         1: [
           { type: 'mc', question: '¿Cómo se dice "Hello" en español?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
           { type: 'fill', question: 'Me _____ Pedro.', answers: ['llamo'] },
+          { type: 'drag', question: 'Yo ___ de España.', words: ['soy', 'estoy', 'vengo', 'salgo'], answers: ['soy'] },
           { type: 'fill', question: '¿Cómo te _____?', answers: ['llamas'] },
+          { type: 'drag', question: '¡___ la puerta, por favor! (imperativo)', words: ['Abre', 'Abres', 'Abrir', 'Abran'], answers: ['Abre'] },
+          { type: 'order', question: 'Ordena las palabras:', words: ['vivo', 'Yo', 'en', 'Barcelona'], answer: ['Yo', 'vivo', 'en', 'Barcelona'] },
+          { type: 'drag', question: 'Nosotros ___ en Valencia.', words: ['vivimos', 'viven', 'vivo', 'vive'], answers: ['vivimos'] },
+          { type: 'fill', question: '_____ despacio, por favor.', answers: ['Habla', 'habla'] },
+          { type: 'multi', question: 'Yo ___ español y ___ en Madrid.', answers: ['hablo', 'vivo'] },
           { type: 'mc', question: 'Elige "Good morning":', options: ['Buenos días', 'Buenas noches', 'Hasta luego'], answer: 0 },
+          { type: 'fill', question: 'Nos _____ a las siete.', answers: ['levantamos'] },
+          { type: 'drag', question: '¿Dónde ___ el baño?', words: ['está', 'es', 'son', 'hay'], answers: ['está'] },
           { type: 'tf', question: '"Gracias" significa "Thank you".', answer: true },
-          { type: 'mc', question: 'Yo _____ español.', options: ['soy', 'es', 'estoy'], answer: 0 }
+          { type: 'drag', question: '¡___ las ventanas! (imperativo vosotros)', words: ['Abrid', 'Abres', 'Abrir', 'Abre'], answers: ['Abrid'] }
         ],
         2: [
           { type: 'fill', question: 'He _____ en Madrid desde hace dos años.', answers: ['vivido'] },
           { type: 'mc', question: 'Elige la frase correcta:', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
+          { type: 'drag', question: '___ llueva, salimos a pasear.', words: ['Aunque', 'Porque', 'Debido', 'Sin'], answers: ['Aunque'] },
           { type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica.', answers: ['tuviera', 'tuviese'] },
-          { type: 'mc', question: '¿Cómo se dice "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
           { type: 'mc', question: 'Ojalá vosotros _____ esta noche.', options: ['venís', 'vengáis', 'vendréis'], answer: 1 },
-          { type: 'fill', question: 'Ayer lo _____ fatal en el examen.', answers: ['pasé', 'pase'] }
+          { type: 'drag', question: 'Ayer lo ___ fatal en el examen.', words: ['pasé', 'paso', 'pasa', 'pasaba'], answers: ['pasé'] },
+          { type: 'order', question: 'Ordena las palabras:', words: ['Si', 'tuviera', 'más', 'tiempo', 'viajaría'], answer: ['Si', 'tuviera', 'más', 'tiempo', 'viajaría'] },
+          { type: 'fill', question: 'Cuando _____ niño, vivía en el campo.', answers: ['era', 'fui'] },
+          { type: 'drag', question: '___ que llegues, avísame.', words: ['En cuanto', 'Aunque', 'Sin embargo', 'Debido'], answers: ['En cuanto'] },
+          { type: 'multi', question: 'Mañana ___ al cine y ___ una película.', answers: ['voy', 'veré'] },
+          { type: 'mc', question: '¿Cómo se dice "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
+          { type: 'drag', question: '¡___ las manos antes de comer!', words: ['Lavaos', 'Laváis', 'Lavad', 'Lavan'], answers: ['Lavaos'] },
+          { type: 'fill', question: 'No _____ nada de lo que me contaste.', answers: ['entendí', 'entiendo'] },
+          { type: 'drag', question: '___ estudiar más, aprobarás el examen.', words: ['Si', 'Aunque', 'Cuando', 'Mientras'], answers: ['Si'] }
         ],
         3: [
           { type: 'fill', question: 'No es necesario que _____ tan temprano.', answers: ['llegues'] },
           { type: 'mc', question: '¿Qué frase usa correctamente el subjuntivo?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
-          { type: 'tf', question: '"Hubiera sabido" puede expresar arrepentimiento sobre el pasado.', answer: true },
-          { type: 'mc', question: 'Elige la pasiva refleja correcta: "Aquí se habla español."', options: ['Aquí habla español.', 'Aquí se habla español.', 'Aquí es hablado español.'], answer: 1 },
-          { type: 'fill', question: '_____ llueva, salimos a pasear.', answers: ['aunque'] },
-          { type: 'mc', question: 'María es _____ inteligente que su hermana.', options: ['más', 'menos', 'tan'], answer: 0 }
+          { type: 'drag', question: 'Aquí ___ español. (pasiva refleja)', words: ['se habla', 'habla', 'es hablado', 'se hablan'], answers: ['se habla'] },
+          { type: 'order', question: 'Ordena las palabras:', words: ['difícil', 'es', 'tan', 'No', 'que', 'sea'], answer: ['No', 'es', 'tan', 'difícil', 'que', 'sea'] },
+          { type: 'fill', question: '_____ hubiera sabido, habría llamado antes.', answers: ['Si'] },
+          { type: 'drag', question: '___ terminado el informe, salió temprano.', words: ['Una vez que', 'Aunque', 'Sin embargo', 'Porque'], answers: ['Una vez que'] },
+          { type: 'multi', question: 'Dudo que ___ la verdad y que ___ sincero.', answers: ['diga', 'sea'] },
+          { type: 'mc', question: 'María es _____ inteligente que su hermana.', options: ['más', 'menos', 'tan'], answer: 0 },
+          { type: 'fill', question: 'Le recomendé que _____ más despacio.', answers: ['hablara', 'hablase'] },
+          { type: 'drag', question: '___ no fuera por tu ayuda, no lo habría conseguido.', words: ['Si', 'Aunque', 'Cuando', 'Mientras'], answers: ['Si'] },
+          { type: 'order', question: 'Ordena las palabras:', words: ['hubiera', 'Si', 'antes', 'sabido', 'habría', 'llamado'], answer: ['Si', 'hubiera', 'sabido', 'antes', 'habría', 'llamado'] },
+          { type: 'tf', question: '"Hubiera sabido" expresa arrepentimiento sobre el pasado.', answer: true },
+          { type: 'drag', question: 'Se ___ mucho la contaminación en las ciudades.', words: ['habla', 'hablan', 'dice', 'dicen'], answers: ['habla'] },
+          { type: 'fill', question: 'Me pidió que le _____ la dirección por escrito.', answers: ['enviara', 'enviase', 'mandara', 'mandase'] }
         ]
       }
     };
@@ -2296,6 +2480,279 @@
       btn.classList.toggle('level-test-hidden', levelTestState.errors <= LEVEL_TEST_MAX_ERRORS);
     }
 
+    function shuffleArray(items) {
+      const arr = [...items];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function getQuestionTypeLabel(q, t) {
+      const map = {
+        mc: 'test.type.mc',
+        fill: 'test.type.fill',
+        tf: 'test.type.tf',
+        drag: 'test.type.drag',
+        order: 'test.type.order',
+        multi: 'test.type.multi'
+      };
+      return t[map[q.type]] || t['test.type.mc'];
+    }
+
+    function isDragComplete(q) {
+      return Array.isArray(levelTestState.selected) && levelTestState.selected.every(Boolean);
+    }
+
+    function isOrderComplete(q) {
+      return Array.isArray(levelTestState.selected) && levelTestState.selected.length === q.answer.length;
+    }
+
+    function isMultiComplete(q) {
+      return Array.isArray(levelTestState.selected)
+        && levelTestState.selected.length === q.answers.length
+        && levelTestState.selected.every(v => Boolean(String(v || '').trim()));
+    }
+
+    function updateLevelTestCheckButton(nextBtn, q) {
+      if (!nextBtn || levelTestState.answered) return;
+      let ready = false;
+      if (q.type === 'fill') ready = Boolean(String(levelTestState.selected || '').trim());
+      else if (q.type === 'drag') ready = isDragComplete(q);
+      else if (q.type === 'order') ready = isOrderComplete(q);
+      else if (q.type === 'multi') ready = isMultiComplete(q);
+      else if (q.type === 'tf') ready = levelTestState.selected !== null;
+      else ready = levelTestState.selected !== null;
+      nextBtn.disabled = !ready;
+    }
+
+    function shouldFinishLevelTestEarly() {
+      return levelTestState.errors > LEVEL_TEST_MAX_ERRORS;
+    }
+
+    function renderDragQuestion(q, answersEl, nextBtn, t) {
+      const parts = q.question.split('___');
+      const slotCount = parts.length - 1;
+      levelTestState.selected = new Array(slotCount).fill(null);
+      levelTestState.activeSlot = 0;
+
+      const hint = document.createElement('p');
+      hint.className = 'level-test-hint';
+      hint.textContent = t['test.drag.hint'];
+      answersEl.appendChild(hint);
+
+      const bank = document.createElement('div');
+      bank.className = 'level-test-word-bank';
+
+      const sentence = document.createElement('div');
+      sentence.className = 'level-test-sentence';
+      parts.forEach((part, i) => {
+        sentence.appendChild(document.createTextNode(part));
+        if (i < slotCount) {
+          const slot = document.createElement('button');
+          slot.type = 'button';
+          slot.className = 'level-test-slot' + (i === 0 ? ' is-active' : '');
+          slot.dataset.slot = i;
+          slot.textContent = '…';
+          slot.addEventListener('click', () => {
+            if (levelTestState.answered) return;
+            const slotIndex = Number(slot.dataset.slot);
+            if (levelTestState.selected[slotIndex] && levelTestState.activeSlot === slotIndex) {
+              const cleared = levelTestState.selected[slotIndex];
+              levelTestState.selected[slotIndex] = null;
+              slot.textContent = '…';
+              slot.classList.remove('is-filled');
+              bank.querySelectorAll('.level-test-word-chip').forEach(chip => {
+                if (chip.dataset.word === cleared) chip.classList.remove('is-used');
+              });
+              updateLevelTestCheckButton(nextBtn, q);
+              return;
+            }
+            sentence.querySelectorAll('.level-test-slot').forEach(s => s.classList.remove('is-active'));
+            slot.classList.add('is-active');
+            levelTestState.activeSlot = slotIndex;
+          });
+          sentence.appendChild(slot);
+        }
+      });
+      answersEl.appendChild(sentence);
+
+      const placeWordInSlot = (word, slotIndex) => {
+        const previous = levelTestState.selected[slotIndex];
+        levelTestState.selected[slotIndex] = word;
+        const slotEl = sentence.querySelector(`[data-slot="${slotIndex}"]`);
+        if (slotEl) {
+          slotEl.textContent = word;
+          slotEl.classList.add('is-filled');
+        }
+        bank.querySelectorAll('.level-test-word-chip').forEach(chip => {
+          if (chip.dataset.word === previous) chip.classList.remove('is-used');
+          if (chip.dataset.word === word) chip.classList.add('is-used');
+        });
+        updateLevelTestCheckButton(nextBtn, q);
+      };
+
+      shuffleArray(q.words).forEach(word => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'level-test-word-chip';
+        chip.dataset.word = word;
+        chip.textContent = word;
+        chip.draggable = true;
+        chip.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', word);
+        });
+        chip.addEventListener('click', () => {
+          if (levelTestState.answered || chip.classList.contains('is-used')) return;
+          let target = levelTestState.activeSlot;
+          if (levelTestState.selected[target]) {
+            target = levelTestState.selected.findIndex(v => !v);
+            if (target === -1) target = levelTestState.activeSlot;
+          }
+          placeWordInSlot(word, target);
+          sentence.querySelectorAll('.level-test-slot').forEach(s => s.classList.remove('is-active'));
+          const nextEmpty = levelTestState.selected.findIndex(v => !v);
+          if (nextEmpty !== -1) {
+            levelTestState.activeSlot = nextEmpty;
+            sentence.querySelector(`[data-slot="${nextEmpty}"]`)?.classList.add('is-active');
+          }
+        });
+        bank.appendChild(chip);
+      });
+
+      sentence.querySelectorAll('.level-test-slot').forEach(slot => {
+        slot.addEventListener('dragover', (e) => e.preventDefault());
+        slot.addEventListener('drop', (e) => {
+          e.preventDefault();
+          if (levelTestState.answered) return;
+          const word = e.dataTransfer.getData('text/plain');
+          if (!word) return;
+          const slotIndex = Number(slot.dataset.slot);
+          levelTestState.activeSlot = slotIndex;
+          sentence.querySelectorAll('.level-test-slot').forEach(s => s.classList.remove('is-active'));
+          slot.classList.add('is-active');
+          const existing = levelTestState.selected[slotIndex];
+          if (existing) bank.querySelector(`[data-word="${existing}"]`)?.classList.remove('is-used');
+          placeWordInSlot(word, slotIndex);
+        });
+      });
+
+      answersEl.appendChild(bank);
+    }
+
+    function renderOrderQuestion(q, answersEl, nextBtn, t) {
+      levelTestState.selected = [];
+      let bankPool = shuffleArray([...q.words]);
+
+      const hint = document.createElement('p');
+      hint.className = 'level-test-hint';
+      hint.textContent = t['test.order.hint'];
+      answersEl.appendChild(hint);
+
+      const answerArea = document.createElement('div');
+      answerArea.className = 'level-test-order-answer';
+      answersEl.appendChild(answerArea);
+
+      const bank = document.createElement('div');
+      bank.className = 'level-test-order-bank';
+
+      const wordUsage = () => {
+        const counts = {};
+        levelTestState.selected.forEach(word => {
+          counts[word] = (counts[word] || 0) + 1;
+        });
+        return counts;
+      };
+
+      const remainingWords = () => {
+        const used = wordUsage();
+        const pool = [];
+        q.words.forEach(word => {
+          const need = q.words.filter(w => w === word).length;
+          const have = used[word] || 0;
+          for (let i = have; i < need; i++) pool.push(word);
+        });
+        const order = new Map(bankPool.map((word, i) => [word, i]));
+        return pool.sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0));
+      };
+
+      const syncOrderUI = () => {
+        answerArea.innerHTML = '';
+        levelTestState.selected.forEach((word, idx) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'level-test-word-chip';
+          chip.textContent = word;
+          chip.addEventListener('click', () => {
+            if (levelTestState.answered) return;
+            levelTestState.selected.splice(idx, 1);
+            syncOrderUI();
+            updateLevelTestCheckButton(nextBtn, q);
+          });
+          answerArea.appendChild(chip);
+        });
+
+        bank.innerHTML = '';
+        remainingWords().forEach(word => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'level-test-word-chip';
+          chip.textContent = word;
+          chip.addEventListener('click', () => {
+            if (levelTestState.answered) return;
+            if (levelTestState.selected.length >= q.answer.length) return;
+            levelTestState.selected.push(word);
+            syncOrderUI();
+            updateLevelTestCheckButton(nextBtn, q);
+          });
+          bank.appendChild(chip);
+        });
+      };
+
+      syncOrderUI();
+      answersEl.appendChild(bank);
+    }
+
+    function renderMultiQuestion(q, answersEl, nextBtn, t) {
+      const parts = q.question.split('___');
+      const blankCount = parts.length - 1;
+      levelTestState.selected = new Array(blankCount).fill('');
+
+      const hint = document.createElement('p');
+      hint.className = 'level-test-hint';
+      hint.textContent = t['test.multi.hint'];
+      answersEl.appendChild(hint);
+
+      const row = document.createElement('div');
+      row.className = 'level-test-multi-fill';
+
+      parts.forEach((part, i) => {
+        row.appendChild(document.createTextNode(part));
+        if (i < blankCount) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.className = 'level-test-input';
+          input.autocomplete = 'off';
+          input.dataset.blank = i;
+          input.addEventListener('input', () => {
+            levelTestState.selected[i] = input.value;
+            updateLevelTestCheckButton(nextBtn, q);
+          });
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && isMultiComplete(q) && !levelTestState.answered) {
+              evaluateLevelTestAnswer();
+            }
+          });
+          row.appendChild(input);
+        }
+      });
+
+      answersEl.appendChild(row);
+      const firstInput = row.querySelector('.level-test-input');
+      if (firstInput) setTimeout(() => firstInput.focus(), 50);
+    }
+
     function renderLevelTestQuestion() {
       const questions = getBlockQuestions(levelTestState.activeBlock);
       const q = questions[levelTestState.index];
@@ -2317,10 +2774,8 @@
       if (blockLabel) blockLabel.textContent = t[`test.block${levelTestState.activeBlock}.label`];
       if (progressBar) progressBar.style.width = `${(levelTestState.index / total) * 100}%`;
       renderProgressDots(total);
-      if (typeEl) {
-        typeEl.textContent = q.type === 'mc' ? t['test.type.mc'] : q.type === 'fill' ? t['test.type.fill'] : t['test.type.tf'];
-      }
-      if (textEl) textEl.textContent = q.question;
+      if (typeEl) typeEl.textContent = getQuestionTypeLabel(q, t);
+      if (textEl) textEl.textContent = q.type === 'order' ? q.question : q.question.replace(/___/g, '______');
       if (feedbackEl) {
         feedbackEl.classList.add('level-test-hidden');
         feedbackEl.textContent = '';
@@ -2342,7 +2797,7 @@
         input.autocomplete = 'off';
         input.addEventListener('input', () => {
           levelTestState.selected = input.value;
-          if (nextBtn) nextBtn.disabled = !input.value.trim();
+          updateLevelTestCheckButton(nextBtn, q);
         });
         input.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' && input.value.trim() && !levelTestState.answered) {
@@ -2351,6 +2806,21 @@
         });
         answersEl.appendChild(input);
         setTimeout(() => input.focus(), 50);
+        return;
+      }
+
+      if (q.type === 'drag') {
+        renderDragQuestion(q, answersEl, nextBtn, t);
+        return;
+      }
+
+      if (q.type === 'order') {
+        renderOrderQuestion(q, answersEl, nextBtn, t);
+        return;
+      }
+
+      if (q.type === 'multi') {
+        renderMultiQuestion(q, answersEl, nextBtn, t);
         return;
       }
 
@@ -2367,7 +2837,7 @@
           levelTestState.selected = q.type === 'tf' ? opt : i;
           answersEl.querySelectorAll('.level-test-option').forEach(el => el.classList.remove('is-selected'));
           btn.classList.add('is-selected');
-          if (nextBtn) nextBtn.disabled = false;
+          updateLevelTestCheckButton(nextBtn, q);
         });
         answersEl.appendChild(btn);
       });
@@ -2384,6 +2854,12 @@
       if (q.type === 'fill') {
         const normalized = normalizeAnswer(levelTestState.selected);
         isCorrect = q.answers.some(a => normalizeAnswer(a) === normalized);
+      } else if (q.type === 'drag') {
+        isCorrect = q.answers.every((ans, i) => normalizeAnswer(levelTestState.selected[i]) === normalizeAnswer(ans));
+      } else if (q.type === 'order') {
+        isCorrect = q.answer.every((word, i) => levelTestState.selected[i] === word);
+      } else if (q.type === 'multi') {
+        isCorrect = q.answers.every((ans, i) => normalizeAnswer(levelTestState.selected[i]) === normalizeAnswer(ans));
       } else if (q.type === 'tf') {
         isCorrect = levelTestState.selected === q.answer;
       } else {
@@ -2401,12 +2877,35 @@
           else if (btn.classList.contains('is-selected')) btn.classList.add('is-wrong');
           btn.disabled = true;
         });
-      } else {
+      } else if (q.type === 'fill') {
         const input = answersEl.querySelector('.level-test-input');
         if (input) {
           input.disabled = true;
           input.style.borderColor = isCorrect ? '#059669' : '#dc2626';
+          if (!isCorrect && q.answers[0]) input.value = q.answers[0];
         }
+      } else if (q.type === 'drag') {
+        answersEl.querySelectorAll('.level-test-slot').forEach((slot, i) => {
+          const ok = normalizeAnswer(levelTestState.selected[i]) === normalizeAnswer(q.answers[i]);
+          slot.classList.add(ok ? 'is-correct' : 'is-wrong');
+          if (!ok) slot.textContent = q.answers[i];
+          slot.disabled = true;
+        });
+        answersEl.querySelectorAll('.level-test-word-chip').forEach(chip => chip.disabled = true);
+      } else if (q.type === 'order') {
+        answersEl.querySelectorAll('.level-test-order-answer .level-test-word-chip').forEach((chip, i) => {
+          const ok = chip.textContent === q.answer[i];
+          chip.classList.add(ok ? 'is-correct' : 'is-wrong');
+          chip.disabled = true;
+        });
+        answersEl.querySelectorAll('.level-test-order-bank .level-test-word-chip').forEach(chip => chip.disabled = true);
+      } else if (q.type === 'multi') {
+        answersEl.querySelectorAll('.level-test-multi-fill .level-test-input').forEach((input, i) => {
+          const ok = normalizeAnswer(levelTestState.selected[i]) === normalizeAnswer(q.answers[i]);
+          input.disabled = true;
+          input.style.borderColor = ok ? '#059669' : '#dc2626';
+          if (!ok && q.answers[i]) input.value = q.answers[i];
+        });
       }
 
       if (feedbackEl) {
@@ -2417,6 +2916,18 @@
 
       levelTestState.answered = true;
       updateFinishEarlyButton();
+      if (shouldFinishLevelTestEarly()) {
+        if (feedbackEl) {
+          feedbackEl.textContent = t['test.tooManyErrors'];
+          feedbackEl.className = 'mt-4 text-sm font-medium text-red-600';
+          feedbackEl.classList.remove('level-test-hidden');
+        }
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.textContent = t['test.seeResult'];
+        }
+        return;
+      }
       if (nextBtn) {
         nextBtn.disabled = false;
         nextBtn.textContent = levelTestState.index === questions.length - 1 ? t['test.finish'] : t['test.next'];
@@ -2480,7 +2991,7 @@
             evaluateLevelTestAnswer();
             return;
           }
-          if (levelTestState.index >= questions.length - 1) {
+          if (shouldFinishLevelTestEarly() || levelTestState.index >= questions.length - 1) {
             showLevelTestResults();
             return;
           }
