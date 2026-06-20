@@ -279,6 +279,91 @@
       z-index: 70;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     }
+
+    .level-test-intro-card {
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .level-test-block-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+    .level-test-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 0.85rem;
+      border: 1px solid #e4e4e7;
+      background: #fff;
+      color: #27272a;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .level-test-option:hover {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #fff;
+    }
+    .level-test-option.is-selected {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #fff;
+    }
+    .level-test-option.is-correct {
+      background: #059669;
+      border-color: #059669;
+      color: #fff;
+    }
+    .level-test-option.is-wrong {
+      background: #dc2626;
+      border-color: #991b1b;
+      color: #fff;
+      opacity: 0.85;
+    }
+    .level-test-input {
+      width: 100%;
+      border: 1px solid #d4d4d8;
+      border-radius: 0.85rem;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #27272a;
+      background: #fff;
+    }
+    .level-test-input:focus {
+      outline: none;
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+    }
+    .level-test-progress {
+      height: 0.45rem;
+      background: #e4e4e7;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .level-test-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #dc2626, #b91c1c);
+      border-radius: 9999px;
+      transition: width 0.35s ease;
+    }
+    .level-test-hidden { display: none !important; }
     @media (max-width: 768px) {
       .lang-switcher-fixed {
         right: 1rem;
@@ -468,6 +553,9 @@
 
         <!-- BLOG -->
         <a onclick="showBlog()" class="nav-main-link" data-i18n="bottom.blog">Blog</a>
+
+        <!-- LEVEL TEST -->
+        <a onclick="showTest()" class="nav-main-link" data-i18n="bottom.test">Test</a>
       </div>
 
       <!-- Contact CTA (Desktop) — where language tabs used to be -->
@@ -498,6 +586,7 @@
         <a onclick="showHome(); setTimeout(() => document.getElementById('testimonios').scrollIntoView({behavior:'smooth'}), 50)" class="mobile-link py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer" data-i18n="nav.testimonials">Testimonials</a>
         <a onclick="showHome(); setTimeout(() => document.getElementById('precios').scrollIntoView({behavior:'smooth'}), 50)" class="mobile-link py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer" data-i18n="nav.pricing">Pricing</a>
         <a onclick="showBlog()" class="mobile-link py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer" data-i18n="bottom.blog">Blog</a>
+        <a onclick="showTest()" class="mobile-link py-2 px-2 hover:bg-zinc-100 rounded cursor-pointer" data-i18n="bottom.test">Test</a>
         <a href="#contacto" class="mobile-link mt-2 bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-full font-medium" data-i18n="nav.contact">Contact</a>
       </div>
     </div>
@@ -1153,8 +1242,71 @@
     </div>
   </section>
 
+  <!-- Level Test (native H5P-style, integrated) -->
+  <section id="test-nivel" class="py-20 bg-zinc-50">
+    <div id="test-content" style="display: none;" class="max-w-3xl mx-auto px-6">
+      <div id="level-test-intro">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl font-bold tracking-tight text-zinc-900" data-i18n="test.title">Spanish Level Test</h1>
+          <p class="mt-3 text-lg text-zinc-600" data-i18n="test.subtitle">Find your CEFR level in about 5 minutes. Fully integrated — no external redirects.</p>
+        </div>
+        <div class="level-test-intro-card space-y-4 mb-8">
+          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro">Interactive exercises (complete the sentences, multiple choice, true/false) divided into 3 blocks by level range. Your answers are evaluated instantly in your browser.</p>
+          <div class="grid sm:grid-cols-3 gap-3 text-sm">
+            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-center font-semibold text-zinc-800" data-i18n="test.block1">Block 1 · A1–A2</div>
+            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-center font-semibold text-zinc-800" data-i18n="test.block2">Block 2 · B1–B2</div>
+            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-center font-semibold text-zinc-800" data-i18n="test.block3">Block 3 · C1–C2</div>
+          </div>
+          <p class="text-xs text-zinc-500" data-i18n="test.tech">Native integration (like H5P on WordPress): runs on this site, mobile-friendly, automatic scoring.</p>
+        </div>
+        <button type="button" id="level-test-start" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3.5 rounded-2xl transition shadow-md" data-i18n="test.start">Start the test</button>
+      </div>
 
+      <div id="level-test-quiz" class="level-test-hidden">
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-sm font-semibold text-zinc-600 mb-2">
+            <span id="level-test-step-label">1 / 9</span>
+            <span id="level-test-block-label" class="level-test-block-badge">A1–A2</span>
+          </div>
+          <div class="level-test-progress"><div id="level-test-progress-bar" class="level-test-progress-bar" style="width: 0%"></div></div>
+        </div>
+        <div class="level-test-intro-card mb-6">
+          <p id="level-test-question-type" class="text-xs font-bold uppercase tracking-wider text-red-600 mb-3">Multiple choice</p>
+          <p id="level-test-question-text" class="text-lg font-semibold text-zinc-900 mb-4"></p>
+          <div id="level-test-answers"></div>
+          <p id="level-test-feedback" class="mt-4 text-sm font-medium level-test-hidden"></p>
+        </div>
+        <button type="button" id="level-test-next" class="w-full bg-zinc-900 hover:bg-black text-white font-semibold py-3.5 rounded-2xl transition" data-i18n="test.next" disabled>Next</button>
+      </div>
 
+      <div id="level-test-results" class="level-test-hidden">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-zinc-900" data-i18n="test.results.title">Your estimated level</h2>
+          <p id="level-test-final-level" class="mt-4 text-5xl font-bold text-red-600">B1</p>
+          <p id="level-test-final-desc" class="mt-3 text-lg text-zinc-600"></p>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+          <div class="level-test-intro-card text-center">
+            <p class="text-xs font-bold uppercase text-zinc-500 mb-1" data-i18n="test.block1.short">A1–A2</p>
+            <p id="level-test-score-1" class="text-2xl font-bold text-zinc-900">0/3</p>
+          </div>
+          <div class="level-test-intro-card text-center">
+            <p class="text-xs font-bold uppercase text-zinc-500 mb-1" data-i18n="test.block2.short">B1–B2</p>
+            <p id="level-test-score-2" class="text-2xl font-bold text-zinc-900">0/3</p>
+          </div>
+          <div class="level-test-intro-card text-center">
+            <p class="text-xs font-bold uppercase text-zinc-500 mb-1" data-i18n="test.block3.short">C1–C2</p>
+            <p id="level-test-score-3" class="text-2xl font-bold text-zinc-900">0/3</p>
+          </div>
+        </div>
+        <p class="text-sm text-zinc-600 mb-6 text-center" data-i18n="test.results.note">This is an orientation test. For a precise level, book a free trial class with Jerome.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button type="button" id="level-test-retry" class="flex-1 bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.retry">Try again</button>
+          <a href="#contacto" onclick="showHome(); setTimeout(() => document.getElementById('contacto').scrollIntoView({behavior:'smooth'}), 50); return false;" class="flex-1 text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-2xl transition" data-i18n="test.book">Book free trial class</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Contact -->
   <section id="contacto" class="py-20 bg-zinc-900 text-white">
@@ -1279,6 +1431,40 @@
         "bottom.inicio": "Home",
         "bottom.menu": "Menu",
         "bottom.blog": "Blog",
+        "bottom.test": "Test",
+
+        "test.title": "Spanish Level Test",
+        "test.subtitle": "Find your CEFR level in about 5 minutes. Fully integrated — no external redirects.",
+        "test.intro": "Interactive exercises (complete the sentences, multiple choice, true/false) divided into 3 blocks by level range. Your answers are evaluated instantly in your browser.",
+        "test.block1": "Block 1 · A1–A2",
+        "test.block2": "Block 2 · B1–B2",
+        "test.block3": "Block 3 · C1–C2",
+        "test.block1.short": "A1–A2",
+        "test.block2.short": "B1–B2",
+        "test.block3.short": "C1–C2",
+        "test.block1.label": "Block 1 · A1–A2",
+        "test.block2.label": "Block 2 · B1–B2",
+        "test.block3.label": "Block 3 · C1–C2",
+        "test.tech": "Native integration (like H5P on WordPress): runs on this site, mobile-friendly, automatic scoring.",
+        "test.start": "Start the test",
+        "test.next": "Next",
+        "test.check": "Check answer",
+        "test.finish": "See results",
+        "test.retry": "Try again",
+        "test.book": "Book free trial class",
+        "test.type.mc": "Multiple choice",
+        "test.type.fill": "Complete the sentence",
+        "test.type.tf": "True or false",
+        "test.correct": "Correct!",
+        "test.wrong": "Not quite — the correct answer is highlighted.",
+        "test.results.title": "Your estimated level",
+        "test.results.note": "This is an orientation test. For a precise level, book a free trial class with Jerome.",
+        "test.results.a1a2": "A1–A2 · Beginner / Elementary",
+        "test.results.a1a2.desc": "You are building core foundations. Individual classes at A1–A2 will help you gain confidence fast.",
+        "test.results.b1b2": "B1–B2 · Intermediate / Upper intermediate",
+        "test.results.b1b2.desc": "You can already communicate in many situations. Focus on fluency, accuracy and exam prep if needed.",
+        "test.results.c1c2": "C1–C2 · Advanced / Proficiency",
+        "test.results.c1c2.desc": "Excellent command of Spanish. Fine-tune nuance, register and professional or academic Spanish.",
 
         "aria.menu": "Menu",
         "aria.backToTop": "Back to top",
@@ -1403,6 +1589,40 @@
         "bottom.inicio": "Inicio",
         "bottom.menu": "Menú",
         "bottom.blog": "Blog",
+        "bottom.test": "Test",
+
+        "test.title": "Test de nivel de español",
+        "test.subtitle": "Descubre tu nivel MCER en unos 5 minutos. 100% integrado — sin redirecciones externas.",
+        "test.intro": "Ejercicios interactivos (completa las frases, opción múltiple, verdadero/falso) divididos en 3 bloques por rango de nivel. Las respuestas se evalúan al instante en tu navegador.",
+        "test.block1": "Bloque 1 · A1–A2",
+        "test.block2": "Bloque 2 · B1–B2",
+        "test.block3": "Bloque 3 · C1–C2",
+        "test.block1.short": "A1–A2",
+        "test.block2.short": "B1–B2",
+        "test.block3.short": "C1–C2",
+        "test.block1.label": "Bloque 1 · A1–A2",
+        "test.block2.label": "Bloque 2 · B1–B2",
+        "test.block3.label": "Bloque 3 · C1–C2",
+        "test.tech": "Integración nativa (como H5P en WordPress): funciona en esta web, adaptable a móvil, puntuación automática.",
+        "test.start": "Empezar el test",
+        "test.next": "Siguiente",
+        "test.check": "Comprobar",
+        "test.finish": "Ver resultados",
+        "test.retry": "Repetir test",
+        "test.book": "Reservar clase de prueba",
+        "test.type.mc": "Opción múltiple",
+        "test.type.fill": "Completa la frase",
+        "test.type.tf": "Verdadero o falso",
+        "test.correct": "¡Correcto!",
+        "test.wrong": "Casi — la respuesta correcta está resaltada.",
+        "test.results.title": "Tu nivel estimado",
+        "test.results.note": "Test orientativo. Para un nivel preciso, reserva una clase de prueba gratuita con Jerome.",
+        "test.results.a1a2": "A1–A2 · Principiante / Elemental",
+        "test.results.a1a2.desc": "Estás construyendo las bases. Clases individuales A1–A2 te darán confianza rápidamente.",
+        "test.results.b1b2": "B1–B2 · Intermedio / Intermedio alto",
+        "test.results.b1b2.desc": "Ya te comunicas en muchas situaciones. Trabaja fluidez, precisión y preparación de exámenes si lo necesitas.",
+        "test.results.c1c2": "C1–C2 · Avanzado / Dominio",
+        "test.results.c1c2.desc": "Excelente dominio del español. Afina matices, registro y español profesional o académico.",
 
         "aria.menu": "Menú",
         "aria.backToTop": "Volver arriba",
@@ -1825,6 +2045,7 @@
       initModalBehavior();
       initTopNavDropdown();
       initHeroPortrait();
+      initLevelTest();
 
       if (CONFIG.whatsappNumber.includes('XXXX')) {
         console.warn('%c[Jerome ELE] Please replace CONFIG.whatsappNumber with your real phone number (international format).', 'color:#c2410f');
@@ -1878,37 +2099,286 @@
       });
     }
 
+    const LEVEL_TEST_QUESTIONS = {
+      en: [
+        { block: 1, type: 'mc', question: 'How do you say "Hello" in Spanish?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
+        { block: 1, type: 'fill', question: 'Me _____ Pedro. (My name is Pedro)', answers: ['llamo'] },
+        { block: 1, type: 'tf', question: '"Gracias" means "Thank you".', answer: true },
+        { block: 2, type: 'mc', question: 'Choose the correct sentence: "I have lived in Madrid for two years."', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
+        { block: 2, type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica. (If I had more time…)', answers: ['tuviera', 'tuviese'] },
+        { block: 2, type: 'mc', question: 'How do you say "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
+        { block: 3, type: 'fill', question: 'No es necesario _____ llegues tan temprano.', answers: ['que'] },
+        { block: 3, type: 'mc', question: 'Which sentence uses the subjunctive correctly?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
+        { block: 3, type: 'tf', question: '"Hubiera sabido" can express a regret about the past.', answer: true }
+      ],
+      es: [
+        { block: 1, type: 'mc', question: '¿Cómo se dice "Hello" en español?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
+        { block: 1, type: 'fill', question: 'Me _____ Pedro.', answers: ['llamo'] },
+        { block: 1, type: 'tf', question: '"Gracias" significa "Thank you".', answer: true },
+        { block: 2, type: 'mc', question: 'Elige la frase correcta: "Llevo dos años viviendo en Madrid."', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
+        { block: 2, type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica.', answers: ['tuviera', 'tuviese'] },
+        { block: 2, type: 'mc', question: '¿Cómo se dice "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
+        { block: 3, type: 'fill', question: 'No es necesario _____ llegues tan temprano.', answers: ['que'] },
+        { block: 3, type: 'mc', question: '¿Qué frase usa correctamente el subjuntivo?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
+        { block: 3, type: 'tf', question: '"Hubiera sabido" puede expresar un arrepentimiento sobre el pasado.', answer: true }
+      ]
+    };
+
+    let levelTestState = {
+      index: 0,
+      scores: [0, 0, 0],
+      answered: false,
+      selected: null
+    };
+
+    function resetLevelTestView() {
+      const intro = document.getElementById('level-test-intro');
+      const quiz = document.getElementById('level-test-quiz');
+      const results = document.getElementById('level-test-results');
+      if (intro) intro.classList.remove('level-test-hidden');
+      if (quiz) quiz.classList.add('level-test-hidden');
+      if (results) results.classList.add('level-test-hidden');
+      levelTestState = { index: 0, scores: [0, 0, 0], answered: false, selected: null };
+    }
+
+    function normalizeAnswer(value) {
+      return String(value || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function getLevelTestQuestions() {
+      return LEVEL_TEST_QUESTIONS[currentLang] || LEVEL_TEST_QUESTIONS.en;
+    }
+
+    function renderLevelTestQuestion() {
+      const questions = getLevelTestQuestions();
+      const q = questions[levelTestState.index];
+      const t = translations[currentLang];
+      const total = questions.length;
+      const stepLabel = document.getElementById('level-test-step-label');
+      const blockLabel = document.getElementById('level-test-block-label');
+      const progressBar = document.getElementById('level-test-progress-bar');
+      const typeEl = document.getElementById('level-test-question-type');
+      const textEl = document.getElementById('level-test-question-text');
+      const answersEl = document.getElementById('level-test-answers');
+      const feedbackEl = document.getElementById('level-test-feedback');
+      const nextBtn = document.getElementById('level-test-next');
+
+      if (!q || !answersEl) return;
+
+      if (stepLabel) stepLabel.textContent = `${levelTestState.index + 1} / ${total}`;
+      if (blockLabel) blockLabel.textContent = t[`test.block${q.block}.label`] || `Block ${q.block}`;
+      if (progressBar) progressBar.style.width = `${((levelTestState.index) / total) * 100}%`;
+      if (typeEl) {
+        typeEl.textContent = q.type === 'mc' ? t['test.type.mc'] : q.type === 'fill' ? t['test.type.fill'] : t['test.type.tf'];
+      }
+      if (textEl) textEl.textContent = q.question;
+      if (feedbackEl) {
+        feedbackEl.classList.add('level-test-hidden');
+        feedbackEl.textContent = '';
+      }
+
+      answersEl.innerHTML = '';
+      levelTestState.answered = false;
+      levelTestState.selected = null;
+      if (nextBtn) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = levelTestState.index === total - 1 ? t['test.finish'] : t['test.check'];
+      }
+
+      if (q.type === 'fill') {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'level-test-input';
+        input.autocomplete = 'off';
+        input.addEventListener('input', () => {
+          levelTestState.selected = input.value;
+          if (nextBtn) nextBtn.disabled = !input.value.trim();
+        });
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && input.value.trim() && !levelTestState.answered) {
+            evaluateLevelTestAnswer();
+          }
+        });
+        answersEl.appendChild(input);
+        setTimeout(() => input.focus(), 50);
+        return;
+      }
+
+      const options = q.type === 'tf' ? [true, false] : q.options;
+      options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'level-test-option';
+        btn.textContent = q.type === 'tf'
+          ? (opt ? (currentLang === 'es' ? 'Verdadero' : 'True') : (currentLang === 'es' ? 'Falso' : 'False'))
+          : opt;
+        btn.addEventListener('click', () => {
+          if (levelTestState.answered) return;
+          levelTestState.selected = q.type === 'tf' ? opt : i;
+          answersEl.querySelectorAll('.level-test-option').forEach(el => el.classList.remove('is-selected'));
+          btn.classList.add('is-selected');
+          if (nextBtn) nextBtn.disabled = false;
+        });
+        answersEl.appendChild(btn);
+      });
+    }
+
+    function evaluateLevelTestAnswer() {
+      const questions = getLevelTestQuestions();
+      const q = questions[levelTestState.index];
+      const t = translations[currentLang];
+      const feedbackEl = document.getElementById('level-test-feedback');
+      const nextBtn = document.getElementById('level-test-next');
+      let isCorrect = false;
+
+      if (q.type === 'fill') {
+        const normalized = normalizeAnswer(levelTestState.selected);
+        isCorrect = q.answers.some(a => normalizeAnswer(a) === normalized);
+      } else if (q.type === 'tf') {
+        isCorrect = levelTestState.selected === q.answer;
+      } else {
+        isCorrect = levelTestState.selected === q.answer;
+      }
+
+      if (isCorrect) levelTestState.scores[q.block - 1] += 1;
+
+      const answersEl = document.getElementById('level-test-answers');
+      if (q.type === 'mc' || q.type === 'tf') {
+        answersEl.querySelectorAll('.level-test-option').forEach((btn, i) => {
+          const correctIndex = q.type === 'tf' ? (q.answer ? 0 : 1) : q.answer;
+          if (i === correctIndex) btn.classList.add('is-correct');
+          else if (btn.classList.contains('is-selected')) btn.classList.add('is-wrong');
+          btn.disabled = true;
+        });
+      } else {
+        const input = answersEl.querySelector('.level-test-input');
+        if (input) {
+          input.disabled = true;
+          if (!isCorrect) input.style.borderColor = '#dc2626';
+          else input.style.borderColor = '#059669';
+        }
+      }
+
+      if (feedbackEl) {
+        feedbackEl.textContent = isCorrect ? t['test.correct'] : t['test.wrong'];
+        feedbackEl.className = `mt-4 text-sm font-medium ${isCorrect ? 'text-emerald-600' : 'text-red-600'}`;
+        feedbackEl.classList.remove('level-test-hidden');
+      }
+
+      levelTestState.answered = true;
+      if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.textContent = levelTestState.index === questions.length - 1 ? t['test.finish'] : t['test.next'];
+      }
+    }
+
+    function showLevelTestResults() {
+      const t = translations[currentLang];
+      const intro = document.getElementById('level-test-intro');
+      const quiz = document.getElementById('level-test-quiz');
+      const results = document.getElementById('level-test-results');
+      const [s1, s2, s3] = levelTestState.scores;
+      const total = s1 + s2 + s3;
+
+      let levelKey = 'test.results.b1b2';
+      let descKey = 'test.results.b1b2.desc';
+      if (total <= 3 || (s1 >= 2 && s2 <= 1)) {
+        levelKey = 'test.results.a1a2';
+        descKey = 'test.results.a1a2.desc';
+      } else if (total >= 7 || (s3 >= 2 && s2 >= 2)) {
+        levelKey = 'test.results.c1c2';
+        descKey = 'test.results.c1c2.desc';
+      }
+
+      document.getElementById('level-test-score-1').textContent = `${s1}/3`;
+      document.getElementById('level-test-score-2').textContent = `${s2}/3`;
+      document.getElementById('level-test-score-3').textContent = `${s3}/3`;
+      document.getElementById('level-test-final-level').textContent = t[levelKey].split('·')[0].trim();
+      document.getElementById('level-test-final-desc').textContent = t[descKey];
+
+      intro.classList.add('level-test-hidden');
+      quiz.classList.add('level-test-hidden');
+      results.classList.remove('level-test-hidden');
+      document.getElementById('level-test-progress-bar').style.width = '100%';
+    }
+
+    function initLevelTest() {
+      const startBtn = document.getElementById('level-test-start');
+      const nextBtn = document.getElementById('level-test-next');
+      const retryBtn = document.getElementById('level-test-retry');
+
+      if (startBtn) {
+        startBtn.addEventListener('click', () => {
+          levelTestState = { index: 0, scores: [0, 0, 0], answered: false, selected: null };
+          document.getElementById('level-test-intro').classList.add('level-test-hidden');
+          document.getElementById('level-test-quiz').classList.remove('level-test-hidden');
+          document.getElementById('level-test-results').classList.add('level-test-hidden');
+          renderLevelTestQuestion();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          const questions = getLevelTestQuestions();
+          if (!levelTestState.answered) {
+            evaluateLevelTestAnswer();
+            return;
+          }
+          if (levelTestState.index >= questions.length - 1) {
+            showLevelTestResults();
+            return;
+          }
+          levelTestState.index += 1;
+          renderLevelTestQuestion();
+        });
+      }
+
+      if (retryBtn) {
+        retryBtn.addEventListener('click', resetLevelTestView);
+      }
+    }
+
+    function setPageView(view) {
+      const home = document.getElementById('home-content');
+      const blog = document.getElementById('blog-content');
+      const test = document.getElementById('test-content');
+      const footer = document.getElementById('main-footer');
+      const contacto = document.getElementById('contacto');
+      const isHome = view === 'home';
+      const isBlog = view === 'blog';
+      const isTest = view === 'test';
+
+      if (home) home.style.display = isHome ? 'block' : 'none';
+      if (blog) blog.style.display = isBlog ? 'block' : 'none';
+      if (test) test.style.display = isTest ? 'block' : 'none';
+      if (footer) footer.style.display = isHome ? 'block' : 'none';
+      if (contacto) contacto.style.display = isHome ? '' : 'none';
+
+      if (!isBlog) {
+        const grid = document.getElementById('blog-grid');
+        if (grid) grid.style.display = 'grid';
+        document.querySelectorAll('[id^="post-"]').forEach(p => p.style.display = 'none');
+      }
+      if (!isTest) resetLevelTestView();
+    }
+
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showHome() {
-      const home = document.getElementById('home-content');
-      const blog = document.getElementById('blog-content');
-      const footer = document.getElementById('main-footer');
-      const contacto = document.getElementById('contacto');
-      if (home) home.style.display = 'block';
-      if (blog) blog.style.display = 'none';
-      if (footer) footer.style.display = 'block';
-      if (contacto) contacto.style.display = '';
-      // Also make sure we show the grid inside blog if somehow visible
-      const grid = document.getElementById('blog-grid');
-      if (grid) grid.style.display = 'grid';
-      const posts = document.querySelectorAll('[id^="post-"]');
-      posts.forEach(p => p.style.display = 'none');
+      setPageView('home');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showBlog() {
-      const home = document.getElementById('home-content');
-      const blog = document.getElementById('blog-content');
-      const footer = document.getElementById('main-footer');
-      const contacto = document.getElementById('contacto');
-      if (home) home.style.display = 'none';
-      if (blog) blog.style.display = 'block';
-      if (footer) footer.style.display = 'none';
-      if (contacto) contacto.style.display = 'none';
+      setPageView('blog');
       showBlogGrid();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showTest() {
+      setPageView('test');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -1940,6 +2410,8 @@
       const blog = document.getElementById('blog-content');
       if (home) home.style.display = 'block';
       if (blog) blog.style.display = 'none';
+      const test = document.getElementById('test-content');
+      if (test) test.style.display = 'none';
     });
 
   </script>
