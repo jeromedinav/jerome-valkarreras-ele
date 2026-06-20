@@ -364,6 +364,61 @@
       transition: width 0.35s ease;
     }
     .level-test-hidden { display: none !important; }
+    .level-test-block-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      border-radius: 0.9rem;
+      border: 1px solid #e4e4e7;
+      background: #fff;
+      color: #27272a;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .level-test-block-btn:hover {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .level-test-dots {
+      display: flex;
+      gap: 0.4rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .level-test-dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: #d4d4d8;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .level-test-dot.is-done { background: #dc2626; }
+    .level-test-dot.is-current {
+      background: #f87171;
+      box-shadow: 0 0 0 2px #fecaca;
+    }
+    .level-test-finish-early {
+      margin-top: 0.75rem;
+      width: 100%;
+      background: #fff;
+      border: 1px dashed #dc2626;
+      color: #b91c1c;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-radius: 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .level-test-finish-early:hover {
+      background: #fef2f2;
+    }
     @media (max-width: 768px) {
       .lang-switcher-fixed {
         right: 1rem;
@@ -1248,26 +1303,38 @@
       <div id="level-test-intro">
         <div class="text-center mb-8">
           <h1 class="text-4xl font-bold tracking-tight text-zinc-900" data-i18n="test.title">Spanish Level Test</h1>
-          <p class="mt-3 text-lg text-zinc-600" data-i18n="test.subtitle">Find your CEFR level in about 5 minutes. Fully integrated — no external redirects.</p>
+          <p class="mt-3 text-lg text-zinc-600" data-i18n="test.lead">Want to know your real Spanish level?</p>
         </div>
-        <div class="level-test-intro-card space-y-4 mb-8">
-          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro">Interactive exercises (complete the sentences, multiple choice, true/false) divided into 3 blocks by level range. Your answers are evaluated instantly in your browser.</p>
-          <div class="grid sm:grid-cols-3 gap-3 text-sm">
-            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-center font-semibold text-zinc-800" data-i18n="test.block1">Block 1 · A1–A2</div>
-            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-center font-semibold text-zinc-800" data-i18n="test.block2">Block 2 · B1–B2</div>
-            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-center font-semibold text-zinc-800" data-i18n="test.block3">Block 3 · C1–C2</div>
+        <div class="level-test-intro-card space-y-4 mb-6">
+          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro1">You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.</p>
+          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro2">Each block increases progressively in difficulty. As you advance, questions assess comprehension, grammar, vocabulary and real use of the language.</p>
+          <p class="font-semibold text-zinc-900" data-i18n="test.pick">You can start with the block you think fits you best:</p>
+          <div class="space-y-3">
+            <button type="button" class="level-test-block-btn" data-block="1">
+              <span aria-hidden="true">🔹</span>
+              <span data-i18n="test.level.basic">A1–A2 → Basic level</span>
+            </button>
+            <button type="button" class="level-test-block-btn" data-block="2">
+              <span aria-hidden="true">🔹</span>
+              <span data-i18n="test.level.intermediate">B1–B2 → Intermediate level</span>
+            </button>
+            <button type="button" class="level-test-block-btn" data-block="3">
+              <span aria-hidden="true">🔹</span>
+              <span data-i18n="test.level.advanced">C1–C2 → Advanced level</span>
+            </button>
           </div>
-          <p class="text-xs text-zinc-500" data-i18n="test.tech">Native integration (like H5P on WordPress): runs on this site, mobile-friendly, automatic scoring.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed" data-i18n="test.rule">You do not need to complete all three blocks. If you make more than four mistakes in a block, or the questions feel too hard, finish the block and check your result — that will be your approximate level.</p>
+          <p class="text-sm text-zinc-500" data-i18n="test.orientative">This is an orientation test to help you choose the right course with Jerome. Fully integrated on this site — no external redirects.</p>
         </div>
-        <button type="button" id="level-test-start" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3.5 rounded-2xl transition shadow-md" data-i18n="test.start">Start the test</button>
       </div>
 
       <div id="level-test-quiz" class="level-test-hidden">
         <div class="mb-6">
           <div class="flex items-center justify-between text-sm font-semibold text-zinc-600 mb-2">
-            <span id="level-test-step-label">1 / 9</span>
+            <span id="level-test-step-label">1 / 6</span>
             <span id="level-test-block-label" class="level-test-block-badge">A1–A2</span>
           </div>
+          <div id="level-test-dots" class="level-test-dots"></div>
           <div class="level-test-progress"><div id="level-test-progress-bar" class="level-test-progress-bar" style="width: 0%"></div></div>
         </div>
         <div class="level-test-intro-card mb-6">
@@ -1275,34 +1342,24 @@
           <p id="level-test-question-text" class="text-lg font-semibold text-zinc-900 mb-4"></p>
           <div id="level-test-answers"></div>
           <p id="level-test-feedback" class="mt-4 text-sm font-medium level-test-hidden"></p>
+          <button type="button" id="level-test-finish-early" class="level-test-finish-early level-test-hidden" data-i18n="test.finishEarly">Finish block and see my result</button>
         </div>
-        <button type="button" id="level-test-next" class="w-full bg-zinc-900 hover:bg-black text-white font-semibold py-3.5 rounded-2xl transition" data-i18n="test.next" disabled>Next</button>
+        <button type="button" id="level-test-next" class="w-full bg-zinc-900 hover:bg-black text-white font-semibold py-3.5 rounded-2xl transition" data-i18n="test.check" disabled>Check answer</button>
       </div>
 
       <div id="level-test-results" class="level-test-hidden">
         <div class="text-center mb-8">
+          <p id="level-test-block-done" class="text-sm font-bold uppercase tracking-wider text-red-600 mb-2">Block A1–A2 completed</p>
           <h2 class="text-3xl font-bold text-zinc-900" data-i18n="test.results.title">Your estimated level</h2>
-          <p id="level-test-final-level" class="mt-4 text-5xl font-bold text-red-600">B1</p>
+          <p id="level-test-final-level" class="mt-4 text-5xl font-bold text-red-600">A2</p>
+          <p id="level-test-final-score" class="mt-2 text-lg font-semibold text-zinc-700">4/6</p>
           <p id="level-test-final-desc" class="mt-3 text-lg text-zinc-600"></p>
         </div>
-        <div class="grid sm:grid-cols-3 gap-4 mb-8">
-          <div class="level-test-intro-card text-center">
-            <p class="text-xs font-bold uppercase text-zinc-500 mb-1" data-i18n="test.block1.short">A1–A2</p>
-            <p id="level-test-score-1" class="text-2xl font-bold text-zinc-900">0/3</p>
-          </div>
-          <div class="level-test-intro-card text-center">
-            <p class="text-xs font-bold uppercase text-zinc-500 mb-1" data-i18n="test.block2.short">B1–B2</p>
-            <p id="level-test-score-2" class="text-2xl font-bold text-zinc-900">0/3</p>
-          </div>
-          <div class="level-test-intro-card text-center">
-            <p class="text-xs font-bold uppercase text-zinc-500 mb-1" data-i18n="test.block3.short">C1–C2</p>
-            <p id="level-test-score-3" class="text-2xl font-bold text-zinc-900">0/3</p>
-          </div>
-        </div>
         <p class="text-sm text-zinc-600 mb-6 text-center" data-i18n="test.results.note">This is an orientation test. For a precise level, book a free trial class with Jerome.</p>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button type="button" id="level-test-retry" class="flex-1 bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.retry">Try again</button>
-          <a href="#contacto" onclick="showHome(); setTimeout(() => document.getElementById('contacto').scrollIntoView({behavior:'smooth'}), 50); return false;" class="flex-1 text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-2xl transition" data-i18n="test.book">Book free trial class</a>
+        <div class="flex flex-col gap-3">
+          <button type="button" id="level-test-another" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.another">Try another block</button>
+          <button type="button" id="level-test-retry" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.retry">Repeat this block</button>
+          <a href="#contacto" onclick="showHome(); setTimeout(() => document.getElementById('contacto').scrollIntoView({behavior:'smooth'}), 50); return false;" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-2xl transition" data-i18n="test.book">Book free trial class</a>
         </div>
       </div>
     </div>
@@ -1434,23 +1491,30 @@
         "bottom.test": "Test",
 
         "test.title": "Spanish Level Test",
-        "test.subtitle": "Find your CEFR level in about 5 minutes. Fully integrated — no external redirects.",
-        "test.intro": "Interactive exercises (complete the sentences, multiple choice, true/false) divided into 3 blocks by level range. Your answers are evaluated instantly in your browser.",
-        "test.block1": "Block 1 · A1–A2",
-        "test.block2": "Block 2 · B1–B2",
-        "test.block3": "Block 3 · C1–C2",
+        "test.lead": "Want to know your real Spanish level?",
+        "test.intro1": "You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.",
+        "test.intro2": "Each block increases progressively in difficulty. As you advance, questions assess comprehension, grammar, vocabulary and real use of the language.",
+        "test.pick": "You can start with the block you think fits you best:",
+        "test.level.basic": "A1–A2 → Basic level",
+        "test.level.intermediate": "B1–B2 → Intermediate level",
+        "test.level.advanced": "C1–C2 → Advanced level",
+        "test.rule": "You do not need to complete all three blocks. If you make more than four mistakes in a block, or the questions feel too hard, finish the block and check your result — that will be your approximate level.",
+        "test.orientative": "This is an orientation test to help you choose the right course with Jerome. Fully integrated on this site — no external redirects.",
         "test.block1.short": "A1–A2",
         "test.block2.short": "B1–B2",
         "test.block3.short": "C1–C2",
-        "test.block1.label": "Block 1 · A1–A2",
-        "test.block2.label": "Block 2 · B1–B2",
-        "test.block3.label": "Block 3 · C1–C2",
-        "test.tech": "Native integration (like H5P on WordPress): runs on this site, mobile-friendly, automatic scoring.",
-        "test.start": "Start the test",
+        "test.block1.label": "Level test A1–A2",
+        "test.block2.label": "Level test B1–B2",
+        "test.block3.label": "Level test C1–C2",
+        "test.block1.done": "Block A1–A2 completed",
+        "test.block2.done": "Block B1–B2 completed",
+        "test.block3.done": "Block C1–C2 completed",
         "test.next": "Next",
         "test.check": "Check answer",
         "test.finish": "See results",
-        "test.retry": "Try again",
+        "test.finishEarly": "Finish block and see my result",
+        "test.retry": "Repeat this block",
+        "test.another": "Try another block",
         "test.book": "Book free trial class",
         "test.type.mc": "Multiple choice",
         "test.type.fill": "Complete the sentence",
@@ -1459,12 +1523,19 @@
         "test.wrong": "Not quite — the correct answer is highlighted.",
         "test.results.title": "Your estimated level",
         "test.results.note": "This is an orientation test. For a precise level, book a free trial class with Jerome.",
-        "test.results.a1a2": "A1–A2 · Beginner / Elementary",
-        "test.results.a1a2.desc": "You are building core foundations. Individual classes at A1–A2 will help you gain confidence fast.",
-        "test.results.b1b2": "B1–B2 · Intermediate / Upper intermediate",
-        "test.results.b1b2.desc": "You can already communicate in many situations. Focus on fluency, accuracy and exam prep if needed.",
-        "test.results.c1c2": "C1–C2 · Advanced / Proficiency",
-        "test.results.c1c2.desc": "Excellent command of Spanish. Fine-tune nuance, register and professional or academic Spanish.",
+        "test.results.a1": "A1",
+        "test.results.a1.desc": "You are starting out. A1 classes will help you build solid foundations step by step.",
+        "test.results.a2": "A2",
+        "test.results.a2.desc": "You handle basic everyday situations. A2–B1 classes will expand your fluency.",
+        "test.results.b1": "B1",
+        "test.results.b1.desc": "You communicate in many contexts. B1–B2 work will sharpen accuracy and confidence.",
+        "test.results.b2": "B2",
+        "test.results.b2.desc": "Strong intermediate command. You can move toward advanced or exam preparation.",
+        "test.results.c1": "C1",
+        "test.results.c1.desc": "Advanced level. Fine-tune nuance, register and professional Spanish.",
+        "test.results.c2": "C2",
+        "test.results.c2.desc": "Near-native proficiency. Perfect for polishing style and high-level expression.",
+        "test.results.tryLower": "This block seems challenging. Try the previous level block for a more accurate estimate.",
 
         "aria.menu": "Menu",
         "aria.backToTop": "Back to top",
@@ -1592,23 +1663,30 @@
         "bottom.test": "Test",
 
         "test.title": "Test de nivel de español",
-        "test.subtitle": "Descubre tu nivel MCER en unos 5 minutos. 100% integrado — sin redirecciones externas.",
-        "test.intro": "Ejercicios interactivos (completa las frases, opción múltiple, verdadero/falso) divididos en 3 bloques por rango de nivel. Las respuestas se evalúan al instante en tu navegador.",
-        "test.block1": "Bloque 1 · A1–A2",
-        "test.block2": "Bloque 2 · B1–B2",
-        "test.block3": "Bloque 3 · C1–C2",
+        "test.lead": "¿Quieres saber cuál es tu nivel real de español?",
+        "test.intro1": "En esta página encontrarás 3 pruebas de nivel de español online, organizadas según el MCER: A1–A2, B1–B2 y C1–C2.",
+        "test.intro2": "Cada bloque aumenta progresivamente de dificultad. A medida que avances, las preguntas evaluarán comprensión, gramática, vocabulario y uso real del idioma.",
+        "test.pick": "Puedes empezar por el bloque que consideres más adecuado para ti:",
+        "test.level.basic": "A1–A2 → Nivel básico",
+        "test.level.intermediate": "B1–B2 → Nivel intermedio",
+        "test.level.advanced": "C1–C2 → Nivel avanzado",
+        "test.rule": "No es necesario completar los tres bloques. Si dentro de un bloque tienes más de cuatro errores o notas que las preguntas resultan demasiado difíciles, puedes acabar el bloque y consultar tu resultado. Ese será tu nivel aproximado.",
+        "test.orientative": "Esta prueba de nivel es orientativa y te ayudará a elegir el curso adecuado con Jerome. 100% integrada en esta web — sin redirecciones externas.",
         "test.block1.short": "A1–A2",
         "test.block2.short": "B1–B2",
         "test.block3.short": "C1–C2",
-        "test.block1.label": "Bloque 1 · A1–A2",
-        "test.block2.label": "Bloque 2 · B1–B2",
-        "test.block3.label": "Bloque 3 · C1–C2",
-        "test.tech": "Integración nativa (como H5P en WordPress): funciona en esta web, adaptable a móvil, puntuación automática.",
-        "test.start": "Empezar el test",
+        "test.block1.label": "Prueba de nivel A1–A2",
+        "test.block2.label": "Prueba de nivel B1–B2",
+        "test.block3.label": "Prueba de nivel C1–C2",
+        "test.block1.done": "Bloque A1–A2 terminado",
+        "test.block2.done": "Bloque B1–B2 terminado",
+        "test.block3.done": "Bloque C1–C2 terminado",
         "test.next": "Siguiente",
         "test.check": "Comprobar",
         "test.finish": "Ver resultados",
-        "test.retry": "Repetir test",
+        "test.finishEarly": "Acabar bloque y ver mi resultado",
+        "test.retry": "Repetir este bloque",
+        "test.another": "Probar otro bloque",
         "test.book": "Reservar clase de prueba",
         "test.type.mc": "Opción múltiple",
         "test.type.fill": "Completa la frase",
@@ -1617,12 +1695,19 @@
         "test.wrong": "Casi — la respuesta correcta está resaltada.",
         "test.results.title": "Tu nivel estimado",
         "test.results.note": "Test orientativo. Para un nivel preciso, reserva una clase de prueba gratuita con Jerome.",
-        "test.results.a1a2": "A1–A2 · Principiante / Elemental",
-        "test.results.a1a2.desc": "Estás construyendo las bases. Clases individuales A1–A2 te darán confianza rápidamente.",
-        "test.results.b1b2": "B1–B2 · Intermedio / Intermedio alto",
-        "test.results.b1b2.desc": "Ya te comunicas en muchas situaciones. Trabaja fluidez, precisión y preparación de exámenes si lo necesitas.",
-        "test.results.c1c2": "C1–C2 · Avanzado / Dominio",
-        "test.results.c1c2.desc": "Excelente dominio del español. Afina matices, registro y español profesional o académico.",
+        "test.results.a1": "A1",
+        "test.results.a1.desc": "Estás empezando. Las clases A1 te ayudarán a construir bases sólidas paso a paso.",
+        "test.results.a2": "A2",
+        "test.results.a2.desc": "Manejas situaciones cotidianas básicas. Las clases A2–B1 ampliarán tu fluidez.",
+        "test.results.b1": "B1",
+        "test.results.b1.desc": "Te comunicas en muchos contextos. El trabajo B1–B2 mejorará precisión y confianza.",
+        "test.results.b2": "B2",
+        "test.results.b2.desc": "Buen dominio intermedio. Puedes avanzar hacia nivel alto o preparación de exámenes.",
+        "test.results.c1": "C1",
+        "test.results.c1.desc": "Nivel avanzado. Afina matices, registro y español profesional.",
+        "test.results.c2": "C2",
+        "test.results.c2.desc": "Dominio casi nativo. Ideal para pulir estilo y expresión de alto nivel.",
+        "test.results.tryLower": "Este bloque parece exigente. Prueba el bloque del nivel anterior para una estimación más precisa.",
 
         "aria.menu": "Menú",
         "aria.backToTop": "Volver arriba",
@@ -2099,34 +2184,68 @@
       });
     }
 
-    const LEVEL_TEST_QUESTIONS = {
-      en: [
-        { block: 1, type: 'mc', question: 'How do you say "Hello" in Spanish?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
-        { block: 1, type: 'fill', question: 'Me _____ Pedro. (My name is Pedro)', answers: ['llamo'] },
-        { block: 1, type: 'tf', question: '"Gracias" means "Thank you".', answer: true },
-        { block: 2, type: 'mc', question: 'Choose the correct sentence: "I have lived in Madrid for two years."', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
-        { block: 2, type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica. (If I had more time…)', answers: ['tuviera', 'tuviese'] },
-        { block: 2, type: 'mc', question: 'How do you say "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
-        { block: 3, type: 'fill', question: 'No es necesario _____ llegues tan temprano.', answers: ['que'] },
-        { block: 3, type: 'mc', question: 'Which sentence uses the subjunctive correctly?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
-        { block: 3, type: 'tf', question: '"Hubiera sabido" can express a regret about the past.', answer: true }
-      ],
-      es: [
-        { block: 1, type: 'mc', question: '¿Cómo se dice "Hello" en español?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
-        { block: 1, type: 'fill', question: 'Me _____ Pedro.', answers: ['llamo'] },
-        { block: 1, type: 'tf', question: '"Gracias" significa "Thank you".', answer: true },
-        { block: 2, type: 'mc', question: 'Elige la frase correcta: "Llevo dos años viviendo en Madrid."', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
-        { block: 2, type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica.', answers: ['tuviera', 'tuviese'] },
-        { block: 2, type: 'mc', question: '¿Cómo se dice "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
-        { block: 3, type: 'fill', question: 'No es necesario _____ llegues tan temprano.', answers: ['que'] },
-        { block: 3, type: 'mc', question: '¿Qué frase usa correctamente el subjuntivo?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
-        { block: 3, type: 'tf', question: '"Hubiera sabido" puede expresar un arrepentimiento sobre el pasado.', answer: true }
-      ]
+    const LEVEL_TEST_BLOCKS = {
+      en: {
+        1: [
+          { type: 'mc', question: 'How do you say "Hello" in Spanish?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
+          { type: 'fill', question: 'Me _____ Pedro. (My name is Pedro)', answers: ['llamo'] },
+          { type: 'fill', question: '¿Cómo te _____? (What is your name?)', answers: ['llamas'] },
+          { type: 'mc', question: 'Choose "Good morning":', options: ['Buenos días', 'Buenas noches', 'Hasta luego'], answer: 0 },
+          { type: 'tf', question: '"Gracias" means "Thank you".', answer: true },
+          { type: 'mc', question: 'Yo _____ español.', options: ['soy', 'es', 'estoy'], answer: 0 }
+        ],
+        2: [
+          { type: 'fill', question: 'He _____ en Madrid desde hace dos años.', answers: ['vivido'] },
+          { type: 'mc', question: 'Choose the correct sentence:', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
+          { type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica.', answers: ['tuviera', 'tuviese'] },
+          { type: 'mc', question: 'How do you say "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
+          { type: 'mc', question: 'Ojalá vosotros _____ esta noche.', options: ['venís', 'vengáis', 'vendréis'], answer: 1 },
+          { type: 'fill', question: 'Ayer lo _____ fatal en el examen.', answers: ['pasé', 'pase'] }
+        ],
+        3: [
+          { type: 'fill', question: 'No es necesario que _____ tan temprano.', answers: ['llegues'] },
+          { type: 'mc', question: 'Which sentence uses the subjunctive correctly?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
+          { type: 'tf', question: '"Hubiera sabido" can express regret about the past.', answer: true },
+          { type: 'mc', question: 'Choose the correct passive reflexive form: "Spanish is spoken here."', options: ['Aquí habla español.', 'Aquí se habla español.', 'Aquí es hablado español.'], answer: 1 },
+          { type: 'fill', question: '_____ llueva, salimos a pasear.', answers: ['aunque'] },
+          { type: 'mc', question: 'María es _____ inteligente que su hermana.', options: ['más', 'menos', 'tan'], answer: 0 }
+        ]
+      },
+      es: {
+        1: [
+          { type: 'mc', question: '¿Cómo se dice "Hello" en español?', options: ['Hola', 'Adiós', 'Gracias'], answer: 0 },
+          { type: 'fill', question: 'Me _____ Pedro.', answers: ['llamo'] },
+          { type: 'fill', question: '¿Cómo te _____?', answers: ['llamas'] },
+          { type: 'mc', question: 'Elige "Good morning":', options: ['Buenos días', 'Buenas noches', 'Hasta luego'], answer: 0 },
+          { type: 'tf', question: '"Gracias" significa "Thank you".', answer: true },
+          { type: 'mc', question: 'Yo _____ español.', options: ['soy', 'es', 'estoy'], answer: 0 }
+        ],
+        2: [
+          { type: 'fill', question: 'He _____ en Madrid desde hace dos años.', answers: ['vivido'] },
+          { type: 'mc', question: 'Elige la frase correcta:', options: ['Vivo en Madrid desde dos años.', 'He vivido en Madrid dos años.', 'He vivido en Madrid desde hace dos años.'], answer: 2 },
+          { type: 'fill', question: 'Si _____ más tiempo, viajaría a Sudamérica.', answers: ['tuviera', 'tuviese'] },
+          { type: 'mc', question: '¿Cómo se dice "despite the rain"?', options: ['Debido a la lluvia', 'A pesar de la lluvia', 'Por la lluvia'], answer: 1 },
+          { type: 'mc', question: 'Ojalá vosotros _____ esta noche.', options: ['venís', 'vengáis', 'vendréis'], answer: 1 },
+          { type: 'fill', question: 'Ayer lo _____ fatal en el examen.', answers: ['pasé', 'pase'] }
+        ],
+        3: [
+          { type: 'fill', question: 'No es necesario que _____ tan temprano.', answers: ['llegues'] },
+          { type: 'mc', question: '¿Qué frase usa correctamente el subjuntivo?', options: ['Espero que vienes mañana.', 'Espero que vengas mañana.', 'Espero que vendrás mañana.'], answer: 1 },
+          { type: 'tf', question: '"Hubiera sabido" puede expresar arrepentimiento sobre el pasado.', answer: true },
+          { type: 'mc', question: 'Elige la pasiva refleja correcta: "Aquí se habla español."', options: ['Aquí habla español.', 'Aquí se habla español.', 'Aquí es hablado español.'], answer: 1 },
+          { type: 'fill', question: '_____ llueva, salimos a pasear.', answers: ['aunque'] },
+          { type: 'mc', question: 'María es _____ inteligente que su hermana.', options: ['más', 'menos', 'tan'], answer: 0 }
+        ]
+      }
     };
 
+    const LEVEL_TEST_MAX_ERRORS = 4;
+
     let levelTestState = {
+      activeBlock: 1,
       index: 0,
-      scores: [0, 0, 0],
+      correct: 0,
+      errors: 0,
       answered: false,
       selected: null
     };
@@ -2138,19 +2257,47 @@
       if (intro) intro.classList.remove('level-test-hidden');
       if (quiz) quiz.classList.add('level-test-hidden');
       if (results) results.classList.add('level-test-hidden');
-      levelTestState = { index: 0, scores: [0, 0, 0], answered: false, selected: null };
+      levelTestState = { activeBlock: 1, index: 0, correct: 0, errors: 0, answered: false, selected: null };
     }
 
     function normalizeAnswer(value) {
       return String(value || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     }
 
-    function getLevelTestQuestions() {
-      return LEVEL_TEST_QUESTIONS[currentLang] || LEVEL_TEST_QUESTIONS.en;
+    function getBlockQuestions(block) {
+      const lang = LEVEL_TEST_BLOCKS[currentLang] || LEVEL_TEST_BLOCKS.en;
+      return lang[block] || lang[1];
+    }
+
+    function startLevelTestBlock(block) {
+      levelTestState = { activeBlock: block, index: 0, correct: 0, errors: 0, answered: false, selected: null };
+      document.getElementById('level-test-intro').classList.add('level-test-hidden');
+      document.getElementById('level-test-quiz').classList.remove('level-test-hidden');
+      document.getElementById('level-test-results').classList.add('level-test-hidden');
+      renderLevelTestQuestion();
+    }
+
+    function renderProgressDots(total) {
+      const dotsEl = document.getElementById('level-test-dots');
+      if (!dotsEl) return;
+      dotsEl.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'level-test-dot';
+        if (i < levelTestState.index) dot.classList.add('is-done');
+        if (i === levelTestState.index) dot.classList.add('is-current');
+        dotsEl.appendChild(dot);
+      }
+    }
+
+    function updateFinishEarlyButton() {
+      const btn = document.getElementById('level-test-finish-early');
+      if (!btn) return;
+      btn.classList.toggle('level-test-hidden', levelTestState.errors <= LEVEL_TEST_MAX_ERRORS);
     }
 
     function renderLevelTestQuestion() {
-      const questions = getLevelTestQuestions();
+      const questions = getBlockQuestions(levelTestState.activeBlock);
       const q = questions[levelTestState.index];
       const t = translations[currentLang];
       const total = questions.length;
@@ -2162,12 +2309,14 @@
       const answersEl = document.getElementById('level-test-answers');
       const feedbackEl = document.getElementById('level-test-feedback');
       const nextBtn = document.getElementById('level-test-next');
+      const finishEarlyBtn = document.getElementById('level-test-finish-early');
 
       if (!q || !answersEl) return;
 
       if (stepLabel) stepLabel.textContent = `${levelTestState.index + 1} / ${total}`;
-      if (blockLabel) blockLabel.textContent = t[`test.block${q.block}.label`] || `Block ${q.block}`;
-      if (progressBar) progressBar.style.width = `${((levelTestState.index) / total) * 100}%`;
+      if (blockLabel) blockLabel.textContent = t[`test.block${levelTestState.activeBlock}.label`];
+      if (progressBar) progressBar.style.width = `${(levelTestState.index / total) * 100}%`;
+      renderProgressDots(total);
       if (typeEl) {
         typeEl.textContent = q.type === 'mc' ? t['test.type.mc'] : q.type === 'fill' ? t['test.type.fill'] : t['test.type.tf'];
       }
@@ -2176,13 +2325,14 @@
         feedbackEl.classList.add('level-test-hidden');
         feedbackEl.textContent = '';
       }
+      if (finishEarlyBtn) finishEarlyBtn.classList.add('level-test-hidden');
 
       answersEl.innerHTML = '';
       levelTestState.answered = false;
       levelTestState.selected = null;
       if (nextBtn) {
         nextBtn.disabled = true;
-        nextBtn.textContent = levelTestState.index === total - 1 ? t['test.finish'] : t['test.check'];
+        nextBtn.textContent = t['test.check'];
       }
 
       if (q.type === 'fill') {
@@ -2224,7 +2374,7 @@
     }
 
     function evaluateLevelTestAnswer() {
-      const questions = getLevelTestQuestions();
+      const questions = getBlockQuestions(levelTestState.activeBlock);
       const q = questions[levelTestState.index];
       const t = translations[currentLang];
       const feedbackEl = document.getElementById('level-test-feedback');
@@ -2240,7 +2390,8 @@
         isCorrect = levelTestState.selected === q.answer;
       }
 
-      if (isCorrect) levelTestState.scores[q.block - 1] += 1;
+      if (isCorrect) levelTestState.correct += 1;
+      else levelTestState.errors += 1;
 
       const answersEl = document.getElementById('level-test-answers');
       if (q.type === 'mc' || q.type === 'tf') {
@@ -2254,8 +2405,7 @@
         const input = answersEl.querySelector('.level-test-input');
         if (input) {
           input.disabled = true;
-          if (!isCorrect) input.style.borderColor = '#dc2626';
-          else input.style.borderColor = '#059669';
+          input.style.borderColor = isCorrect ? '#059669' : '#dc2626';
         }
       }
 
@@ -2266,60 +2416,66 @@
       }
 
       levelTestState.answered = true;
+      updateFinishEarlyButton();
       if (nextBtn) {
         nextBtn.disabled = false;
         nextBtn.textContent = levelTestState.index === questions.length - 1 ? t['test.finish'] : t['test.next'];
       }
     }
 
-    function showLevelTestResults() {
+    function getBlockLevelResult(block, correct, total) {
       const t = translations[currentLang];
-      const intro = document.getElementById('level-test-intro');
-      const quiz = document.getElementById('level-test-quiz');
-      const results = document.getElementById('level-test-results');
-      const [s1, s2, s3] = levelTestState.scores;
-      const total = s1 + s2 + s3;
+      const ratio = correct / total;
+      let levelKey = 'test.results.a2';
+      let descKey = 'test.results.a2.desc';
 
-      let levelKey = 'test.results.b1b2';
-      let descKey = 'test.results.b1b2.desc';
-      if (total <= 3 || (s1 >= 2 && s2 <= 1)) {
-        levelKey = 'test.results.a1a2';
-        descKey = 'test.results.a1a2.desc';
-      } else if (total >= 7 || (s3 >= 2 && s2 >= 2)) {
-        levelKey = 'test.results.c1c2';
-        descKey = 'test.results.c1c2.desc';
+      if (block === 1) {
+        if (ratio >= 0.84) { levelKey = 'test.results.a2'; descKey = 'test.results.a2.desc'; }
+        else if (ratio >= 0.5) { levelKey = 'test.results.a1'; descKey = 'test.results.a1.desc'; }
+        else { levelKey = 'test.results.a1'; descKey = 'test.results.a1.desc'; }
+      } else if (block === 2) {
+        if (ratio >= 0.84) { levelKey = 'test.results.b2'; descKey = 'test.results.b2.desc'; }
+        else if (ratio >= 0.5) { levelKey = 'test.results.b1'; descKey = 'test.results.b1.desc'; }
+        else { levelKey = 'test.results.a2'; descKey = 'test.results.tryLower'; }
+      } else {
+        if (ratio >= 0.84) { levelKey = 'test.results.c1'; descKey = 'test.results.c1.desc'; }
+        else if (ratio >= 0.5) { levelKey = 'test.results.b2'; descKey = 'test.results.b2.desc'; }
+        else { levelKey = 'test.results.b1'; descKey = 'test.results.tryLower'; }
       }
 
-      document.getElementById('level-test-score-1').textContent = `${s1}/3`;
-      document.getElementById('level-test-score-2').textContent = `${s2}/3`;
-      document.getElementById('level-test-score-3').textContent = `${s3}/3`;
-      document.getElementById('level-test-final-level').textContent = t[levelKey].split('·')[0].trim();
-      document.getElementById('level-test-final-desc').textContent = t[descKey];
+      return { level: t[levelKey], desc: t[descKey] };
+    }
 
-      intro.classList.add('level-test-hidden');
-      quiz.classList.add('level-test-hidden');
-      results.classList.remove('level-test-hidden');
+    function showLevelTestResults() {
+      const t = translations[currentLang];
+      const questions = getBlockQuestions(levelTestState.activeBlock);
+      const total = questions.length;
+      const result = getBlockLevelResult(levelTestState.activeBlock, levelTestState.correct, total);
+
+      document.getElementById('level-test-block-done').textContent = t[`test.block${levelTestState.activeBlock}.done`];
+      document.getElementById('level-test-final-level').textContent = result.level;
+      document.getElementById('level-test-final-score').textContent = `${levelTestState.correct}/${total}`;
+      document.getElementById('level-test-final-desc').textContent = result.desc;
+
+      document.getElementById('level-test-intro').classList.add('level-test-hidden');
+      document.getElementById('level-test-quiz').classList.add('level-test-hidden');
+      document.getElementById('level-test-results').classList.remove('level-test-hidden');
       document.getElementById('level-test-progress-bar').style.width = '100%';
     }
 
     function initLevelTest() {
-      const startBtn = document.getElementById('level-test-start');
+      document.querySelectorAll('.level-test-block-btn').forEach(btn => {
+        btn.addEventListener('click', () => startLevelTestBlock(Number(btn.dataset.block)));
+      });
+
       const nextBtn = document.getElementById('level-test-next');
       const retryBtn = document.getElementById('level-test-retry');
-
-      if (startBtn) {
-        startBtn.addEventListener('click', () => {
-          levelTestState = { index: 0, scores: [0, 0, 0], answered: false, selected: null };
-          document.getElementById('level-test-intro').classList.add('level-test-hidden');
-          document.getElementById('level-test-quiz').classList.remove('level-test-hidden');
-          document.getElementById('level-test-results').classList.add('level-test-hidden');
-          renderLevelTestQuestion();
-        });
-      }
+      const anotherBtn = document.getElementById('level-test-another');
+      const finishEarlyBtn = document.getElementById('level-test-finish-early');
 
       if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-          const questions = getLevelTestQuestions();
+          const questions = getBlockQuestions(levelTestState.activeBlock);
           if (!levelTestState.answered) {
             evaluateLevelTestAnswer();
             return;
@@ -2333,8 +2489,16 @@
         });
       }
 
+      if (finishEarlyBtn) {
+        finishEarlyBtn.addEventListener('click', showLevelTestResults);
+      }
+
       if (retryBtn) {
-        retryBtn.addEventListener('click', resetLevelTestView);
+        retryBtn.addEventListener('click', () => startLevelTestBlock(levelTestState.activeBlock));
+      }
+
+      if (anotherBtn) {
+        anotherBtn.addEventListener('click', resetLevelTestView);
       }
     }
 
