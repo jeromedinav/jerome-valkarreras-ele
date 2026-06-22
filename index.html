@@ -42,7 +42,7 @@
       font-weight: 700;
       font-size: 0.8rem;
       line-height: 1.3;
-      color: #27272a;
+      color: #000;
       background: #fff;
       border: 1px solid #e4e4e7;
       border-radius: 0.75rem;
@@ -292,14 +292,14 @@
       align-items: center;
       gap: 0.4rem;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       padding: 0.35rem 0.75rem;
       border-radius: 9999px;
-      background: #fef2f2;
-      color: #b91c1c;
-      border: 1px solid #fecaca;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
     }
     .level-test-option {
       display: block;
@@ -310,8 +310,8 @@
       border-radius: 0.85rem;
       border: 1px solid #e4e4e7;
       background: #fff;
-      color: #27272a;
-      font-weight: 600;
+      color: #000;
+      font-weight: 700;
       cursor: pointer;
       transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
@@ -319,6 +319,7 @@
       background: #dc2626;
       border-color: #dc2626;
       color: #fff;
+      font-weight: 700;
     }
     .level-test-option.is-selected {
       background: #dc2626;
@@ -343,7 +344,7 @@
       padding: 0.85rem 1rem;
       font-size: 1rem;
       font-weight: 600;
-      color: #27272a;
+      color: #000;
       background: #fff;
     }
     .level-test-input:focus {
@@ -374,16 +375,27 @@
       border-radius: 0.9rem;
       border: 1px solid #e4e4e7;
       background: #fff;
-      color: #27272a;
-      font-weight: 700;
+      color: #000;
+      font-weight: 800;
       cursor: pointer;
       transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
-    .level-test-block-btn:hover {
+    .level-test-block-btn:hover,
+    .level-test-block-btn:focus-visible {
       background: #dc2626;
       border-color: #dc2626;
       color: #fff;
       transform: translateY(-1px);
+    }
+    .level-test-block-btn:hover span,
+    .level-test-block-btn:focus-visible span,
+    .level-test-block-btn:hover .level-test-block-meta,
+    .level-test-block-btn:focus-visible .level-test-block-meta {
+      color: #fff;
+    }
+    .level-test-block-btn:hover .level-test-block-meta,
+    .level-test-block-btn:focus-visible .level-test-block-meta {
+      opacity: 0.95;
     }
     .level-test-dots {
       display: flex;
@@ -408,22 +420,24 @@
       margin-top: 0.75rem;
       width: 100%;
       background: #fff;
-      border: 1px dashed #dc2626;
-      color: #b91c1c;
-      font-weight: 600;
+      border: 2px dashed #000;
+      color: #000;
+      font-weight: 800;
       padding: 0.75rem 1rem;
       border-radius: 0.85rem;
       cursor: pointer;
       transition: background-color 0.15s ease;
     }
     .level-test-finish-early:hover {
-      background: #fef2f2;
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #fff;
     }
     .level-test-sentence {
       font-size: 1.1rem;
       font-weight: 600;
       line-height: 2;
-      color: #27272a;
+      color: #000;
       margin-bottom: 1rem;
     }
     .level-test-slot {
@@ -437,7 +451,7 @@
       border-radius: 0.65rem;
       border: 2px dashed #d4d4d8;
       background: #fafafa;
-      color: #71717a;
+      color: #000;
       vertical-align: middle;
       cursor: pointer;
       transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
@@ -451,7 +465,7 @@
       border-style: solid;
       border-color: #a1a1aa;
       background: #fff;
-      color: #27272a;
+      color: #000;
       font-weight: 700;
     }
     .level-test-slot.is-correct {
@@ -487,7 +501,7 @@
       border-radius: 9999px;
       border: 1px solid #e4e4e7;
       background: #fff;
-      color: #27272a;
+      color: #000;
       font-weight: 700;
       font-size: 0.92rem;
       cursor: grab;
@@ -496,7 +510,8 @@
     }
     .level-test-word-chip:hover {
       border-color: #dc2626;
-      color: #b91c1c;
+      color: #000;
+      background: #fff;
       transform: translateY(-1px);
     }
     .level-test-word-chip.is-used {
@@ -517,7 +532,8 @@
     }
     .level-test-hint {
       font-size: 0.78rem;
-      color: #71717a;
+      font-weight: 700;
+      color: #000;
       margin-bottom: 0.65rem;
     }
     .level-test-multi-fill {
@@ -528,7 +544,7 @@
       font-size: 1.1rem;
       font-weight: 600;
       line-height: 2;
-      color: #27272a;
+      color: #000;
     }
     .level-test-multi-fill .level-test-input {
       display: inline-block;
@@ -541,8 +557,8 @@
     }
     .level-test-errors {
       font-size: 0.78rem;
-      font-weight: 700;
-      color: #71717a;
+      font-weight: 800;
+      color: #000;
     }
     .level-test-errors.is-warning { color: #dc2626; }
     .level-test-types-legend {
@@ -553,20 +569,20 @@
     }
     .level-test-type-pill {
       font-size: 0.68rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       padding: 0.25rem 0.55rem;
       border-radius: 9999px;
-      background: #f4f4f5;
-      color: #52525b;
-      border: 1px solid #e4e4e7;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
     }
     .level-test-block-meta {
       display: block;
       font-size: 0.78rem;
-      font-weight: 600;
-      color: #71717a;
+      font-weight: 700;
+      color: #000;
       margin-top: 0.15rem;
     }
     .level-test-passage {
@@ -575,8 +591,9 @@
       background: #fafafa;
       border: 1px solid #e4e4e7;
       font-size: 0.98rem;
+      font-weight: 600;
       line-height: 1.65;
-      color: #3f3f46;
+      color: #000;
       margin-bottom: 1rem;
     }
     .level-test-match-grid {
@@ -600,23 +617,26 @@
       border: 2px solid #e4e4e7;
       background: #fff;
       font-weight: 600;
-      color: #27272a;
+      color: #000;
       cursor: pointer;
       transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
     }
     .level-test-match-item:hover:not(:disabled) {
       border-color: #dc2626;
-      color: #b91c1c;
+      color: #000;
+      font-weight: 800;
     }
     .level-test-match-item.is-active {
       border-color: #dc2626;
-      background: #fef2f2;
-      color: #b91c1c;
+      background: #fff;
+      color: #000;
+      font-weight: 800;
+      box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
     }
     .level-test-match-item.is-paired {
       border-color: #a1a1aa;
       background: #f4f4f5;
-      color: #71717a;
+      color: #000;
       opacity: 0.65;
     }
     .level-test-match-item.is-correct {
@@ -685,13 +705,14 @@
     }
     .level-test-listen-note {
       font-size: 0.82rem;
-      color: #71717a;
+      color: #000;
       line-height: 1.45;
     }
     .level-test-explain {
       margin-top: 0.35rem;
       font-size: 0.82rem;
-      color: #52525b;
+      font-weight: 600;
+      color: #000;
       line-height: 1.5;
     }
     .level-test-skill-breakdown {
@@ -709,8 +730,8 @@
       gap: 0.65rem;
       margin-bottom: 0.55rem;
       font-size: 0.82rem;
-      font-weight: 600;
-      color: #52525b;
+      font-weight: 700;
+      color: #000;
     }
     .level-test-skill-row:last-child { margin-bottom: 0; }
     .level-test-skill-bar {
@@ -727,7 +748,7 @@
     }
     .level-test-skill-pct {
       text-align: right;
-      color: #27272a;
+      color: #000;
       font-weight: 700;
     }
     .level-test-results-actions {
@@ -765,7 +786,7 @@
       margin: 0;
       text-align: center;
       font-weight: 700;
-      color: #27272a;
+      color: #000;
       transition: background-color 0.15s ease, color 0.15s ease;
     }
     .nav-dropdown-link:hover {
@@ -778,7 +799,7 @@
     .nav-inicio-btn {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #0a0a0a;
+      color: #000;
       letter-spacing: -0.01em;
       transition: color 0.2s ease, background-color 0.2s ease;
     }
@@ -802,7 +823,7 @@
       cursor: pointer;
     }
     .nav-inicio-label {
-      color: #0a0a0a;
+      color: #000;
     }
     .nav-chevron-cascade {
       display: inline-flex;
@@ -856,7 +877,7 @@
     }
     @keyframes chev-signal {
       0%, 100% {
-        color: #0a0a0a;
+        color: #000;
         opacity: 0.65;
         -webkit-text-stroke: 0.5px #0a0a0a;
         text-shadow: 0 0 1px #0a0a0a;
@@ -878,9 +899,50 @@
         -webkit-text-stroke: 0.5px #b91c1c;
       }
     }
+
+    /* Typography — absolute black on light backgrounds */
+    body {
+      color: #000;
+    }
+    #home-content,
+    #blog,
+    #test-nivel,
+    #blog-content,
+    #test-content {
+      color: #000;
+    }
+    #home-content p,
+    #home-content li,
+    #blog-content p,
+    #blog-content li,
+    #test-content p,
+    #test-content li,
+    #home-content .prose,
+    #blog-content .prose {
+      color: #000;
+      font-weight: 600;
+    }
+    #home-content h1,
+    #home-content h2,
+    #home-content h3,
+    #blog-content h1,
+    #blog-content h2,
+    #test-content h1,
+    #test-content h2 {
+      color: #000;
+      font-weight: 700;
+    }
+    .mobile-link {
+      color: #000;
+      font-weight: 700;
+    }
+    .mobile-link:hover {
+      background-color: #dc2626;
+      color: #fff;
+    }
   </style>
 </head>
-<body class="bg-zinc-50 text-zinc-800 smooth-scroll">
+<body class="bg-zinc-50 text-black smooth-scroll">
 
   <!-- Navbar -->
   <nav class="bg-white shadow-md sticky top-0 z-50">
@@ -942,7 +1004,7 @@
           Contact
         </a>
 
-        <button id="menu-btn" class="w-10 h-10 flex items-center justify-center text-xl text-zinc-700" data-i18n-aria="aria.menu" aria-label="Menu">
+        <button id="menu-btn" class="w-10 h-10 flex items-center justify-center text-xl text-black font-bold" data-i18n-aria="aria.menu" aria-label="Menu">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -1013,7 +1075,7 @@
         </div>
         <div>
           <h2 class="section-title text-4xl font-bold mb-8 inline-block" data-i18n="about.title">Jerome M. Valkarreras</h2>
-          <div class="space-y-5 text-lg leading-relaxed text-zinc-700">
+          <div class="space-y-5 text-lg leading-relaxed text-black font-semibold">
             <p data-i18n="about.p1">Certified Spanish as a Foreign Language teacher with over 10 years of experience and students from more than 30 nationalities.</p>
             <p data-i18n="about.p2">My goal is for you to communicate naturally and confidently in Spanish, combining grammar, real conversation, and Hispanic culture.</p>
           </div>
@@ -1051,7 +1113,7 @@
             <i class="fas fa-user text-2xl"></i>
           </div>
           <h3 class="text-2xl font-semibold mb-3" data-i18n="services.individual.title">Individual Classes</h3>
-          <p class="text-zinc-600" data-i18n="services.individual.desc">Fully tailored to your level, goals and schedule.</p>
+          <p class="text-black font-semibold" data-i18n="services.individual.desc">Fully tailored to your level, goals and schedule.</p>
         </div>
 
         <div class="card bg-white p-8 rounded-3xl shadow">
@@ -1059,7 +1121,7 @@
             <i class="fas fa-file-alt text-2xl"></i>
           </div>
           <h3 class="text-2xl font-semibold mb-3" data-i18n="services.dele.title">DELE / SIELE Preparation</h3>
-          <p class="text-zinc-600" data-i18n="services.dele.desc">Intensive training and strategies to pass the official exams.</p>
+          <p class="text-black font-semibold" data-i18n="services.dele.desc">Intensive training and strategies to pass the official exams.</p>
         </div>
 
         <div class="card bg-white p-8 rounded-3xl shadow">
@@ -1067,7 +1129,7 @@
             <i class="fas fa-comments text-2xl"></i>
           </div>
           <h3 class="text-2xl font-semibold mb-3" data-i18n="services.conversation.title">Conversation &amp; Fluency</h3>
-          <p class="text-zinc-600" data-i18n="services.conversation.desc">Real speaking practice to build confidence.</p>
+          <p class="text-black font-semibold" data-i18n="services.conversation.desc">Real speaking practice to build confidence.</p>
         </div>
 
         <div class="card bg-white p-8 rounded-3xl shadow">
@@ -1075,7 +1137,7 @@
             <i class="fas fa-briefcase text-2xl"></i>
           </div>
           <h3 class="text-2xl font-semibold mb-3" data-i18n="services.business.title">Spanish for Business</h3>
-          <p class="text-zinc-600" data-i18n="services.business.desc">Professional vocabulary and workplace situations.</p>
+          <p class="text-black font-semibold" data-i18n="services.business.desc">Professional vocabulary and workplace situations.</p>
         </div>
       </div>
     </div>
@@ -1089,17 +1151,17 @@
         <div class="bg-white p-8 rounded-3xl shadow card text-center">
           <div class="text-6xl mb-5">🎯</div>
           <h3 class="text-xl font-semibold mb-3" data-i18n="method.personalized.title">Personalized</h3>
-          <p class="text-zinc-600" data-i18n="method.personalized.desc">Adapted to your needs and learning pace.</p>
+          <p class="text-black font-semibold" data-i18n="method.personalized.desc">Adapted to your needs and learning pace.</p>
         </div>
         <div class="bg-white p-8 rounded-3xl shadow card text-center">
           <div class="text-6xl mb-5">💬</div>
           <h3 class="text-xl font-semibold mb-3" data-i18n="method.communicative.title">Communicative</h3>
-          <p class="text-zinc-600" data-i18n="method.communicative.desc">You will speak Spanish from the very first class.</p>
+          <p class="text-black font-semibold" data-i18n="method.communicative.desc">You will speak Spanish from the very first class.</p>
         </div>
         <div class="bg-white p-8 rounded-3xl shadow card text-center">
           <div class="text-6xl mb-5">🌍</div>
           <h3 class="text-xl font-semibold mb-3" data-i18n="method.cultural.title">Cultural</h3>
-          <p class="text-zinc-600" data-i18n="method.cultural.desc">You learn the language and Hispanic culture at the same time.</p>
+          <p class="text-black font-semibold" data-i18n="method.cultural.desc">You learn the language and Hispanic culture at the same time.</p>
         </div>
       </div>
     </div>
@@ -1113,22 +1175,22 @@
         <div class="bg-white p-8 rounded-3xl shadow">
           <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
           <p class="text-lg" data-i18n="testimonials.t1.text">"Jerome is the best teacher I’ve had. In 7 months I went from zero to having fluid conversations. His method is clear, patient and extremely effective."</p>
-          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t1.name">Laura M.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t1.country">— Germany</span></div>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t1.name">Laura M.</span> <span class="font-normal text-black font-semibold" data-i18n="testimonials.t1.country">— Germany</span></div>
         </div>
         <div class="bg-white p-8 rounded-3xl shadow">
           <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
           <p class="text-lg" data-i18n="testimonials.t2.text">"Les cours avec Jerome sont excellents. J’ai rapidement gagné en fluidité et en confiance. Je recommande sans hésiter !"</p>
-          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t2.name">Thomas L.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t2.country">— France</span></div>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t2.name">Thomas L.</span> <span class="font-normal text-black font-semibold" data-i18n="testimonials.t2.country">— France</span></div>
         </div>
         <div class="bg-white p-8 rounded-3xl shadow">
           <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
           <p class="text-lg" data-i18n="testimonials.t3.text">"I passed the DELE C1 thanks to Jerome’s targeted exam preparation. The mock exams and feedback were extremely accurate and helpful."</p>
-          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t3.name">Sarah K.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t3.country">— USA</span></div>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t3.name">Sarah K.</span> <span class="font-normal text-black font-semibold" data-i18n="testimonials.t3.country">— USA</span></div>
         </div>
         <div class="bg-white p-8 rounded-3xl shadow">
           <div class="flex text-amber-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
           <p class="text-lg" data-i18n="testimonials.t4.text">"I started classes for work and within a few months I was already participating in meetings in Spanish with total confidence. Very professional and warm."</p>
-          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t4.name">Marco R.</span> <span class="font-normal text-zinc-500" data-i18n="testimonials.t4.country">— Italy</span></div>
+          <div class="mt-6 font-semibold"><span data-i18n="testimonials.t4.name">Marco R.</span> <span class="font-normal text-black font-semibold" data-i18n="testimonials.t4.country">— Italy</span></div>
         </div>
       </div>
     </div>
@@ -1138,16 +1200,16 @@
   <section id="precios" class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="section-title text-4xl font-bold text-center mb-4" data-i18n="pricing.title">Pricing</h2>
-      <p class="text-center text-zinc-600 text-lg mb-12" data-i18n="pricing.subtitle">Online or in-person classes in Madrid. No commitment.</p>
+      <p class="text-center text-black font-semibold text-lg mb-12" data-i18n="pricing.subtitle">Online or in-person classes in Madrid. No commitment.</p>
 
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div class="bg-white border border-zinc-200 rounded-3xl p-8">
           <h3 class="font-semibold text-xl" data-i18n="pricing.individual.title">Individual class</h3>
           <div class="mt-4">
             <span class="text-5xl font-bold">32€</span>
-            <span class="text-xl text-zinc-500" data-i18n="pricing.perhour">/hour</span>
+            <span class="text-xl text-black font-semibold" data-i18n="pricing.perhour">/hour</span>
           </div>
-          <ul class="mt-8 space-y-3 text-sm text-zinc-600">
+          <ul class="mt-8 space-y-3 text-sm text-black font-semibold">
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.individual.1">60 minutes</span></li>
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.individual.2">Materials included</span></li>
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.individual.3">Flexible schedule</span></li>
@@ -1160,9 +1222,9 @@
           <h3 class="font-semibold text-xl" data-i18n="pricing.pack5.title">5-class pack</h3>
           <div class="mt-4">
             <span class="text-5xl font-bold">145€</span>
-            <span class="text-xl text-zinc-500" data-i18n="pricing.pack5.price">(29€/hour)</span>
+            <span class="text-xl text-black font-semibold" data-i18n="pricing.pack5.price">(29€/hour)</span>
           </div>
-          <ul class="mt-8 space-y-3 text-sm text-zinc-600">
+          <ul class="mt-8 space-y-3 text-sm text-black font-semibold">
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.1">5 individual hours</span></li>
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.2">10% discount</span></li>
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.pack5.3">WhatsApp follow-up</span></li>
@@ -1175,9 +1237,9 @@
           <h3 class="font-semibold text-xl" data-i18n="pricing.group.title">Group classes (2-4 people)</h3>
           <div class="mt-4">
             <span class="text-5xl font-bold">22€</span>
-            <span class="text-xl text-zinc-500" data-i18n="pricing.perperson">/person</span>
+            <span class="text-xl text-black font-semibold" data-i18n="pricing.perperson">/person</span>
           </div>
-          <ul class="mt-8 space-y-3 text-sm text-zinc-600">
+          <ul class="mt-8 space-y-3 text-sm text-black font-semibold">
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.group.1">90 minutes per session</span></li>
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.group.2">Price per person</span></li>
             <li class="flex gap-2"><i class="fas fa-check text-red-600 mt-0.5"></i> <span data-i18n="pricing.group.3">Ideal for speaking practice</span></li>
@@ -1195,7 +1257,7 @@
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-10">
           <h1 class="text-4xl font-bold tracking-tight">Spanish Learning Blog</h1>
-          <p class="mt-3 text-lg text-zinc-500 max-w-2xl mx-auto">
+          <p class="mt-3 text-lg text-black font-semibold max-w-2xl mx-auto">
             Grammar, culture and strategies for mastering Spanish — from a teacher who knows what actually works
           </p>
         </div>
@@ -1209,12 +1271,12 @@
             <div class="p-6 flex-1 flex flex-col">
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="inline-block bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full font-medium">Grammar</span>
-                <span class="text-zinc-400">8 min read</span>
+                <span class="text-black font-medium">8 min read</span>
               </div>
               <h3 class="font-semibold text-xl leading-tight mb-2">7 Spanish Mistakes You're Probably Making Right Now</h3>
-              <p class="text-zinc-500 text-sm flex-1">After 10+ years of teaching, I've heard the same errors in almost every class. Here's how to spot and fix the most stubborn ones — with real examples.</p>
+              <p class="text-black font-semibold text-sm flex-1">After 10+ years of teaching, I've heard the same errors in almost every class. Here's how to spot and fix the most stubborn ones — with real examples.</p>
               <div class="mt-4 flex items-center justify-between text-sm">
-                <span class="text-zinc-400">March 15, 2024</span>
+                <span class="text-black font-medium">March 15, 2024</span>
                 <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
               </div>
             </div>
@@ -1226,12 +1288,12 @@
             <div class="p-6 flex-1 flex flex-col">
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="inline-block bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full font-medium">Grammar</span>
-                <span class="text-zinc-400">10 min read</span>
+                <span class="text-black font-medium">10 min read</span>
               </div>
               <h3 class="font-semibold text-xl leading-tight mb-2">The Subjunctive Mood: A Clear, No-Nonsense Guide</h3>
-              <p class="text-zinc-500 text-sm flex-1">The subjunctive intimidates most learners. But it follows clear, learnable patterns — and once you understand the logic behind it, everything clicks.</p>
+              <p class="text-black font-semibold text-sm flex-1">The subjunctive intimidates most learners. But it follows clear, learnable patterns — and once you understand the logic behind it, everything clicks.</p>
               <div class="mt-4 flex items-center justify-between text-sm">
-                <span class="text-zinc-400">March 10, 2024</span>
+                <span class="text-black font-medium">March 10, 2024</span>
                 <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
               </div>
             </div>
@@ -1243,12 +1305,12 @@
             <div class="p-6 flex-1 flex flex-col">
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="inline-block bg-emerald-100 text-emerald-700 px-3 py-0.5 rounded-full font-medium">Culture</span>
-                <span class="text-zinc-400">7 min read</span>
+                <span class="text-black font-medium">7 min read</span>
               </div>
               <h3 class="font-semibold text-xl leading-tight mb-2">Spain's Linguistic Map: Why the Country Speaks More Than One Language</h3>
-              <p class="text-zinc-500 text-sm flex-1">Spain is officially plurilingual. Understanding its regional languages will give you cultural insights that no grammar book ever will.</p>
+              <p class="text-black font-semibold text-sm flex-1">Spain is officially plurilingual. Understanding its regional languages will give you cultural insights that no grammar book ever will.</p>
               <div class="mt-4 flex items-center justify-between text-sm">
-                <span class="text-zinc-400">March 5, 2024</span>
+                <span class="text-black font-medium">March 5, 2024</span>
                 <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
               </div>
             </div>
@@ -1260,12 +1322,12 @@
             <div class="p-6 flex-1 flex flex-col">
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="inline-block bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full font-medium">Practical</span>
-                <span class="text-zinc-400">6 min read</span>
+                <span class="text-black font-medium">6 min read</span>
               </div>
               <h3 class="font-semibold text-xl leading-tight mb-2">30 Essential Spanish Phrases for Travellers (That Actually Get Used)</h3>
-              <p class="text-zinc-500 text-sm flex-1">Forget the phrasebook basics. These are the expressions that will actually get you out of tight spots, make locals smile, and open real conversations.</p>
+              <p class="text-black font-semibold text-sm flex-1">Forget the phrasebook basics. These are the expressions that will actually get you out of tight spots, make locals smile, and open real conversations.</p>
               <div class="mt-4 flex items-center justify-between text-sm">
-                <span class="text-zinc-400">February 28, 2024</span>
+                <span class="text-black font-medium">February 28, 2024</span>
                 <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
               </div>
             </div>
@@ -1277,12 +1339,12 @@
             <div class="p-6 flex-1 flex flex-col">
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="inline-block bg-emerald-100 text-emerald-700 px-3 py-0.5 rounded-full font-medium">Culture</span>
-                <span class="text-zinc-400">9 min read</span>
+                <span class="text-black font-medium">9 min read</span>
               </div>
               <h3 class="font-semibold text-xl leading-tight mb-2">Spanish Cinema: 8 Films That Will Transform Your Listening Comprehension</h3>
-              <p class="text-zinc-500 text-sm flex-1">Watching films in Spanish is one of the highest-return activities for any learner above A2. Here's a curated list — plus a proven method to make it actually work.</p>
+              <p class="text-black font-semibold text-sm flex-1">Watching films in Spanish is one of the highest-return activities for any learner above A2. Here's a curated list — plus a proven method to make it actually work.</p>
               <div class="mt-4 flex items-center justify-between text-sm">
-                <span class="text-zinc-400">February 20, 2024</span>
+                <span class="text-black font-medium">February 20, 2024</span>
                 <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
               </div>
             </div>
@@ -1294,12 +1356,12 @@
             <div class="p-6 flex-1 flex flex-col">
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="inline-block bg-purple-100 text-purple-700 px-3 py-0.5 rounded-full font-medium">Vocabulary</span>
-                <span class="text-zinc-400">8 min read</span>
+                <span class="text-black font-medium">8 min read</span>
               </div>
               <h3 class="font-semibold text-xl leading-tight mb-2">How to Build Spanish Vocabulary That Actually Sticks</h3>
-              <p class="text-zinc-500 text-sm flex-1">Learning words from a list and forgetting them by Thursday? Here's the neuroscience-backed approach to vocabulary that makes knowledge permanent.</p>
+              <p class="text-black font-semibold text-sm flex-1">Learning words from a list and forgetting them by Thursday? Here's the neuroscience-backed approach to vocabulary that makes knowledge permanent.</p>
               <div class="mt-4 flex items-center justify-between text-sm">
-                <span class="text-zinc-400">February 15, 2024</span>
+                <span class="text-black font-medium">February 15, 2024</span>
                 <span class="text-blue-600 hover:text-blue-700 font-medium">Read article →</span>
               </div>
             </div>
@@ -1315,13 +1377,13 @@
         <div id="post-1" style="display:none;" class="max-w-3xl mx-auto">
           <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
           <img src="images/blog/post-1.jpg" alt="Desk setup" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
-          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+          <div class="flex items-center gap-3 text-sm text-black font-semibold mb-2">
             <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Grammar</span>
             <span>March 15, 2024</span>
             <span>8 min read</span>
           </div>
           <h1 class="text-4xl font-bold tracking-tight mb-6">7 Spanish Mistakes You're Probably Making Right Now</h1>
-          <div class="prose prose-lg max-w-none text-zinc-800">
+          <div class="prose prose-lg max-w-none text-black font-semibold">
             <p>After more than a decade teaching Spanish to students from over 30 nationalities, I've heard the same mistakes come up again and again. The good news? Once you know what to look for, these errors are surprisingly easy to fix.</p>
 
             <h2 class="text-2xl font-semibold mt-8 mb-3">1. Gender agreement — the silent killer</h2>
@@ -1396,13 +1458,13 @@
         <div id="post-2" style="display:none;" class="max-w-3xl mx-auto">
           <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
           <img src="images/blog/post-2.jpg" alt="Library" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
-          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+          <div class="flex items-center gap-3 text-sm text-black font-semibold mb-2">
             <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Grammar</span>
             <span>March 10, 2024</span>
             <span>10 min read</span>
           </div>
           <h1 class="text-4xl font-bold tracking-tight mb-6">The Subjunctive Mood: A Clear, No-Nonsense Guide</h1>
-          <div class="prose prose-lg max-w-none text-zinc-800">
+          <div class="prose prose-lg max-w-none text-black font-semibold">
             <p>The subjunctive is the aspect of Spanish grammar that tends to separate intermediate learners from advanced ones. It's not taught well in most courses, and that creates unnecessary fear. Let's fix that.</p>
             <h2 class="text-2xl font-semibold mt-8">What IS the subjunctive?</h2>
             <p>The subjunctive is a mood (not a tense). Spanish has three moods: Indicative (objective facts), Subjunctive (doubt, wishes, emotions, hypotheticals), and Imperative (commands). The key insight: the subjunctive doesn't describe reality — it describes your attitude toward something.</p>
@@ -1454,13 +1516,13 @@
         <div id="post-3" style="display:none;" class="max-w-3xl mx-auto">
           <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
           <img src="images/blog/post-3.jpg" alt="Barcelona cityscape" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
-          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+          <div class="flex items-center gap-3 text-sm text-black font-semibold mb-2">
             <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">Culture</span>
             <span>March 5, 2024</span>
             <span>7 min read</span>
           </div>
           <h1 class="text-4xl font-bold tracking-tight mb-6">Spain's Linguistic Map: Why the Country Speaks More Than One Language</h1>
-          <div class="prose prose-lg max-w-none text-zinc-800">
+          <div class="prose prose-lg max-w-none text-black font-semibold">
             <p>When people sign up to "learn Spanish", they generally mean Castilian — the Spanish spoken across most of the country and across Latin America. But Spain is, in fact, a plurilingual state, and knowing its linguistic map is as important as knowing its geography.</p>
 
             <h2 class="text-2xl font-semibold mt-8 mb-3">Castilian (Castellano)</h2>
@@ -1498,13 +1560,13 @@
         <div id="post-4" style="display:none;" class="max-w-3xl mx-auto">
           <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
           <img src="images/blog/post-4.jpg" alt="Machu Picchu landscape" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
-          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+          <div class="flex items-center gap-3 text-sm text-black font-semibold mb-2">
             <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">Practical</span>
             <span>February 28, 2024</span>
             <span>6 min read</span>
           </div>
           <h1 class="text-4xl font-bold tracking-tight mb-6">30 Essential Spanish Phrases for Travellers (That Actually Get Used)</h1>
-          <div class="prose prose-lg max-w-none text-zinc-800">
+          <div class="prose prose-lg max-w-none text-black font-semibold">
             <p>Most travel phrasebooks teach you "where is the train station?" and "how much does this cost?". Useful, but locals can tell immediately when someone is reading from a script. Here are phrases that actually sound natural — the ones I'd tell my friend before their first trip to a Spanish-speaking country.</p>
 
             <h2 class="text-2xl font-semibold mt-8 mb-3">Polite openers that change everything</h2>
@@ -1540,13 +1602,13 @@
         <div id="post-5" style="display:none;" class="max-w-3xl mx-auto">
           <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
           <img src="images/blog/post-5.jpg" alt="Popcorn and cinema" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
-          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+          <div class="flex items-center gap-3 text-sm text-black font-semibold mb-2">
             <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">Culture</span>
             <span>February 20, 2024</span>
             <span>9 min read</span>
           </div>
           <h1 class="text-4xl font-bold tracking-tight mb-6">Spanish Cinema: 8 Films That Will Transform Your Listening Comprehension</h1>
-          <div class="prose prose-lg max-w-none text-zinc-800">
+          <div class="prose prose-lg max-w-none text-black font-semibold">
             <p>Passive exposure to Spanish through film is good. Active, strategic watching is transformative. The difference is in how you approach it — not just sitting back and watching, but engaging with the language as a learner. Let me show you the method I give all my students from B1 upwards.</p>
 
             <h2 class="text-2xl font-semibold mt-8 mb-3">The 3-pass method</h2>
@@ -1573,13 +1635,13 @@
         <div id="post-6" style="display:none;" class="max-w-3xl mx-auto">
           <a onclick="showBlogGrid()" class="inline-flex items-center gap-2 text-blue-600 hover:underline mb-6 font-medium">← Back to Blog</a>
           <img src="images/blog/post-6.jpg" alt="Desk with laptop and notebook" class="w-full rounded-3xl mb-6 object-cover max-h-[420px]">
-          <div class="flex items-center gap-3 text-sm text-zinc-500 mb-2">
+          <div class="flex items-center gap-3 text-sm text-black font-semibold mb-2">
             <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">Vocabulary</span>
             <span>February 15, 2024</span>
             <span>8 min read</span>
           </div>
           <h1 class="text-4xl font-bold tracking-tight mb-6">How to Build Spanish Vocabulary That Actually Sticks</h1>
-          <div class="prose prose-lg max-w-none text-zinc-800">
+          <div class="prose prose-lg max-w-none text-black font-semibold">
             <p>The most common complaint I hear from students is: "I learn new words and then forget them within days." This is not a memory problem — it's a method problem. Memory follows predictable rules, and once you understand them, vocabulary retention becomes a skill you can actually control.</p>
 
             <h2 class="text-2xl font-semibold mt-8 mb-3">Spaced repetition: the single most powerful technique</h2>
@@ -1618,12 +1680,12 @@
     <div id="test-content" class="max-w-3xl mx-auto px-6">
       <div id="level-test-intro">
         <div class="text-center mb-8">
-          <h1 class="text-4xl font-bold tracking-tight text-zinc-900" data-i18n="test.title">Spanish Level Test</h1>
-          <p class="mt-3 text-lg text-zinc-600" data-i18n="test.lead">Want to know your real Spanish level?</p>
+          <h1 class="text-4xl font-extrabold tracking-tight text-black" data-i18n="test.title">Spanish Level Test</h1>
+          <p class="mt-3 text-lg text-black font-semibold" data-i18n="test.lead">Want to know your real Spanish level?</p>
         </div>
         <div class="level-test-intro-card space-y-4 mb-6">
-          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro1">You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.</p>
-          <p class="text-zinc-700 leading-relaxed" data-i18n="test.intro2">Each block has 25 exercises with progressive difficulty — including listening comprehension with native Spanish audio.</p>
+          <p class="text-black font-semibold leading-relaxed" data-i18n="test.intro1">You will find 3 online level tests organized by the CEFR framework: A1–A2, B1–B2 and C1–C2.</p>
+          <p class="text-black font-semibold leading-relaxed" data-i18n="test.intro2">Each block has 25 exercises with progressive difficulty — including listening comprehension with native Spanish audio.</p>
           <div class="level-test-types-legend" aria-hidden="true">
             <span class="level-test-type-pill" data-i18n="test.type.fill">Complete</span>
             <span class="level-test-type-pill" data-i18n="test.type.drag">Drag</span>
@@ -1635,7 +1697,7 @@
             <span class="level-test-type-pill" data-i18n="test.type.mc">Choice</span>
             <span class="level-test-type-pill" data-i18n="test.type.tf">T/F</span>
           </div>
-          <p class="font-semibold text-zinc-900 mt-4" data-i18n="test.pick">You can start with the block you think fits you best:</p>
+          <p class="font-extrabold text-black mt-4" data-i18n="test.pick">You can start with the block you think fits you best:</p>
           <div class="space-y-3">
             <button type="button" class="level-test-block-btn" data-block="1">
               <span aria-hidden="true">🔹</span>
@@ -1659,14 +1721,14 @@
               </span>
             </button>
           </div>
-          <p class="text-sm text-zinc-600 leading-relaxed" data-i18n="test.rule">You do not need to complete all three blocks. If you make more than four mistakes in a block, or the questions feel too hard, finish the block and check your result — that will be your approximate level.</p>
-          <p class="text-sm text-zinc-500" data-i18n="test.orientative">This is an orientation test to help you choose the right course with Jerome. Fully integrated on this site — no external redirects.</p>
+          <p class="text-sm text-black font-semibold leading-relaxed" data-i18n="test.rule">You do not need to complete all three blocks. If you make more than four mistakes in a block, or the questions feel too hard, finish the block and check your result — that will be your approximate level.</p>
+          <p class="text-sm text-black font-semibold" data-i18n="test.orientative">This is an orientation test to help you choose the right course with Jerome. Fully integrated on this site — no external redirects.</p>
         </div>
       </div>
 
       <div id="level-test-quiz" class="level-test-hidden">
         <div class="mb-6">
-          <div class="flex items-center justify-between text-sm font-semibold text-zinc-600 mb-2">
+          <div class="flex items-center justify-between text-sm font-bold text-black mb-2">
             <span id="level-test-step-label">1 / 25</span>
             <div class="flex items-center gap-3">
               <span id="level-test-errors-label" class="level-test-errors">Mistakes: 0/4</span>
@@ -1677,8 +1739,8 @@
           <div class="level-test-progress"><div id="level-test-progress-bar" class="level-test-progress-bar" style="width: 0%"></div></div>
         </div>
         <div class="level-test-intro-card mb-6">
-          <p id="level-test-question-type" class="text-xs font-bold uppercase tracking-wider text-red-600 mb-3">Multiple choice</p>
-          <p id="level-test-question-text" class="text-lg font-semibold text-zinc-900 mb-4"></p>
+          <p id="level-test-question-type" class="text-xs font-extrabold uppercase tracking-wider text-black mb-3">Multiple choice</p>
+          <p id="level-test-question-text" class="text-lg font-bold text-black mb-4"></p>
           <div id="level-test-answers"></div>
           <p id="level-test-feedback" class="mt-4 text-sm font-medium level-test-hidden"></p>
           <button type="button" id="level-test-finish-early" class="level-test-finish-early level-test-hidden" data-i18n="test.finishEarly">Finish block and see my result</button>
@@ -1688,21 +1750,21 @@
 
       <div id="level-test-results" class="level-test-hidden">
         <div class="text-center mb-8">
-          <p id="level-test-block-done" class="text-sm font-bold uppercase tracking-wider text-red-600 mb-2">Block A1–A2 completed</p>
-          <h2 class="text-3xl font-bold text-zinc-900" data-i18n="test.results.title">Your estimated level</h2>
-          <p id="level-test-final-level" class="mt-4 text-5xl font-bold text-red-600">A2</p>
-          <p id="level-test-final-score" class="mt-2 text-lg font-semibold text-zinc-700">4/6</p>
-          <p id="level-test-final-desc" class="mt-3 text-lg text-zinc-600"></p>
+          <p id="level-test-block-done" class="text-sm font-extrabold uppercase tracking-wider text-black mb-2">Block A1–A2 completed</p>
+          <h2 class="text-3xl font-bold text-black" data-i18n="test.results.title">Your estimated level</h2>
+          <p id="level-test-final-level" class="mt-4 text-5xl font-extrabold text-black">A2</p>
+          <p id="level-test-final-score" class="mt-2 text-lg font-bold text-black">4/6</p>
+          <p id="level-test-final-desc" class="mt-3 text-lg text-black font-semibold"></p>
         </div>
         <div id="level-test-skill-breakdown" class="level-test-skill-breakdown level-test-hidden">
-          <p class="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-3" data-i18n="test.results.skills">Skills breakdown</p>
+          <p class="text-sm font-bold uppercase tracking-wider text-black font-semibold mb-3" data-i18n="test.results.skills">Skills breakdown</p>
           <div id="level-test-skill-rows"></div>
         </div>
-        <p class="text-sm text-zinc-600 mb-6 text-center" data-i18n="test.results.note">This is an orientation test. For a precise level, book a free trial class with Jerome.</p>
+        <p class="text-sm text-black font-semibold mb-6 text-center" data-i18n="test.results.note">This is an orientation test. For a precise level, book a free trial class with Jerome.</p>
         <div class="level-test-results-actions">
-          <button type="button" id="level-test-copy" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.copy">Copy my result</button>
-          <button type="button" id="level-test-another" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.another">Try another block</button>
-          <button type="button" id="level-test-retry" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-zinc-900 font-semibold py-3 rounded-2xl transition" data-i18n="test.retry">Repeat this block</button>
+          <button type="button" id="level-test-copy" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-black font-bold font-semibold py-3 rounded-2xl transition" data-i18n="test.copy">Copy my result</button>
+          <button type="button" id="level-test-another" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-black font-bold font-semibold py-3 rounded-2xl transition" data-i18n="test.another">Try another block</button>
+          <button type="button" id="level-test-retry" class="w-full bg-white border border-zinc-300 hover:bg-zinc-50 text-black font-bold font-semibold py-3 rounded-2xl transition" data-i18n="test.retry">Repeat this block</button>
           <button type="button" id="level-test-book" class="w-full text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-2xl transition" data-i18n="test.book">Book free trial class</button>
         </div>
       </div>
@@ -1799,12 +1861,12 @@
 
   <!-- Success Modal -->
   <div id="success-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-6">
-    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center text-zinc-800">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center text-black font-semibold">
       <div class="mx-auto w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
         <i class="fas fa-check text-3xl"></i>
       </div>
       <h3 class="text-2xl font-semibold mb-3" data-i18n="modal.title">Message sent!</h3>
-      <p class="text-zinc-600" data-i18n="modal.text">Thank you. I will contact you very soon to arrange your free trial class.</p>
+      <p class="text-black font-semibold" data-i18n="modal.text">Thank you. I will contact you very soon to arrange your free trial class.</p>
       <div class="mt-8">
         <button onclick="closeModal()" class="w-full bg-zinc-800 hover:bg-black text-white font-medium py-3 rounded-2xl" data-i18n="modal.close">Close</button>
       </div>
