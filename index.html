@@ -1190,8 +1190,8 @@
   </div>
 
   <!-- Blog -->
-  <section id="blog" class="py-20 bg-zinc-100">
-    <div id="blog-content" style="display: none;">
+  <section id="blog" class="py-20 bg-zinc-100" style="display: none;">
+    <div id="blog-content">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-10">
           <h1 class="text-4xl font-bold tracking-tight">Spanish Learning Blog</h1>
@@ -1614,8 +1614,8 @@
   </section>
 
   <!-- Level Test (native H5P-style, integrated) -->
-  <section id="test-nivel" class="py-20 bg-zinc-50">
-    <div id="test-content" style="display: none;" class="max-w-3xl mx-auto px-6">
+  <section id="test-nivel" class="py-20 bg-zinc-50" style="display: none;">
+    <div id="test-content" class="max-w-3xl mx-auto px-6">
       <div id="level-test-intro">
         <div class="text-center mb-8">
           <h1 class="text-4xl font-bold tracking-tight text-zinc-900" data-i18n="test.title">Spanish Level Test</h1>
@@ -3601,7 +3601,9 @@
 
     function setPageView(view) {
       const home = document.getElementById('home-content');
+      const blogSection = document.getElementById('blog');
       const blog = document.getElementById('blog-content');
+      const testSection = document.getElementById('test-nivel');
       const test = document.getElementById('test-content');
       const footer = document.getElementById('main-footer');
       const contacto = document.getElementById('contacto');
@@ -3610,7 +3612,9 @@
       const isTest = view === 'test';
 
       if (home) home.style.display = isHome ? 'block' : 'none';
+      if (blogSection) blogSection.style.display = isBlog ? 'block' : 'none';
       if (blog) blog.style.display = isBlog ? 'block' : 'none';
+      if (testSection) testSection.style.display = isTest ? 'block' : 'none';
       if (test) test.style.display = isTest ? 'block' : 'none';
       if (footer) footer.style.display = isHome ? 'block' : 'none';
       if (contacto) contacto.style.display = isHome ? '' : 'none';
@@ -3639,6 +3643,7 @@
     }
 
     function showTest() {
+      resetLevelTestView();
       setPageView('test');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -3666,13 +3671,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       initAll();
-      // Default to Home view on load
-      const home = document.getElementById('home-content');
-      const blog = document.getElementById('blog-content');
-      if (home) home.style.display = 'block';
-      if (blog) blog.style.display = 'none';
-      const test = document.getElementById('test-content');
-      if (test) test.style.display = 'none';
+      setPageView('home');
     });
 
   </script>
