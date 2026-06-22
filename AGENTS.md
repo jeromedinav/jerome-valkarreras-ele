@@ -12,15 +12,22 @@ Sitio web personal de Jerome M. Valkarreras (profesor de Español ELE). Landing 
 | Producción (Netlify) | https://jerome-valkarreras-ele.netlify.app |
 | Mirror GitHub Pages | https://jeromedinav.github.io/jerome-valkarreras-ele/ |
 
-## Cómo arrancar una sesión nueva
+## Cómo arrancar (terminal del Mac)
 
-1. Abrir esta carpeta como workspace (Cursor: **Open Folder**) o en terminal:
-   ```bash
-   cd /Users/portatil-jmv/jerome-valkarreras-ele
-   ```
-2. Lanzar Grok desde esa carpeta — lee este `AGENTS.md` automáticamente.
-3. Para retomar una conversación anterior: `/resume` y elegir la sesión del proyecto.
-4. Ejecutar tú mismo los comandos (deploy, git, etc.); no limitarse a decirle al usuario qué ejecutar.
+El usuario solo escribe:
+
+```bash
+grok
+```
+
+En `~/.zshrc` hay un wrapper que hace automáticamente:
+- `--cwd /Users/portatil-jmv/jerome-valkarreras-ele`
+- `--resume` (última sesión de este proyecto)
+- Carga este `AGENTS.md` al arrancar
+
+No pedirle al usuario que haga `cd`, `/resume` ni que recuerde rutas.
+
+Ejecutar tú mismo los comandos (deploy, git, etc.); no limitarse a decirle al usuario qué ejecutar.
 
 ## Deploy a producción
 
