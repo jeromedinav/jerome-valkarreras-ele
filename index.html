@@ -900,37 +900,41 @@
       }
     }
 
-    /* Typography — absolute black on light backgrounds */
+    /* Typography — absolute black on light backgrounds (never the hero photo) */
     body {
       color: #000;
     }
-    #home-content,
+    #home-content > section:not(.hero),
     #blog,
-    #test-nivel,
-    #blog-content,
-    #test-content {
+    #test-nivel {
       color: #000;
     }
-    #home-content p,
-    #home-content li,
+    #home-content > section:not(.hero) p,
+    #home-content > section:not(.hero) li,
+    #home-content > section:not(.hero) span:not([class*="text-red"]):not([class*="text-blue"]):not([class*="text-emerald"]):not([class*="text-purple"]),
     #blog-content p,
     #blog-content li,
     #test-content p,
     #test-content li,
-    #home-content .prose,
+    #home-content > section:not(.hero) .prose,
     #blog-content .prose {
       color: #000;
       font-weight: 600;
     }
-    #home-content h1,
-    #home-content h2,
-    #home-content h3,
+    #home-content > section:not(.hero) h1,
+    #home-content > section:not(.hero) h2,
+    #home-content > section:not(.hero) h3,
     #blog-content h1,
     #blog-content h2,
     #test-content h1,
     #test-content h2 {
       color: #000;
       font-weight: 700;
+    }
+    .hero,
+    .hero .hero-content,
+    .hero h1 {
+      color: #fff;
     }
     .mobile-link {
       color: #000;
@@ -1053,7 +1057,7 @@
         </div>
       </a>
       <p class="text-red-200 text-sm font-semibold tracking-widest uppercase mb-4 drop-shadow-md" data-i18n="hero.badge">Spanish ELE Teacher</p>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]" data-i18n="hero.title">Learn real Spanish</h1>
+      <h1 class="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]" data-i18n="hero.title">Learn real Spanish</h1>
       <p class="text-lg md:text-xl lg:text-2xl mb-6 max-w-2xl mx-auto text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.75)]" data-i18n="hero.subtitle">
         Personalized classes with a native teacher. For international students who want to speak with confidence.
       </p>
